@@ -1,5 +1,6 @@
 import React, { useEffect as E, useState as S, useMemo as M } from 'react';
 import { Link as L, useNavigate as UN } from 'react-router-dom';
+import { Analytics } from "@vercel/analytics/react";
 import { supabase as Q } from '../supabaseClient';
 import C0 from '../components/Recipe/RecipeCard';
 import C1 from '../components/Layout/CountryWidget';
@@ -57,7 +58,7 @@ const Home = () => {
             border: item.steps_data ? '1px solid #ffd8a8' : '1px solid #eee'
           }}>
             <span style={{ fontSize: '0.85rem', color: item.steps_data ? '#d35400' : '#ccc', fontWeight: 'bold' }}>
-              {item.steps_data ? t('Menu Resep Selesai') : t('home.label_quick')}
+              {item.steps_data ? t('home.label_perfect') : t('home.label_quick')}
             </span>
           </div>
         </div>
@@ -67,6 +68,7 @@ const Home = () => {
 
   return (
     <div className="container" style={{ paddingBottom: '100px', minHeight: '100vh', overflowX: 'hidden' }}>
+      <Analytics />
       <C2 title={t('home.welcome')} description={t('home.subtitle')} />
       
       <header className="header-branding-container" style={{ display: 'flex', justifyContent: 'center', gap: '10px', padding: '20px 0' }}>
@@ -86,7 +88,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* SECTION BLOG */}
       {blogs.length > 0 && (
         <section style={{ marginTop: '50px' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
