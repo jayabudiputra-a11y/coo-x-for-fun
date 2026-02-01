@@ -55,10 +55,18 @@ async function generateSEO() {
   sitemapXml += `</urlset>`;
 
   try {
-    const rssDir = './public/rss';
+    const rssDir = './dist/rss';
+    const distDir = './dist';
+    
+    if (!fs.existsSync(distDir)) fs.mkdirSync(distDir, { recursive: true });
     if (!fs.existsSync(rssDir)) fs.mkdirSync(rssDir, { recursive: true });
     
     fs.writeFileSync(`${rssDir}/recipes.xml`, feed.xml({ indent: true }));
+    fs.writeFileSync('./dist/sitemap.xml', sitemapXml);
+    
+    const publicRssDir = './public/rss';
+    if (!fs.existsSync(publicRssDir)) fs.mkdirSync(publicRssDir, { recursive: true });
+    fs.writeFileSync(`${publicRssDir}/recipes.xml`, feed.xml({ indent: true }));
     fs.writeFileSync('./public/sitemap.xml', sitemapXml);
   } catch (err) {
     process.exit(1);
