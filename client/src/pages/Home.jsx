@@ -48,7 +48,7 @@ const Home = () => {
         <div key={`recipe-${item.id}`} style={{ display: 'flex', flexDirection: 'column' }}>
           <C0 recipe={recipeItem} />
           <div style={{ 
-            marginTop: '10px', padding: '3px', borderRadius: '8px', textAlign: 'center',
+            marginTop: '9.7px', padding: '3px', borderRadius: '8px', textAlign: 'center',
             backgroundColor: item.steps_data ? '#fff4e6' : '#f9f9f9',
             border: item.steps_data ? '1px solid #ffd8a8' : '1px solid #eee'
           }}>
@@ -82,19 +82,19 @@ const Home = () => {
         <img 
           src="/Og-Icon-Coo-X-For-Fun.svg" 
           alt="Logo SVG" 
-          style={{ width: 'clamp(230px, 50vw, 320px)', height: 'auto', objectFit: 'contain' }} 
+          style={{ width: 'clamp(189.96px, 72vw, 189.98px)', height: 'auto', objectFit: 'contain' }} 
         />
         <img 
           src={I0} 
           alt="Logo PNG" 
-          style={{ width: 'clamp(220px, 47vw, 310px)', height: 'auto', objectFit: 'contain' }} 
+          style={{ width: 'clamp(132.89px, 56.89vw, 259.86px)', height: 'auto', objectFit: 'contain' }} 
         />
       </header>
 
       <C1 />
       <A0 k="home-ad" />
 
-      <section style={{ marginTop: '5px' }}>
+      <section style={{ marginTop: '3.2px' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '15px', alignItems: 'center' }}>
           <h3 style={{ fontWeight: '800', margin: 0, fontSize: '1.4rem' }}>Resep Masakan Jadi</h3>
           <L to="/search" style={{ color: '#d35400', textDecoration: 'none', fontWeight: 'bold' }}>Lihat Semua →</L>
@@ -102,7 +102,7 @@ const Home = () => {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '25px' }}>
           {renderedRecipes}
         </div>
-        {loading && <div style={{ textAlign: 'center', padding: '20px' }}>🍲</div>}
+        {loading && <div style={{ textAlign: 'center', padding: '14.9px' }}>🍲</div>}
       </section>
 
       {blogs.length > 0 && (
