@@ -1,16 +1,6 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 
 const StepsList = ({ steps, steps_data }) => {
-  const { t, i18n } = useTranslation();
-  const isEn = i18n.language === 'en';
-
-  /**
-   * LOGIKA TRANSLASI:
-   * 1. Prioritaskan 'steps_data' karena data ini sudah diproses oleh fungsi G() 
-   * di RecipeDetail (sudah otomatis memilih versi EN atau ID).
-   * 2. Jika 'steps_data' kosong, baru gunakan 'steps' (relasi tabel).
-   */
   let sList = [];
   if (Array.isArray(steps_data) && steps_data.length > 0) {
     sList = steps_data;
@@ -29,7 +19,7 @@ const StepsList = ({ steps, steps_data }) => {
         fontWeight: '800',
         textTransform: 'uppercase'
       }}>
-        {isEn ? 'COOKING STEPS' : 'TAHAP BUATNYA'}
+        TAHAP BUATNYA
       </h3>
 
       {sList.length > 0 ? (
@@ -55,7 +45,7 @@ const StepsList = ({ steps, steps_data }) => {
                 justifyContent: 'center', 
                 fontWeight: 'bold',
                 flexShrink: 0
-              }}>
+               }}>
                 {st.step_number}
               </div>
               <div style={{ flex: 1 }}>
@@ -90,7 +80,7 @@ const StepsList = ({ steps, steps_data }) => {
           border: '1px dashed #ccc'
         }}>
           <p style={{ color: '#888', fontStyle: 'italic', margin: 0 }}>
-            {isEn ? 'Steps are not available.' : 'Langkah-langkah tidak tersedia.'}
+            Langkah-langkah tidak tersedia.
           </p>
         </div>
       )}

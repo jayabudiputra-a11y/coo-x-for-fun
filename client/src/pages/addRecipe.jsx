@@ -10,7 +10,6 @@ const AddRecipe = () => {
   const [f0, sF] = S({ t: '', d: '', i: '', s: '', c: 'Indonesia' });
   const [imgFile, sImgFile] = S(null);
 
-  // Cek sesi login saat halaman dimuat
   E(() => {
     const checkUser = async () => {
       const { data: { session } } = await Q.auth.getSession();
@@ -35,7 +34,6 @@ const AddRecipe = () => {
     sL(true);
 
     try {
-      // 1. Upload Gambar
       const fileExt = imgFile.name.split('.').pop();
       const fileName = `${Date.now()}-${Math.random().toString(36).substring(2)}.${fileExt}`;
       const filePath = `public/${fileName}`;
@@ -51,7 +49,6 @@ const AddRecipe = () => {
 
       const cleanTitle = f0.t.trim();
       
-      // OTOMATIS: Ambil nama dan ID dari metadata Google Login
       const authorName = user.user_metadata.full_name || 'Chef Anonymous';
       const authorId = user.id;
 
@@ -63,13 +60,12 @@ const AddRecipe = () => {
         ingredients: f0.i.split('\n').filter(x => x.trim() !== ""),
         country: f0.c,
         image_url: finalImageUrl,
-        author_name: authorName, // Nama otomatis dari Google
-        user_id: authorId       // ID unik user untuk relasi
+        author_name: authorName, 
+        user_id: authorId       
       }]).select().single();
 
       if (rE) throw rE;
 
-      // 3. Insert ke Tabel Steps
       const sA = f0.s.split('\n')
         .map(line => line.replace(/^[\d\s.)\]-]+/g, '').trim())
         .filter(line => line !== "")

@@ -2,12 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { supabase } from '../supabaseClient';
 import SEOHelper from '../components/SEO/SEOHelper';
-import { useTranslation } from 'react-i18next';
-import { getLocalized } from '../utils/langHelper';
 
 const BlogList = () => {
   const [posts, setPosts] = useState([]);
-  const { t, i18n } = useTranslation();
 
   useEffect(() => {
     supabase.from('blog_posts').select('*').order('created_at', { ascending: false })
@@ -17,30 +14,30 @@ const BlogList = () => {
   return (
     <div className="container" style={{ maxWidth: '600px', margin: '0 auto', padding: '0 16px' }}>
       <SEOHelper 
-        title={t('home.journal_title')} 
-        description={i18n.language === 'en' ? 'Discover honest food reviews and the best places to eat.' : 'Temukan review makanan jujur dan tempat makan terbaik.'} 
+        title="Postingan Saya" 
+        description="Temukan review makanan jujur dan tempat makan terbaik." 
       />
       
       <header style={{ textAlign: 'center', margin: '30px 0' }}>
         <h1 style={{ color: '#d35400', fontSize: '1.8rem', textTransform: 'uppercase', margin: '0 0 8px 0' }}>
-          {t('home.journal_title')}
+          Postingan Saya
         </h1>
         <p style={{ color: '#666', fontSize: '0.9rem', margin: 0 }}>
-          {i18n.language === 'en' ? 'Honest Food & Place Reviews' : 'Review Jujur Makanan & Tempat'}
+          Review Jujur Makanan & Tempat
         </p>
       </header>
 
       <main style={{ display: 'flex', flexDirection: 'column', gap: '24px', paddingBottom: '40px' }}>
         {posts.map((post, index) => {
-          const displayTitle = getLocalized(post, 'title', i18n.language);
-          const displayContent = getLocalized(post, 'content', i18n.language);
+          const displayTitle = post.title;
+          const displayContent = post.content;
 
           return (
             <Link 
               to={`/blog/${post.slug}`} 
               key={post.id} 
               style={{ textDecoration: 'none', display: 'block' }}
-              aria-label={`${t('common.read_more')} ${displayTitle}`}
+              aria-label={`Baca selengkapnya ${displayTitle}`}
             >
               <article style={{ 
                 background: 'white', 
@@ -79,7 +76,7 @@ const BlogList = () => {
                       marginLeft: '5px',
                       display: 'inline-block'
                     }}>
-                      {i18n.language === 'en' ? 'Read Full Review →' : 'Baca Review Lengkap →'}
+                      Baca Review Lengkap →
                     </span>
                   </p>
                 </div>

@@ -1,23 +1,17 @@
-import R from 'react';
-import { useTranslation as T } from 'react-i18next';
+import React from 'react';
 
 const IngredientsList = ({ ingredients: i0 }) => {
-  const { t: t0, i18n: i } = T();
-  
   const l = typeof i0 === 'string' ? i0.split('\n') : (i0 || []);
 
   const renderItem = (v) => {
     if (typeof v === 'object' && v !== null) {
-      const isEn = i.language === 'en';
-      const itemName = isEn ? (v.item_en || v.item) : v.item;
-      
       return (
         <span>
           <span style={{ color: '#f3a133', fontWeight: 'bold' }}>
             {v.quantity || ''}
           </span>
           {' '}
-          {itemName}
+          {v.item}
         </span>
       );
     }
@@ -44,7 +38,7 @@ const IngredientsList = ({ ingredients: i0 }) => {
         letterSpacing: '2px',
         fontSize: '1.2rem'
       }}>
-        {i.language === 'en' ? 'INGREDIENTS' : 'BAHAN-BAHAN'}
+        BAHAN-BAHAN
       </h3>
       
       <ul style={{ 
@@ -61,7 +55,7 @@ const IngredientsList = ({ ingredients: i0 }) => {
           ))
         ) : (
           <li style={{ fontStyle: 'italic', color: '#888' }}>
-            {i.language === 'en' ? 'Ingredients data unavailable.' : 'Data bahan tidak tersedia.'}
+            Data bahan tidak tersedia.
           </li>
         )}
       </ul>

@@ -1,6 +1,5 @@
-import React, { useState as S, useEffect as E, useCallback as CB, useRef as UR } from 'react';
+import React, { useEffect as E, useState as S, useCallback as CB, useRef as UR } from 'react';
 import { useSearchParams as U } from 'react-router-dom';
-import { useTranslation as T } from 'react-i18next';
 import { supabase as Q } from '../supabaseClient';
 import C0 from '../components/Recipe/RecipeCard';
 import C1 from '../components/SEO/SEOHelper';
@@ -22,7 +21,6 @@ const A0 = React.memo(({ k }) => {
 const SearchPage = () => {
   const [p0, p1] = U();
   const k0 = p0.get('q') || '';
-  const { t, i18n } = T();
 
   const [q, sQ] = S(k0);
   const [r, sR] = S([]);
@@ -104,13 +102,13 @@ const SearchPage = () => {
   return (
     <div className="container" style={{ paddingBottom: '120px', contain: 'public cache' }}>
       <C1
-        title={q ? `${t('nav.search')}: ${q}` : t('home.welcome')}
-        description={t('home.subtitle')}
+        title={q ? `Cari: ${q}` : "Inspirasi Masak Harian"}
+        description="Jelajahi rasa otentik dari berbagai negara & cerita kuliner terbaik."
       />
 
       <div style={{ maxWidth: '600px', margin: '20px auto 30px', textAlign: 'center', minHeight: '120px' }}>
         <h1 style={{ fontSize: '1.6rem', marginBottom: '20px', color: '#d35400', fontWeight: '800', textTransform: 'uppercase' }}>
-          {i18n.language === 'en' ? 'FIND RECIPES' : 'TEMUKAN RESEP'}
+          TEMUKAN RESEP
         </h1>
 
         <form onSubmit={f0} style={{ position: 'relative' }}>
@@ -118,7 +116,7 @@ const SearchPage = () => {
             type="text"
             value={q}
             onChange={(e) => sQ(e.target.value)}
-            placeholder={i18n.language === 'en' ? 'Search menu...' : 'Cari menu...'}
+            placeholder="Cari menu..."
             style={{
               width: '100%', padding: '16px 22px', borderRadius: '50px',
               border: '2px solid #eee', outline: 'none', fontSize: '1rem',
@@ -135,7 +133,7 @@ const SearchPage = () => {
               fontWeight: 'bold'
             }}
           >
-            {t('nav.search')}
+            CARI
           </button>
         </form>
       </div>
@@ -154,11 +152,7 @@ const SearchPage = () => {
         <div style={{ transition: 'opacity 0.2s' }}>
           <div style={{ marginBottom: '20px', padding: '8px 15px', background: '#fff9f4', borderRadius: '8px', borderLeft: '4px solid #d35400', display: 'inline-block' }}>
             <p style={{ margin: 0, fontSize: '0.95rem' }}>
-              {i18n.language === 'en' ? (
-                <>Showing <strong>{r.length}</strong> recipes for <strong>"{k0}"</strong></>
-              ) : (
-                <>Menampilkan <strong>{r.length}</strong> resep untuk <strong>"{k0}"</strong></>
-              )}
+              Menampilkan <strong>{r.length}</strong> resep untuk <strong>"{k0}"</strong>
             </p>
           </div>
 
@@ -176,9 +170,7 @@ const SearchPage = () => {
           ) : !l && (
             <div style={{ textAlign: 'center', padding: '50px', background: '#f9f9f9', borderRadius: '15px' }}>
               <p style={{ color: '#999' }}>
-                {i18n.language === 'en' 
-                  ? `Recipe "${k0}" not found.` 
-                  : `Resep "${k0}" tidak ditemukan.`}
+                Resep "{k0}" tidak ditemukan.
               </p>
             </div>
           )}

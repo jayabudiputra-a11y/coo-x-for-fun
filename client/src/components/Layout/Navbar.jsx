@@ -1,22 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Search, LogIn, LogOut, User } from 'lucide-react';
-import { useTranslation } from 'react-i18next';
+import { Search, LogIn, LogOut } from 'lucide-react';
 import { supabase } from '../../supabaseClient';
 
 const Navbar = () => {
-  const { t } = useTranslation();
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    // Ambil data user saat ini
     const getSession = async () => {
       const { data: { session } } = await supabase.auth.getSession();
       setUser(session?.user ?? null);
     };
     getSession();
 
-    // Dengar perubahan status auth (login/logout)
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
       setUser(session?.user ?? null);
     });
@@ -71,24 +67,23 @@ const Navbar = () => {
             fontWeight: '600',
             fontSize: '0.95rem'
           }}>
-            {t('nav.journal')}
+            Jurnal
           </Link>
 
           <Link to="/search" style={{ color: '#555', display: 'flex', alignItems: 'center' }}>
             <Search size={20} />
           </Link>
 
-          {/* Area Profil / Login */}
           <div style={{ borderLeft: '1px solid #eee', paddingLeft: '15px', display: 'flex', alignItems: 'center', gap: '10px' }}>
             {user ? (
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                <div style={{ textAlign: 'right', display: 'none', sm: 'block' }}>
+                <div style={{ textAlign: 'right' }}>
                   <p style={{ margin: 0, fontSize: '0.8rem', fontWeight: 'bold', color: '#333' }}>
-                    {user.user_metadata.full_name || 'User'}
+                    {user.user_metadata?.full_name || 'User'}
                   </p>
                 </div>
                 <img 
-                  src={user.user_metadata.avatar_url} 
+                  src={user.user_metadata?.avatar_url} 
                   alt="Profile" 
                   style={{ width: '32px', height: '32px', borderRadius: '50%', border: '2px solid #d35400' }} 
                 />

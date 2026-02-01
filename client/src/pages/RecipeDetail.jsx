@@ -1,8 +1,6 @@
 import R, { useState as S } from 'react';
 import { useParams as UP } from 'react-router-dom';
-import { useTranslation as T } from 'react-i18next';
 import { useRecipe as UR } from '../hooks/useRecipe';
-import { getLocalized as G } from '../utils/langHelper';
 import C0 from '../components/SEO/SEOHelper';
 import C1 from '../components/Recipe/RecipeHeader';
 import C2 from '../components/Recipe/IngredientsList';
@@ -26,33 +24,27 @@ const AdSection = ({ k }) => {
 const RecipeDetail = () => {
   const { slug: s0 } = UP();
   const { recipe: r0, loading: l0 } = UR(s0);
-  const { i18n: i, t: t0 } = T();
 
   if (l0) return (
     <div style={{ maxWidth: '800px', margin: '0 auto', padding: '20px' }}>
       <AdSection k="loading" />
       <div style={{ textAlign: 'center', padding: '60px', fontSize: '1.2rem', color: '#888' }}>
-        {t0('common.loading')}
+        Memuat...
       </div>
     </div>
   );
   
   if (!r0) return (
     <div style={{ textAlign: 'center', padding: '100px' }}>
-      <h2 style={{ color: '#d35400' }}>{t0('common.not_found')}</h2>
-      <p>{i.language === 'en' ? 'Maybe the recipe was deleted or the URL is wrong.' : 'Mungkin resep telah dihapus atau URL salah.'}</p>
+      <h2 style={{ color: '#d35400' }}>Resep Tidak Ditemukan</h2>
+      <p>Mungkin resep telah dihapus atau URL salah.</p>
     </div>
   );
 
-  const title = G(r0, 'title', i.language);
-  const description = G(r0, 'description', i.language);
-  const country_localized = G(r0, 'country', i.language);
-  
-  const steps_data_final = i.language === 'en' && r0.steps_data_en 
-    ? r0.steps_data_en 
-    : r0.steps_data;
-
-  const authorDisplay = `${t0('common.by')} ${r0.author_name || 'Chef Anonymous'}`;
+  const title = r0.title;
+  const description = r0.description;
+  const country_localized = r0.country;
+  const authorDisplay = `Oleh ${r0.author_name || 'Chef Anonymous'}`;
 
   return (
     <div className="container-detail" style={{ maxWidth: '800px', margin: '0 auto', padding: '0 20px 100px', background: '#fff' }}>
@@ -84,7 +76,7 @@ const RecipeDetail = () => {
 
         <StepsList 
             steps={r0.steps} 
-            steps_data={steps_data_final} 
+            steps_data={r0.steps_data} 
         />
         
       </div>

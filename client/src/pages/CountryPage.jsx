@@ -3,13 +3,11 @@ import { useParams, Link } from 'react-router-dom';
 import { supabase } from '../supabaseClient';
 import RecipeCard from '../components/Recipe/RecipeCard';
 import SEOHelper from '../components/SEO/SEOHelper';
-import { useTranslation } from 'react-i18next';
 
 const CountryPage = () => {
   const { name } = useParams(); 
   const [recipes, setRecipes] = useState([]);
   const [loading, setLoading] = useState(true);
-  const { t } = useTranslation();
 
   useEffect(() => {
     const fetchRecipes = async () => {
@@ -21,7 +19,6 @@ const CountryPage = () => {
           .or(`country.ilike.%${name}%,country_en.ilike.%${name}%`);
 
         if (error) {
-          console.warn("Mencoba fallback search karena kolom country_en mungkin belum ada.");
           const { data: fallbackData } = await supabase
             .from('recipes')
             .select('*')
@@ -47,7 +44,7 @@ const CountryPage = () => {
       
       <div style={{ margin: '20px 0', display: 'flex', alignItems: 'center', gap: '10px' }}>
         <Link to="/" style={{ textDecoration: 'none', color: '#d35400', fontWeight: 'bold', fontSize: '0.9rem' }}>
-          ← {t('common.back')}
+          ← Kembali
         </Link>
         <span style={{ color: '#eee' }}>|</span>
         <h1 style={{ margin: 0, fontSize: '1.4rem', textTransform: 'capitalize', color: '#333' }}>
@@ -57,8 +54,8 @@ const CountryPage = () => {
 
       {loading ? (
         <div style={{ padding: '80px 0', textAlign: 'center' }}>
-          <div className="loading-spinner"></div> {/* Pastikan CSS spinner ada */}
-          <p style={{ color: '#999', marginTop: '10px' }}>{t('common.loading')}</p>
+          <div className="loading-spinner"></div>
+          <p style={{ color: '#999', marginTop: '10px' }}>Memuat...</p>
         </div>
       ) : (
         <>
@@ -77,10 +74,10 @@ const CountryPage = () => {
             }}>
               <div style={{ fontSize: '3rem', marginBottom: '15px' }}>🥗</div>
               <h3 style={{ color: '#333', marginBottom: '10px' }}>
-                {t('search.empty_title') || 'Resep Tidak Ditemukan'}
+                Resep Tidak Ditemukan
               </h3>
               <p style={{ color: '#888', marginBottom: '25px', maxWidth: '300px', margin: '0 auto 25px' }}>
-                {t('search.empty_desc') || `Belum ada resep untuk negara ${name}.`}
+                Belum ada resep untuk negara {name}.
               </p>
               <Link to="/" style={{ 
                 background: '#d35400', 
@@ -91,7 +88,7 @@ const CountryPage = () => {
                 fontWeight: 'bold',
                 boxShadow: '0 4px 12px rgba(211, 84, 0, 0.3)'
               }}>
-                {t('common.back')}
+                Kembali Ke Beranda
               </Link>
             </div>
           )}
