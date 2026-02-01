@@ -20,12 +20,7 @@ i18n
             trending_title: "Resep Masakan Jadi",
             view_all_recipes: "Lihat Semua Resep →",
             journal_title: "Postingan Saya",
-            view_all_journal: "Lihat Semua →",
-            read_more: "Baca selengkapnya...",
-            read_article: "BACA &raquo;",
-            review_badge: "ULASAN",
-            no_journal: "Belum ada artikel jurnal.",
-            date_format: "id-ID"
+            view_all_journal: "Lihat Semua →"
           },
           countries: {
             indonesia: "Indonesia", japan: "Jepang", italy: "Italia", korea: "Korea",
@@ -33,12 +28,6 @@ i18n
             mexico: "Meksiko", france: "Prancis", turkey: "Turki", vietnam: "Vietnam",
             uk: "Inggris", spain: "Spanyol", malaysia: "Malaysia", germany: "Jerman",
             brazil: "Brasil", philippines: "Filipina", russia: "Rusia", greece: "Yunani"
-          },
-          common: { 
-            loading: "Memuat...", 
-            back: "Kembali", 
-            by: "Oleh", 
-            not_found: "Resep Tidak Ditemukan" 
           }
         }
       },
@@ -52,12 +41,7 @@ i18n
             trending_title: "Finished Recipes",
             view_all_recipes: "View All Recipes →",
             journal_title: "My Posts",
-            view_all_journal: "View All →",
-            read_more: "Read more...",
-            read_article: "READ &raquo;",
-            review_badge: "REVIEW",
-            no_journal: "No journal articles yet.",
-            date_format: "en-US"
+            view_all_journal: "View All →"
           },
           countries: {
             indonesia: "Indonesia", japan: "Japan", italy: "Italy", korea: "Korea",
@@ -65,12 +49,6 @@ i18n
             mexico: "Mexico", france: "France", turkey: "Turkey", vietnam: "Vietnam",
             uk: "United Kingdom", spain: "Spain", malaysia: "Malaysia", germany: "Germany",
             brazil: "Brazil", philippines: "Philippines", russia: "Russia", greece: "Greece"
-          },
-          common: { 
-            loading: "Loading...", 
-            back: "Back", 
-            by: "By", 
-            not_found: "Recipe Not Found" 
           }
         }
       }
