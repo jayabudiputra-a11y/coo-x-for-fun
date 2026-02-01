@@ -40,6 +40,7 @@ const Home = () => {
   const renderedRecipes = M(() => {
     return recipes.map((item) => {
       const isEn = i18n.language === 'en';
+      
       const finalCountry = isEn ? (item.country_en || item.country) : item.country;
       const finalTitle = isEn ? (item.title_en || item.title) : item.title;
 
@@ -86,6 +87,7 @@ const Home = () => {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '25px' }}>
           {renderedRecipes}
         </div>
+        {loading && <div style={{ textAlign: 'center', padding: '20px' }}>🍲</div>}
       </section>
 
       {blogs.length > 0 && (
