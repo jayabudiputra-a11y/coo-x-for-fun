@@ -3,9 +3,10 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
-
+  base: '/',
   build: {
-    sourcemap: false, // 🔥 ini yang kamu mau
+    sourcemap: false,
+    outDir: 'dist',
     rollupOptions: {
       output: {
         entryFileNames: 'a/[hash].js',
@@ -14,7 +15,6 @@ export default defineConfig({
       }
     }
   },
-
   server: {
     hmr: {
       overlay: false
