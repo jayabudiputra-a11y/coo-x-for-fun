@@ -69,7 +69,6 @@ const Home = () => {
         description="Jelajahi rasa otentik dari berbagai negara & cerita kuliner terbaik." 
       />
       
-      {/* HEADER BRANDING: Diperbesar dan Dirapatkan ke Navbar */}
       <header className="header-branding-container" style={{ 
         display: 'flex', 
         flexDirection: 'row',
@@ -77,8 +76,8 @@ const Home = () => {
         justifyContent: 'center', 
         alignItems: 'center', 
         gap: '8px', 
-        padding: '0px 0 10px', /* Padding 0 agar menempel ke Navbar */
-        marginTop: '-5px'      /* Menarik header sedikit ke atas */
+        padding: '0px 0 10px', 
+        marginTop: '-5px'      
       }}>
         <img 
           src="/Og-Icon-Coo-X-For-Fun.svg" 
