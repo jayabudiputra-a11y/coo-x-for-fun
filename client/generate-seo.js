@@ -10,28 +10,24 @@ const BASE_URL = 'https://coo-x-for.fun';
 const TODAY = new Date().toISOString().split('T')[0];
 
 async function generateSEO() {
-  console.log('⏳ Memulai proses generate RSS dan Sitemap...');
-
   const { data: recipes, error } = await supabase
     .from('recipes')
     .select('title, slug, author_name')
     .order('id', { ascending: false });
 
   if (error) {
-    console.error('Error mengambil data Supabase:', error);
-    return;
+    process.exit(1);
   }
 
   const feed = new RSS({
     title: 'Coo-X For Fun - Resep Masakan',
     description: 'Kumpulan resep masakan lezat dan mudah.',
-    feed_url: `${BASE_URL}/rss.xml`,
+    feed_url: `${BASE_URL}/rss/recipes.xml`,
     site_url: BASE_URL,
     language: 'id',
   });
 
-  let sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>\n`;
-  sitemapXml += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
+  let sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
 
   const staticPages = [
     { url: '/', priority: '1.0', changefreq: 'daily' },
@@ -46,14 +42,12 @@ async function generateSEO() {
   if (recipes) {
     recipes.forEach((recipe) => {
       const recipeUrl = `${BASE_URL}/resep/${recipe.slug}`;
-      
       feed.item({
         title: recipe.title,
         description: `Resep masakan lezat oleh ${recipe.author_name}`,
         url: recipeUrl,
         date: TODAY,
       });
-
       sitemapXml += `  <url>\n    <loc>${recipeUrl}</loc>\n    <lastmod>${TODAY}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>0.8</priority>\n  </url>\n`;
     });
   }
@@ -61,15 +55,13 @@ async function generateSEO() {
   sitemapXml += `</urlset>`;
 
   try {
-    if (!fs.existsSync('./public')) fs.mkdirSync('./public');
+    const rssDir = './public/rss';
+    if (!fs.existsSync(rssDir)) fs.mkdirSync(rssDir, { recursive: true });
     
-    fs.writeFileSync('./public/rss.xml', feed.xml({ indent: true }));
+    fs.writeFileSync(`${rssDir}/recipes.xml`, feed.xml({ indent: true }));
     fs.writeFileSync('./public/sitemap.xml', sitemapXml);
-    
-    console.log('RSS Feed berhasil dibuat: /public/rss.xml');
-    console.log('Sitemap berhasil dibuat: /public/sitemap.xml');
   } catch (err) {
-    console.error('Gagal menulis file:', err);
+    process.exit(1);
   }
 }
 
