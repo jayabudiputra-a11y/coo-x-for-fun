@@ -22,7 +22,7 @@ async function generateSEO() {
   const feed = new RSS({
     title: 'Coo-X For Fun - Resep Masakan',
     description: 'Kumpulan resep masakan lezat dan mudah.',
-    feed_url: `${BASE_URL}/rss/recipes.xml`,
+    feed_url: `${BASE_URL}/rss`,
     site_url: BASE_URL,
     language: 'id',
   });
@@ -55,18 +55,15 @@ async function generateSEO() {
   sitemapXml += `</urlset>`;
 
   try {
-    const rssDir = './dist/rss';
-    const distDir = './dist';
+    const distRssDir = './dist/rss';
+    if (!fs.existsSync(distRssDir)) fs.mkdirSync(distRssDir, { recursive: true });
     
-    if (!fs.existsSync(distDir)) fs.mkdirSync(distDir, { recursive: true });
-    if (!fs.existsSync(rssDir)) fs.mkdirSync(rssDir, { recursive: true });
-    
-    fs.writeFileSync(`${rssDir}/recipes.xml`, feed.xml({ indent: true }));
+    fs.writeFileSync(`${distRssDir}/index.xml`, feed.xml({ indent: true }));
     fs.writeFileSync('./dist/sitemap.xml', sitemapXml);
     
     const publicRssDir = './public/rss';
     if (!fs.existsSync(publicRssDir)) fs.mkdirSync(publicRssDir, { recursive: true });
-    fs.writeFileSync(`${publicRssDir}/recipes.xml`, feed.xml({ indent: true }));
+    fs.writeFileSync(`${publicRssDir}/index.xml`, feed.xml({ indent: true }));
     fs.writeFileSync('./public/sitemap.xml', sitemapXml);
   } catch (err) {
     process.exit(1);

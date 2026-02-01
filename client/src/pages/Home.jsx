@@ -38,7 +38,7 @@ const Home = () => {
       setLoading(true);
       const { data } = await Q
         .from('recipes')
-        .select('id, title, title_en, slug, image_url, country, author_name, steps_data')
+        .select('id, title, title_en, slug, image_url, country, country_en, author_name, steps_data')
         .limit(6)
         .order('id', { ascending: false });
 
@@ -65,10 +65,11 @@ const Home = () => {
       const recipeLabel = i18n.language === 'en' ? 'Perfect Recipe' : 'Resep Sempurna';
       const quickViewLabel = i18n.language === 'en' ? 'Quick View' : 'Lihat Cepat';
 
+      // Pastikan 'country' diterjemahkan menggunakan helper G
       const translatedItem = {
         ...item,
         title: G(item, 'title', i18n.language),
-        country: G(item, 'country', i18n.language)
+        country: G(item, 'country', i18n.language) // Ini akan mencari country_en jika lang === 'en'
       };
 
       return (

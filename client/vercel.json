@@ -1,33 +1,28 @@
 {
   "version": 2,
   "cleanUrls": true,
-  "trailingSlash": false,
   "rewrites": [
     {
-      "source": "/rss/recipes.xml",
-      "destination": "/rss/recipes.xml"
+      "source": "/rss",
+      "destination": "/rss/index.xml"
     },
     {
       "source": "/sitemap.xml",
       "destination": "/sitemap.xml"
     },
     {
-      "source": "/((?!rss/|sitemap.xml|assets/).*)",
+      "source": "/((?!rss|sitemap.xml|assets/).*)",
       "destination": "/index.html"
     }
   ],
   "headers": [
     {
-      "source": "/rss/recipes.xml",
+      "source": "/rss",
       "headers": [
-        { "key": "Content-Type", "value": "application/xml; charset=utf-8" },
-        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
-      ]
-    },
-    {
-      "source": "/sitemap.xml",
-      "headers": [
-        { "key": "Content-Type", "value": "application/xml; charset=utf-8" }
+        {
+          "key": "Content-Type",
+          "value": "application/xml; charset=utf-8"
+        }
       ]
     }
   ]

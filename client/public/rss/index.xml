@@ -4,8 +4,8 @@
         <description><![CDATA[Kumpulan resep masakan lezat dan mudah.]]></description>
         <link>https://coo-x-for.fun</link>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Sun, 01 Feb 2026 13:46:52 GMT</lastBuildDate>
-        <atom:link href="https://coo-x-for.fun/rss/recipes.xml" rel="self" type="application/rss+xml"/>
+        <lastBuildDate>Sun, 01 Feb 2026 15:10:22 GMT</lastBuildDate>
+        <atom:link href="https://coo-x-for.fun/rss" rel="self" type="application/rss+xml"/>
         <language><![CDATA[id]]></language>
         <item>
             <title><![CDATA[Udang Bakso Balado]]></title>
