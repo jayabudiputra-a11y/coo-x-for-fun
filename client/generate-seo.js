@@ -6,7 +6,7 @@ const supabaseUrl = 'https://uezvvetwyknejcodnzus.supabase.co';
 const supabaseKey = 'sb_publishable_N6LVkUKC2vYzTGRv1XPTyg_OAAxwagn';
 const supabase = createClient(supabaseUrl, supabaseKey);
 
-const BASE_URL = 'https://coo-x-for.fun';
+const BASE_URL = 'https://www.coo-x-for.fun';
 const TODAY = new Date().toISOString().split('T')[0];
 
 async function generateSEO() {
@@ -22,7 +22,7 @@ async function generateSEO() {
   const feed = new RSS({
     title: 'Coo-X For Fun - Resep Masakan',
     description: 'Kumpulan resep masakan lezat dan mudah.',
-    feed_url: `${BASE_URL}/rss`,
+    feed_url: `${BASE_URL}/rss.xml`,
     site_url: BASE_URL,
     language: 'id',
   });
@@ -31,17 +31,18 @@ async function generateSEO() {
 
   const staticPages = [
     { url: '/', priority: '1.0', changefreq: 'daily' },
-    { url: '/add-recipe', priority: '0.6', changefreq: 'monthly' },
-    { url: '/blog', priority: '0.7', changefreq: 'weekly' },
+    { url: '/#/add-recipe', priority: '0.6', changefreq: 'monthly' },
+    { url: '/#/blog', priority: '0.7', changefreq: 'weekly' },
   ];
 
   staticPages.forEach(page => {
-    sitemapXml += `  <url>\n    <loc>${BASE_URL}${page.url}</loc>\n    <lastmod>${TODAY}</lastmod>\n    <changefreq>${page.changefreq}</changefreq>\n    <priority>${page.priority}</priority>\n  </url>\n`;
+    const fullUrl = page.url === '/' ? BASE_URL : `${BASE_URL}${page.url}`;
+    sitemapXml += `  <url>\n    <loc>${fullUrl}</loc>\n    <lastmod>${TODAY}</lastmod>\n    <changefreq>${page.changefreq}</changefreq>\n    <priority>${page.priority}</priority>\n  </url>\n`;
   });
 
   if (recipes) {
     recipes.forEach((recipe) => {
-      const recipeUrl = `${BASE_URL}/resep/${recipe.slug}`;
+      const recipeUrl = `${BASE_URL}/#/resep/${recipe.slug}`;
       feed.item({
         title: recipe.title,
         description: `Resep masakan lezat oleh ${recipe.author_name}`,
