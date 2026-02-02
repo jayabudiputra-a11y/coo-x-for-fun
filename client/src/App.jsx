@@ -1,46 +1,41 @@
 import React from 'react';
-import { HashRouter, Routes, Route } from 'react-router-dom';
-import { HelmetProvider } from 'react-helmet-async';
+import { HashRouter as HR, Routes as RS, Route as RE } from 'react-router-dom';
+import { HelmetProvider as HP } from 'react-helmet-async';
 
-import Navbar from './components/Layout/Navbar';
-import Footer from './components/Layout/Footer';
+import N0 from './components/Layout/Navbar';
+import F0 from './components/Layout/Footer';
 
-import Home from './pages/Home';
-import RecipeDetail from './pages/RecipeDetail';
-import SearchPage from './pages/Search';
-import NotFound from './pages/NotFound';
-import DatabaseWidget from './pages/DatasetWidget';
-import CountryPage from './pages/CountryPage'; 
-import BlogList from './pages/BlogList'; 
-import BlogPost from './pages/BlogPost';
-
-import AddRecipe from './pages/addRecipe'; 
+import P0 from './pages/Home';
+import P1 from './pages/RecipeDetail';
+import P2 from './pages/Search';
+import P3 from './pages/NotFound';
+import P4 from './pages/DatasetWidget';
+import P5 from './pages/CountryPage'; 
+import P6 from './pages/BlogList'; 
+import P7 from './pages/BlogPost';
+import P8 from './pages/addRecipe'; 
 
 function App() {
   return (
-    <HelmetProvider>
-      <HashRouter>
-        <Navbar />
-        
+    <HP>
+      <HR>
+        <N0 />
         <main>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/search" element={<SearchPage />} />
-            <Route path="/resep/:slug" element={<RecipeDetail />} />
-            <Route path="/db-widget" element={<DatabaseWidget />} />
-            <Route path="/country/:name" element={<CountryPage />} />
-            <Route path="/blog" element={<BlogList />} />
-            <Route path="/blog/:slug" element={<BlogPost />} />
-            
-            <Route path="/add-recipe" element={<AddRecipe />} />
-            
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+          <RS>
+            <RE path="/" element={<P0 />} />
+            <RE path="/search" element={<P2 />} />
+            <RE path="/resep/:slug" element={<P1 />} />
+            <RE path="/db-widget" element={<P4 />} />
+            <RE path="/country/:name" element={<P5 />} />
+            <RE path="/blog" element={<P6 />} />
+            <RE path="/blog/:slug" element={<P7 />} />
+            <RE path="/add-recipe" element={<P8 />} />
+            <RE path="*" element={<P3 />} />
+          </RS>
         </main>
-
-        <Footer />
-      </HashRouter>
-    </HelmetProvider>
+        <F0 />
+      </HR>
+    </HP>
   );
 }
 

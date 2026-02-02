@@ -1,52 +1,51 @@
 import { useState as S, useEffect as E } from 'react';
 import { supabase as Q } from '../supabaseClient';
 
-export const useRecipe = (slug0) => {
-  const [recipe, setRecipe] = S(null);
-  const [loading, setLoading] = S(true);
+export const useRecipe = (_0x1) => {
+  const [_0x2, _0x3] = S(null);
+  const [_0x4, _0x5] = S(true);
 
   E(() => {
-    const fetchData = async () => {
-      setLoading(true);
+    const _0x6 = async () => {
+      _0x5(true);
       try {
-        const { data: rData, error: rError } = await Q
+        const { data: _0x7, error: _0x8 } = await Q
           .from('recipes')
           .select('*')
-          .eq('slug', slug0)
+          .eq('slug', _0x1)
           .single();
 
-        if (rError) throw rError;
+        if (_0x8) throw _0x8;
 
-        if (rData) {
-          const { data: sData } = await Q
+        if (_0x7) {
+          const { data: _0x9 } = await Q
             .from('steps')
             .select('*')
-            .ilike('recipe_title', `%${rData.title.trim()}%`) 
+            .ilike('recipe_title', `%${_0x7.title.trim()}%`) 
             .order('step_number', { ascending: true });
 
-          const { data: iData } = await Q
+          const { data: _0xa } = await Q
             .from('ingredients')
             .select('*')
-            .eq('recipe_id', rData.id); 
+            .eq('recipe_id', _0x7.id); 
 
-          const finalIngredients = (iData && iData.length > 0) ? iData : rData.ingredients;
+          const _0xb = (_0xa && _0xa.length > 0) ? _0xa : _0x7.ingredients;
 
-          setRecipe({ 
-            ...rData, 
-            steps: sData || [], 
-            ingredients: finalIngredients || [] 
+          _0x3({ 
+            ..._0x7, 
+            steps: _0x9 || [], 
+            ingredients: _0xb || [] 
           });
         }
-      } catch (e) {
-        console.error("Error fetching recipe:", e.message);
-        setRecipe(null);
+      } catch (_0xc) {
+        _0x3(null);
       } finally {
-        setLoading(false);
+        _0x5(false);
       }
     };
 
-    if (slug0) fetchData();
-  }, [slug0]);
+    if (_0x1) _0x6();
+  }, [_0x1]);
 
-  return { recipe, loading };
+  return { recipe: _0x2, loading: _0x4 };
 };
