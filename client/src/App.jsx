@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 
 import Navbar from './components/Layout/Navbar';
@@ -19,7 +19,7 @@ import AddRecipe from './pages/addRecipe';
 function App() {
   return (
     <HelmetProvider>
-      <BrowserRouter>
+      <HashRouter>
         <Navbar />
         
         <main>
@@ -39,7 +39,7 @@ function App() {
         </main>
 
         <Footer />
-      </BrowserRouter>
+      </HashRouter>
     </HelmetProvider>
   );
 }
