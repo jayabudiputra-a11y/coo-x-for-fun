@@ -15,7 +15,7 @@
       "destination": "/manifest.json"
     },
     {
-      "source": "/((?!rss|sitemap.xml|manifest.json|assets|src|favicon|static|.*\\..*).*)",
+      "source": "/(.*)",
       "destination": "/index.html"
     }
   ],
