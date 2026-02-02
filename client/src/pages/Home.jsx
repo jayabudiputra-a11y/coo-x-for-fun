@@ -17,19 +17,13 @@ const _A0 = React.memo(({ k }) => {
         <meta charset="utf-8">
         <style>
           body, html { margin: 0; padding: 0; background: transparent; overflow: hidden; height: 250px; display: flex; justify-content: center; }
-          #ad-wrapper { width: 300px; height: 250px; position: relative; }
+          #w { width: 300px; height: 250px; position: relative; }
         </style>
       </head>
       <body>
-        <div id="ad-wrapper">
+        <div id="w">
           <script type="text/javascript">
-            atOptions = {
-              'key' : '00a1391f38d87ff5d574caa89f0d2959',
-              'format' : 'iframe',
-              'height' : 250,
-              'width' : 300,
-              'params' : {}
-            };
+            atOptions = { 'key' : '00a1391f38d87ff5d574caa89f0d2959', 'format' : 'iframe', 'height' : 250, 'width' : 300, 'params' : {} };
           </script>
           <script async src="https://www.highperformanceformat.com/00a1391f38d87ff5d574caa89f0d2959/invoke.js"></script>
         </div>
@@ -41,28 +35,25 @@ const _A0 = React.memo(({ k }) => {
 
   return (
     <div className="sys-ad-node" style={{ 
-      position: 'relative', width: '100%', margin: '20px 0', display: 'flex', 
-      justifyContent: 'center', minHeight: '250px', backgroundColor: '#fafafa', 
-      borderRadius: '12px', overflow: 'hidden' 
+      position: 'relative', width: '100%', margin: '15px 0', display: 'flex', 
+      justifyContent: 'center', minHeight: '250px', background: '#fafafa', borderRadius: '12px' 
     }}>
       <button 
         onClick={() => _sV(false)} 
         style={{ 
-          position: 'absolute', top: '5px', right: '5px', width: '28px', height: '28px', 
-          borderRadius: '50%', background: 'rgba(0,0,0,0.7)', color: '#fff', 
-          border: '2px solid #fff', cursor: 'pointer', zIndex: 10, fontSize: '14px',
-          display: 'flex', justifyContent: 'center', alignItems: 'center'
+          position: 'absolute', top: '0px', right: 'calc(50% - 150px)', width: '22px', height: '22px', 
+          borderRadius: '0 12px 0 12px', background: 'rgba(0,0,0,0.8)', color: '#fff', 
+          border: 'none', cursor: 'pointer', zIndex: 10, fontSize: '14px',
+          display: 'flex', justifyContent: 'center', alignItems: 'center', fontWeight: 'bold'
         }}
       > × </button>
       <iframe 
         key={k} 
-        title="Content Service" 
+        title="Content Framework" 
         srcDoc={_adC} 
-        sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
-        scrolling="no"
-        frameBorder="0"
+        style={{ width: '300px', height: '250px', border: 'none', overflow: 'hidden' }} 
         loading="eager" 
-        style={{ width: '300px', height: '250px', border: 'none' }} 
+        sandbox="allow-scripts allow-same-origin allow-forms allow-popups" 
       />
     </div>
   );
@@ -87,16 +78,16 @@ const Home = () => {
   }, []);
 
   const _rR = _m(() => {
-    return _r.map((_item) => (
-      <div key={`rcp-${_item.id}`} style={{ display: 'flex', flexDirection: 'column' }}>
-        <_C0 recipe={{ ..._item }} />
+    return _r.map((_i) => (
+      <div key={`rcp-${_i.id}`} style={{ display: 'flex', flexDirection: 'column' }}>
+        <_C0 recipe={{ ..._i }} />
         <div style={{ 
           marginTop: '9.7px', padding: '3px', borderRadius: '8px', textAlign: 'center',
-          backgroundColor: _item.steps_data ? '#fff4e6' : '#f9f9f9',
-          border: _item.steps_data ? '1px solid #ffd8a8' : '1px solid #eee'
+          backgroundColor: _i.steps_data ? '#fff4e6' : '#f9f9f9',
+          border: _i.steps_data ? '1px solid #ffd8a8' : '1px solid #eee'
         }}>
-          <span style={{ fontSize: '0.85rem', color: _item.steps_data ? '#d35400' : '#ccc', fontWeight: 'bold' }}>
-            {_item.steps_data ? "Resep Sempurna" : "Lihat Cepat"}
+          <span style={{ fontSize: '0.85rem', color: _i.steps_data ? '#d35400' : '#ccc', fontWeight: 'bold' }}>
+            {_i.steps_data ? "Resep Sempurna" : "Lihat Cepat"}
           </span>
         </div>
       </div>
@@ -104,18 +95,18 @@ const Home = () => {
   }, [_r]);
 
   return (
-    <div className="home-main-container" style={{ paddingBottom: '100px', minHeight: '100vh', overflowX: 'hidden' }}>
+    <div className="home-container" style={{ paddingBottom: '100px', minHeight: '100vh', overflowX: 'hidden' }}>
       <_An />
-      <_C2 title="Inspirasi Masak Harian" description="Temukan resep terbaik dari seluruh dunia." />
+      <_C2 title="Inspirasi Masak Harian" description="Jelajahi rasa otentik dari berbagai negara & cerita kuliner terbaik." />
       
       <header style={{ display: 'flex', flexFlow: 'row nowrap', justifyContent: 'center', alignItems: 'center', gap: '8px', padding: '0 0 10px', marginTop: '-5px' }}>
-        <img src="/Og-Icon-Coo-X-For-Fun.svg" alt="Branding" style={{ width: 'clamp(189.96px, 72vw, 189.98px)', height: 'auto' }} />
-        <img src={_I0} alt="Icon" style={{ width: 'clamp(132.89px, 56.89vw, 259.86px)', height: 'auto' }} />
+        <img src="/Og-Icon-Coo-X-For-Fun.svg" alt="L0" style={{ width: 'clamp(189.96px, 72vw, 189.98px)', height: 'auto' }} />
+        <img src={_I0} alt="L1" style={{ width: 'clamp(132.89px, 56.89vw, 259.86px)', height: 'auto' }} />
       </header>
 
       <_C1 />
       
-      <_A0 k="home-top-ad" />
+      <_A0 k="idx-t" />
 
       <section style={{ marginTop: '3.2px' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '15px', alignItems: 'center' }}>
@@ -138,26 +129,28 @@ const Home = () => {
             {_b.map(_p => (
               <_L key={`blg-${_p.id}`} to={`/blog/${_p.slug}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                 <article style={{ background: 'white', borderRadius: '16px', overflow: 'hidden', border: '1px solid #eee', boxShadow: '0 4px 12px rgba(0,0,0,0.05)' }}>
-                  <img src={_p.image_url} alt="Cover" style={{ width: '100%', height: '180px', objectFit: 'cover' }} />
+                  <img src={_p.image_url} alt="B" style={{ width: '100%', height: '180px', objectFit: 'cover' }} />
                   <div style={{ padding: '15px' }}>
                     <h4 style={{ margin: '0 0 10px', fontWeight: '700' }}>{_p.title}</h4>
-                    <p style={{ fontSize: '0.9rem', color: '#777', margin: 0 }}>{_p.content?.substring(0, 80)}...</p>
+                    <p style={{ fontSize: '0.9rem', color: '#777', lineHeight: '1.5', margin: 0 }}>
+                      {_p.content?.substring(0, 80)}...
+                    </p>
                   </div>
                 </article>
               </_L>
             ))}
           </div>
+          
+          <_A0 k="idx-b" />
         </section>
       )}
 
-      <_A0 k="home-bot-0" />
-
-      <button onClick={() => _n('/add-recipe')} style={_fS}> + </button>
+      <button onClick={() => _n('/add-recipe')} style={_fB}> + </button>
     </div>
   );
 };
 
-const _fS = {
+const _fB = {
   position: 'fixed', bottom: '100px', right: '25px', width: '60px', height: '60px',
   backgroundColor: '#f3a133', color: 'white', borderRadius: '50%', border: 'none',
   fontSize: '30px', cursor: 'pointer', zIndex: 1000, boxShadow: '0 4px 15px rgba(0,0,0,0.3)'
