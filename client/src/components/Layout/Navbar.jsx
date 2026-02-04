@@ -143,7 +143,7 @@ const Navbar = () => {
                                 </div>
                               )}
                             </div>
-                            <h4 style={{ margin: '0 0 5px', fontSize: '0.9rem', color: '#333', fontFamily: 'Courier New', fontWeight: 'bold' }}>Memasak Untukmu</h4>
+                            <h4 style={{ margin: '0 0 5px', fontSize: '0.9rem', color: '#333', fontFamily: 'Courier New', fontWeight: 'bold' }}>Lagu sambil masak Untukmu</h4>
                             <p className="blink" style={{ margin: '0 0 10px', fontSize: '0.7rem', color: '#ff00ff', fontWeight: 'bold' }}>[ TAP TO PLAY ]</p>
                           </div>
                           

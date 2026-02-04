@@ -27,8 +27,25 @@ const A = () => {
 
   const s = {
     w: { maxWidth: '500px', margin: '0 auto', padding: '20px 15px 100px' },
-    b: { display: 'inline-block', background: '#ff00ff', color: '#fff', padding: '10px 15px', fontSize: '12px', fontWeight: '900', textDecoration: 'none', border: '3px solid #000', boxShadow: '5px 5px 0 #00ffff', marginBottom: '25px', textTransform: 'uppercase' },
+    
+    // Tombol Back - DIPAKSA SOLID (Warna tetap putih saat ditekan)
+    b: { 
+      display: 'inline-block !important', 
+      background: '#ff00ff !important', 
+      color: '#ffffff !important', 
+      padding: '10px 15px', 
+      fontSize: '12px', 
+      fontWeight: '900', 
+      textDecoration: 'none !important', 
+      border: '3px solid #000', 
+      boxShadow: '5px 5px 0 #00ffff', 
+      marginBottom: '25px', 
+      textTransform: 'uppercase',
+      fontFamily: "'Open Sans', sans-serif"
+    },
+    
     k: { background: '#fff', border: '4px solid #000', boxShadow: '12px 12px 0px #ff00ff', overflow: 'hidden' },
+    
     t: { 
       background: '#fff', 
       color: '#000', 
@@ -44,11 +61,12 @@ const A = () => {
       justifyContent: 'center',
       gap: '12px',
       borderBottom: '5px solid #000',
-      fontFamily: '"Courier New", Courier, monospace'
+      fontFamily: "'Open Sans', sans-serif"
     },
+    
     logo: { width: '35px', height: '35px', objectFit: 'contain' },
     i: { width: '100%', display: 'block', borderBottom: '5px solid #000', objectFit: 'cover' },
-    c: { padding: '25px', fontFamily: '"Courier New", Courier, monospace' },
+    c: { padding: '25px', fontFamily: "'Open Sans', sans-serif" },
     bd: { display: 'inline-block', background: '#ffff00', color: '#000', padding: '5px 10px', fontSize: '11px', fontWeight: '900', border: '2px solid #000', marginBottom: '20px' },
     d: { fontSize: '16px', lineHeight: 1.6, color: '#000', marginBottom: '25px', textAlign: 'left', whiteSpace: 'pre-line', fontWeight: '600' },
     hl: { background: '#00ffff', border: '2px solid #000', padding: '15px', margin: '20px 0', fontWeight: 'bold', fontSize: '14px', boxShadow: '4px 4px 0 #ff00ff' },
@@ -56,11 +74,10 @@ const A = () => {
     dlg: { padding: '12px 0', borderBottom: '2px solid #eee' },
     dt: { color: '#ff00ff', display: 'block', marginBottom: '4px', fontSize: '12px', textTransform: 'uppercase', fontWeight: '900' },
     dd: { margin: 0, fontSize: '15px', color: '#000', fontWeight: 'bold' },
-    // STYLE FIX: Tombol Share dipaksa Solid agar teks tidak hilang
+    
+    // Tombol Share - DIPAKSA SOLID (Teks tetap putih)
     fb: { 
       display: 'block !important', 
-      visibility: 'visible !important',
-      opacity: '1 !important',
       background: '#0000ff !important', 
       color: '#ffffff !important', 
       textAlign: 'center', 
@@ -79,6 +96,8 @@ const A = () => {
     <div style={{ background: '#0d0d0d', minHeight: '100vh' }}>
       <SEOHelper title={judulData} description={kontenData.substring(0, 150)} image={p.image_url} />
       <div style={s.w}>
+        
+        {/* Navigasi Kembali */}
         <motion.div initial={{ x: -30, opacity: 0 }} animate={{ x: 0, opacity: 1 }}>
           <Link to="/blog" style={s.b}>&lt;-- BACK TO BLOG</Link>
         </motion.div>
@@ -87,7 +106,7 @@ const A = () => {
           
           <div style={s.t}>
             <img src="/logo.svg" alt="logo" style={s.logo} />
-            <h1 style={{ margin: 0, fontSize: '24px' }}>{judulData}</h1>
+            <h1 style={{ margin: 0, fontSize: '24px', fontWeight: '900' }}>{judulData}</h1>
           </div>
 
           <img src={p.image_url} alt={judulData} style={s.i} />
