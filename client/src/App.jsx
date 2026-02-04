@@ -2,6 +2,10 @@ import React from 'react';
 import { HashRouter as HR, Routes as RS, Route as RE } from 'react-router-dom';
 import { HelmetProvider as HP } from 'react-helmet-async';
 
+// Import Tema Myspace dari folder styles
+import MyspaceTheme from './styles/MyspaceTheme';
+
+// N0 sekarang sudah berisi logika Jurnal & Music Player (Lagu)
 import N0 from './components/Layout/Navbar';
 import F0 from './components/Layout/Footer';
 
@@ -18,9 +22,15 @@ import P8 from './pages/addRecipe';
 function App() {
   return (
     <HP>
+      {/* Tema Global: Memberikan BG Glitter, Kursor, dan Font Retro */}
+      <MyspaceTheme />
+      
       <HR>
+        {/* Navbar (N0) otomatis menampilkan menu Jurnal & Lagu */}
         <N0 />
-        <main>
+        
+        {/* Kontainer Utama: Pastikan z-index aman agar dropdown lagu tidak tertutup */}
+        <main style={{ position: 'relative', zIndex: 1 }}>
           <RS>
             <RE path="/" element={<P0 />} />
             <RE path="/search" element={<P2 />} />
@@ -33,6 +43,7 @@ function App() {
             <RE path="*" element={<P3 />} />
           </RS>
         </main>
+        
         <F0 />
       </HR>
     </HP>

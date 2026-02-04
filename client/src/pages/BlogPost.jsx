@@ -12,57 +12,111 @@ const A = () => {
   useEffect(() => {
     (async () => {
       z(true);
-      const { data: d } = await S.from('blog_posts').select('*').eq('slug', x).single();
+      const { data: d, error: err } = await S.from('blog_posts').select('*').eq('slug', x).single();
+      if (err) console.error("Error fetching post:", err);
       y(d);
-      z(false)
+      z(false);
     })()
   }, [x])
 
-  if (l) return <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} style={{ padding: '50px', textAlign: 'center', color: '#fff' }}>Memuat...</motion.div>
-  if (!p) return <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} style={{ padding: '50px', textAlign: 'center', color: '#fff' }}>Artikel Tidak Ditemukan</motion.div>
+  if (l) return <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} style={{ padding: '50px', textAlign: 'center', color: '#fff', fontFamily: 'monospace' }}>Memuat...</motion.div>
+  if (!p) return <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} style={{ padding: '50px', textAlign: 'center', color: '#fff', fontFamily: 'monospace' }}>Artikel Tidak Ditemukan</motion.div>
 
-  const h = p.title
-  const c = p.content
+  const judulData = p.title;
+  const kontenData = p.content;
 
   const s = {
-    w: { maxWidth: '480px', margin: '0 auto', padding: '20px 15px 100px' },
-    b: { display: 'inline-block', background: '#ff00ff', color: '#fff', padding: '10px 15px', fontSize: '11px', fontWeight: 'bold', textDecoration: 'none', border: '2px solid #000', boxShadow: '4px 4px 0 #000', marginBottom: '20px' },
-    k: { background: '#fff', borderRadius: '20px', overflow: 'hidden', boxShadow: '0 15px 35px rgba(0,0,0,.2)' },
-    t: { background: '#ff4d00', color: '#fff', padding: '25px 20px', textAlign: 'center', fontSize: '20px', textTransform: 'uppercase', letterSpacing: '1px', margin: 0 },
-    i: { width: '100%', display: 'block', borderBottom: '6px solid #ff4d00' },
-    c: { padding: '30px' },
-    bd: { display: 'inline-block', background: '#000', color: '#ff4d00', padding: '5px 12px', fontSize: '10px', fontWeight: 900, borderRadius: '4px', marginBottom: '20px', border: '1px solid #ff4d00' },
-    d: { fontSize: '15px', lineHeight: 1.8, color: '#444', marginBottom: '25px', textAlign: 'justify', whiteSpace: 'pre-line' },
-    hl: { background: '#fdf2f2', borderLeft: '4px solid #ff4d00', padding: '15px', margin: '20px 0', fontStyle: 'italic', fontSize: '14px' },
+    w: { maxWidth: '500px', margin: '0 auto', padding: '20px 15px 100px' },
+    b: { display: 'inline-block', background: '#ff00ff', color: '#fff', padding: '10px 15px', fontSize: '12px', fontWeight: '900', textDecoration: 'none', border: '3px solid #000', boxShadow: '5px 5px 0 #00ffff', marginBottom: '25px', textTransform: 'uppercase' },
+    k: { background: '#fff', border: '4px solid #000', boxShadow: '12px 12px 0px #ff00ff', overflow: 'hidden' },
+    t: { 
+      background: '#fff', 
+      color: '#000', 
+      padding: '30px 20px', 
+      textAlign: 'center', 
+      fontSize: '24px', 
+      fontWeight: '900',
+      textTransform: 'uppercase', 
+      letterSpacing: '1px', 
+      margin: 0,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      gap: '12px',
+      borderBottom: '5px solid #000',
+      fontFamily: '"Courier New", Courier, monospace'
+    },
+    logo: { width: '35px', height: '35px', objectFit: 'contain' },
+    i: { width: '100%', display: 'block', borderBottom: '5px solid #000', objectFit: 'cover' },
+    c: { padding: '25px', fontFamily: '"Courier New", Courier, monospace' },
+    bd: { display: 'inline-block', background: '#ffff00', color: '#000', padding: '5px 10px', fontSize: '11px', fontWeight: '900', border: '2px solid #000', marginBottom: '20px' },
+    d: { fontSize: '16px', lineHeight: 1.6, color: '#000', marginBottom: '25px', textAlign: 'left', whiteSpace: 'pre-line', fontWeight: '600' },
+    hl: { background: '#00ffff', border: '2px solid #000', padding: '15px', margin: '20px 0', fontWeight: 'bold', fontSize: '14px', boxShadow: '4px 4px 0 #ff00ff' },
     dl: { margin: '0 0 25px', padding: 0 },
-    dlg: { padding: '12px 0', borderBottom: '1px solid #eee' },
-    dt: { color: '#000', display: 'block', marginBottom: '4px', fontSize: '12px', textTransform: 'uppercase', fontWeight: 'bold' },
-    dd: { margin: 0, fontSize: '14px', color: '#555' }
+    dlg: { padding: '12px 0', borderBottom: '2px solid #eee' },
+    dt: { color: '#ff00ff', display: 'block', marginBottom: '4px', fontSize: '12px', textTransform: 'uppercase', fontWeight: '900' },
+    dd: { margin: 0, fontSize: '15px', color: '#000', fontWeight: 'bold' },
+    // STYLE FIX: Tombol Share dipaksa Solid agar teks tidak hilang
+    fb: { 
+      display: 'block !important', 
+      visibility: 'visible !important',
+      opacity: '1 !important',
+      background: '#0000ff !important', 
+      color: '#ffffff !important', 
+      textAlign: 'center', 
+      padding: '18px', 
+      border: '3px solid #000', 
+      textDecoration: 'none !important', 
+      fontWeight: '900', 
+      fontSize: '14px', 
+      boxShadow: '6px 6px 0 #ff00ff',
+      textTransform: 'uppercase',
+      marginTop: '20px'
+    }
   }
 
   return (
     <div style={{ background: '#0d0d0d', minHeight: '100vh' }}>
-      <SEOHelper title={h} description={c.substring(0, 150)} image={p.image_url} />
+      <SEOHelper title={judulData} description={kontenData.substring(0, 150)} image={p.image_url} />
       <div style={s.w}>
         <motion.div initial={{ x: -30, opacity: 0 }} animate={{ x: 0, opacity: 1 }}>
-          <Link to="/blog" style={s.b}>KEMBALI KE DAFTAR</Link>
+          <Link to="/blog" style={s.b}>&lt;-- BACK TO BLOG</Link>
         </motion.div>
-        <motion.article initial={{ y: 40, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: .5 }} style={s.k}>
-          <motion.h1 initial={{ scale: .9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} style={s.t}>{h}</motion.h1>
-          <motion.img src={p.image_url} alt={h} style={s.i} loading="lazy" initial={{ opacity: 0 }} animate={{ opacity: 1 }} />
+        
+        <motion.article initial={{ y: 40, opacity: 0 }} animate={{ y: 0, opacity: 1 }} style={s.k}>
+          
+          <div style={s.t}>
+            <img src="/logo.svg" alt="logo" style={s.logo} />
+            <h1 style={{ margin: 0, fontSize: '24px' }}>{judulData}</h1>
+          </div>
+
+          <img src={p.image_url} alt={judulData} style={s.i} />
+          
           <div style={s.c}>
-            <motion.span initial={{ scale: .8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} style={s.bd}>ULASAN TERVERIFIKASI</motion.span>
-            <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: .1 }} style={s.d}>{c}</motion.p>
-            {p.quote && <motion.blockquote initial={{ x: -20, opacity: 0 }} animate={{ x: 0, opacity: 1 }} style={s.hl}>"{p.quote}"</motion.blockquote>}
-            {p.content_secondary && <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} style={s.d}>{p.content_secondary}</motion.p>}
+            <span style={s.bd}>[ VERIFIED REVIEW ]</span>
+            
+            <p style={s.d}>{kontenData}</p>
+            
+            {p.quote && <blockquote style={s.hl}>"{p.quote}"</blockquote>}
+            
+            {p.content_secondary && <p style={s.d}>{p.content_secondary}</p>}
+            
             <dl style={s.dl}>
-              <div style={s.dlg}><dt style={s.dt}>LOKASI</dt><dd style={s.dd}>{p.location || '-'}</dd></div>
-              <div style={s.dlg}><dt style={s.dt}>JAM OPERASIONAL</dt><dd style={s.dd}>{p.opening_hours || '-'}</dd></div>
-              <div style={s.dlg}><dt style={s.dt}>HARGA</dt><dd style={s.dd}>{p.price_range || '-'}</dd></div>
+              <div style={s.dlg}><dt style={s.dt}>LOCATION /</dt><dd style={s.dd}>{p.location || '-'}</dd></div>
+              <div style={s.dlg}><dt style={s.dt}>OPENING HOURS /</dt><dd style={s.dd}>{p.opening_hours || '-'}</dd></div>
+              <div style={s.dlg}><dt style={s.dt}>PRICE RANGE /</dt><dd style={s.dd}>{p.price_range || '-'}</dd></div>
             </dl>
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} style={{ marginTop: '30px', paddingTop: '25px', borderTop: '2px dashed #eee' }}>
-              <a href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`} target="_blank" rel="noreferrer" style={{ display: 'block', background: '#1877F2', color: '#fff', textAlign: 'center', padding: '16px', borderRadius: '12px', textDecoration: 'none', fontWeight: 'bold', fontSize: '14px' }}>BAGIKAN KE FACEBOOK</a>
-            </motion.div>
+
+            <div style={{ marginTop: '30px', borderTop: '4px double #000', paddingTop: '10px' }}>
+              <a 
+                href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`} 
+                target="_blank" 
+                rel="noreferrer" 
+                style={s.fb}
+              >
+                SHARE ON FACEBOOK
+              </a>
+            </div>
           </div>
         </motion.article>
       </div>
@@ -70,4 +124,4 @@ const A = () => {
   )
 }
 
-export default A
+export default A;

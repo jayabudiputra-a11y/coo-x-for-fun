@@ -1,10 +1,17 @@
-import React, { useEffect as _e, useState as _s } from 'react';
+import React, { useEffect as _e, useState as _s, useRef as _uR } from 'react';
 import { Link as _L } from 'react-router-dom';
-import { Search as _Sh, LogIn as _Li, LogOut as _Lo } from 'lucide-react';
+import { Search as _Sh, LogIn as _Li, LogOut as _Lo, Music as _Ms, ChevronDown as _Cd, Play as _Pl, Pause as _Ps, SkipForward as _Sf, SkipBack as _SbIcon, Loader2 as _Ld } from 'lucide-react';
 import { supabase as _q } from '../../supabaseClient';
 
 const Navbar = () => {
   const [_u, _su] = _s(null);
+  const [_mL, _smL] = _s([]); 
+  const [_cL, _scL] = _s(0); 
+  const [_iP, _siP] = _s(false); 
+  const [_oM, _soM] = _s(false); 
+  const [_fL, _sfL] = _s(true);
+  const _aR = _uR(null); 
+  const _mR = _uR(null);
 
   _e(() => {
     const _gs = async () => {
@@ -17,79 +24,165 @@ const Navbar = () => {
       _su(_sn?.user ?? null);
     });
 
-    return () => _sb.unsubscribe();
+    const _fetchLagu = async () => {
+      _sfL(true);
+      const { data: _dL } = await _q.from('lagu').select('*').order('id', { ascending: true });
+      if (_dL && _dL.length > 0) _smL(_dL);
+      _sfL(false);
+    };
+    _fetchLagu();
+
+    const _handleClickOutside = (event) => {
+      if (_mR.current && !_mR.current.contains(event.target)) {
+        _soM(false);
+      }
+    };
+
+    document.addEventListener('mousedown', _handleClickOutside);
+    return () => {
+      _sb.unsubscribe();
+      document.removeEventListener('mousedown', _handleClickOutside);
+    };
   }, []);
 
-  const _hLi = async () => {
-    await _q.auth.signInWithOAuth({
-      provider: 'google',
-      options: { redirectTo: window.location.origin }
-    });
+  const _gYid = (url) => {
+    const reg = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+    const match = url.match(reg);
+    return (match && match[2].length === 11) ? match[2] : null;
   };
 
-  const _hLo = async () => {
-    await _q.auth.signOut();
+  const _hQuickPlay = () => {
+    if (_mL.length === 0) return;
+    _siP(true);
+    _soM(false);
+    const msg = '{"event":"command","func":"playVideo","args":""}';
+    _aR.current?.contentWindow.postMessage(msg, '*');
   };
+
+  const _hP = (e) => {
+    e.stopPropagation(); 
+    _siP(!_iP);
+    const msg = _iP ? '{"event":"command","func":"pauseVideo","args":""}' : '{"event":"command","func":"playVideo","args":""}';
+    _aR.current?.contentWindow.postMessage(msg, '*');
+  };
+
+  const _hN = (e, dir) => {
+    e.stopPropagation(); 
+    let next = dir === 'next' ? _cL + 1 : _cL - 1;
+    if (next >= _mL.length) next = 0;
+    if (next < 0) next = _mL.length - 1;
+    _scL(next);
+    _siP(true);
+  };
+
+  const _hLi = async () => {
+    await _q.auth.signInWithOAuth({ provider: 'google', options: { redirectTo: window.location.origin } });
+  };
+
+  const _hLo = async () => { await _q.auth.signOut(); };
 
   return (
-    <nav style={{ 
-      background: '#fff', borderBottom: '1px solid #eee', position: 'sticky', 
-      top: 0, zIndex: 100, padding: '0 16px' 
-    }}>
-      <div style={{ 
-        maxWidth: '1000px', margin: '0 auto', display: 'flex', 
-        justifyContent: 'space-between', alignItems: 'center', height: '60px'
-      }}>
-        <_L to="/" style={{ 
-          textDecoration: 'none', color: '#d35400', fontWeight: '800', 
-          fontSize: '1.4rem', fontFamily: 'cursive'
-        }}>
-          coo-x-for.fun
-        </_L>
-
-        <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
-          <_L to="/blog" style={{ 
-            textDecoration: 'none', color: '#555', fontWeight: '600', fontSize: '0.95rem'
-          }}>
-            Jurnal
+    <nav style={{ background: '#fff', borderBottom: '1px solid #eee', position: 'sticky', top: 0, zIndex: 9999, padding: '0 16px' }}>
+      <div style={{ maxWidth: '1000px', margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: '60px' }}>
+        
+        <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+          <_L to="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px', color: '#d35400' }}>
+            <img src="/favicon.ico" alt="Logo" style={{ width: '28px', height: '28px', objectFit: 'contain' }} />
+            <span style={{ fontWeight: '800', fontSize: '1.2rem', fontFamily: 'cursive', lineHeight: '1' }}>coox for fun</span>
           </_L>
 
-          <_L to="/search" style={{ color: '#555', display: 'flex', alignItems: 'center' }}>
-            <_Sh size={20} />
-          </_L>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
+            <_L to="/blog" style={{ textDecoration: 'none', color: '#555', fontWeight: '600', fontSize: '0.9rem' }}>Jurnal</_L>
 
-          <div style={{ borderLeft: '1px solid #eee', paddingLeft: '15px', display: 'flex', alignItems: 'center', gap: '10px' }}>
-            {_u ? (
-              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                <div style={{ textAlign: 'right' }}>
-                  <p style={{ margin: 0, fontSize: '0.8rem', fontWeight: 'bold', color: '#333' }}>
-                    {_u.user_metadata?.full_name || 'User'}
-                  </p>
-                </div>
-                <img 
-                  src={_u.user_metadata?.avatar_url} 
-                  alt="Avatar" 
-                  style={{ width: '32px', height: '32px', borderRadius: '50%', border: '2px solid #d35400' }} 
-                />
-                <button 
-                  onClick={_hLo}
-                  style={{ background: 'none', border: 'none', color: '#ff3b30', cursor: 'pointer', display: 'flex', alignItems: 'center' }}
-                  title="Logout"
-                >
-                  <_Lo size={18} />
-                </button>
-              </div>
-            ) : (
+            <div style={{ position: 'relative' }} ref={_mR}>
               <button 
-                onClick={_hLi}
-                style={{ 
-                  background: '#d35400', color: '#fff', border: 'none', padding: '6px 12px', 
-                  borderRadius: '20px', fontSize: '0.85rem', fontWeight: 'bold', 
-                  cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '5px'
-                }}
+                onClick={() => _soM(!_oM)}
+                style={{ background: 'none', border: 'none', color: _iP ? '#d35400' : '#555', fontWeight: '600', fontSize: '0.9rem', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px', padding: '10px 0' }}
               >
-                <_Li size={16} /> Login
+                {_iP ? '🎵' : 'Lagu'} <_Cd size={14} style={{ transform: _oM ? 'rotate(180deg)' : 'rotate(0deg)', transition: '0.3s' }} />
               </button>
+
+              {_oM && (
+                <div style={{ 
+                    position: 'absolute', 
+                    top: '50px', 
+                    left: '50%', // RATA TENGAH HORIZONTAL
+                    transform: 'translateX(-50%)', // AGAR SELALU DI TENGAH SEMUA DEVICE
+                    background: '#fff', 
+                    padding: '15px', 
+                    borderRadius: '0px', 
+                    boxShadow: '8px 8px 0px #00ffff', 
+                    width: 'min(260px, 80vw)', // RESPONSIF UNTUK LEBAR 300px KE BAWAH
+                    border: '3px dashed #ff00ff', 
+                    zIndex: 10001 
+                }}>
+                   <div style={{ textAlign: 'center' }}>
+                      {_fL ? (
+                        <div style={{ padding: '20px' }}><_Ld className="animate-spin" style={{ margin: '0 auto' }} /></div>
+                      ) : _mL.length > 0 ? (
+                        <>
+                          <div onClick={_hQuickPlay} style={{ cursor: 'pointer' }}>
+                            <div style={{ 
+                              width: '120px', 
+                              height: '120px', 
+                              margin: '0 auto 10px', 
+                              borderRadius: '0px', 
+                              overflow: 'hidden',
+                              border: '2px solid #000',
+                              position: 'relative',
+                              backgroundColor: '#eee'
+                            }}>
+                              <img 
+                                src={_mL[_cL].thumbnail_url} 
+                                alt="Cover" 
+                                style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+                              />
+                              {!_iP && (
+                                <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', background: 'rgba(0,0,0,0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff' }}>
+                                  <_Pl size={30} fill="currentColor" />
+                                </div>
+                              )}
+                            </div>
+                            <h4 style={{ margin: '0 0 5px', fontSize: '0.9rem', color: '#333', fontFamily: 'Courier New', fontWeight: 'bold' }}>Memasak Untukmu</h4>
+                            <p className="blink" style={{ margin: '0 0 10px', fontSize: '0.7rem', color: '#ff00ff', fontWeight: 'bold' }}>[ TAP TO PLAY ]</p>
+                          </div>
+                          
+                          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '12px' }}>
+                            <button onClick={(e) => _hN(e, 'prev')} style={_btnS}><_SbIcon size={18} fill="currentColor"/></button>
+                            <button onClick={(e) => _hP(e)} style={_btnP}>
+                              {_iP ? <_Ps size={20} fill="currentColor"/> : <_Pl size={20} fill="currentColor" style={{marginLeft: '2px'}}/>}
+                            </button>
+                            <button onClick={(e) => _hN(e, 'next')} style={_btnS}><_Sf size={18} fill="currentColor"/></button>
+                          </div>
+                        </>
+                      ) : (
+                        <p style={{ fontSize: '0.8rem', color: '#999' }}>Belum ada lagu.</p>
+                      )}
+                   </div>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+
+        {/* YOUTUBE PLAYER - START DETIK 10 */}
+        {_mL.length > 0 && (
+          <iframe
+            ref={_aR}
+            key={_cL}
+            style={{ display: 'none' }}
+            src={`https://www.youtube.com/embed/${_gYid(_mL[_cL].url)}?enablejsapi=1&autoplay=${_iP ? 1 : 0}&start=10&origin=${window.location.origin}`}
+            allow="autoplay"
+          ></iframe>
+        )}
+
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <_L to="/search" style={{ color: '#555' }}><_Sh size={18} /></_L>
+          <div style={{ borderLeft: '1px solid #eee', paddingLeft: '10px' }}>
+            {_u ? (
+              <img src={_u.user_metadata?.avatar_url} alt="Av" style={{ width: '28px', height: '28px', borderRadius: '50%', border: '1px solid #d35400', cursor: 'pointer' }} onClick={_hLo} />
+            ) : (
+              <button onClick={_hLi} style={_btnLogin}>Login</button>
             )}
           </div>
         </div>
@@ -97,5 +190,15 @@ const Navbar = () => {
     </nav>
   );
 };
+
+const _btnP = {
+  width: '40px', height: '40px', borderRadius: '50%', border: '2px solid #000',
+  background: '#ff00ff', color: '#fff', cursor: 'pointer',
+  display: 'flex', alignItems: 'center', justifyContent: 'center',
+  boxShadow: '3px 3px 0px #00ffff'
+};
+
+const _btnS = { background: 'none', border: 'none', color: '#000', cursor: 'pointer', padding: '5px' };
+const _btnLogin = { background: '#d35400', color: '#fff', border: 'none', padding: '4px 10px', borderRadius: '20px', fontSize: '0.8rem', fontWeight: 'bold', cursor: 'pointer' };
 
 export default Navbar;

@@ -3,13 +3,13 @@ import { Link as _L, useNavigate as _uN } from 'react-router-dom';
 import { Analytics as _An } from "@vercel/analytics/react";
 import { supabase as _q } from '../supabaseClient';
 import _C0 from '../components/Recipe/RecipeCard';
-import _C1 from '../components/Layout/CountryWidget';
 import _C2 from '../components/SEO/SEOHelper';
+import _FW from '../components/FerrisWheel';
 import _I0 from '../assets/121x121-icon-coo-x-for-fun--.png';
 
+// Komponen Iklan Internal (Tetap dipertahankan)
 const _A0 = React.memo(({ k }) => {
   const [_v, _sV] = _s(true);
-  
   const _adC = _m(() => `
     <!DOCTYPE html>
     <html>
@@ -36,7 +36,8 @@ const _A0 = React.memo(({ k }) => {
   return (
     <div className="sys-ad-node" style={{ 
       position: 'relative', width: '100%', margin: '15px 0', display: 'flex', 
-      justifyContent: 'center', minHeight: '250px', background: '#fafafa', borderRadius: '12px' 
+      justifyContent: 'center', minHeight: '250px', background: '#fafafa', borderRadius: '12px',
+      zIndex: 1 // Pastikan di bawah dropdown navbar
     }}>
       <button 
         onClick={() => _sV(false)} 
@@ -52,7 +53,7 @@ const _A0 = React.memo(({ k }) => {
         title="Content Framework" 
         srcDoc={_adC} 
         style={{ width: '300px', height: '250px', border: 'none', overflow: 'hidden' }} 
-        loading="eager" 
+        loading="lazy" 
         sandbox="allow-scripts allow-same-origin allow-forms allow-popups" 
       />
     </div>
@@ -68,9 +69,22 @@ const Home = () => {
   _e(() => {
     const _fD = async () => {
       _sl(true);
-      const { data: _rD } = await _q.from('recipes').select('*').limit(6).order('id', { ascending: false });
+      // Fetch 100 Resep
+      const { data: _rD } = await _q
+        .from('recipes')
+        .select('*')
+        .order('id', { ascending: false })
+        .limit(100); 
+      
       if (_rD) _sr(_rD);
-      const { data: _bD } = await _q.from('blog_posts').select('*').limit(2).order('created_at', { ascending: false });
+
+      // Fetch 10 Blog
+      const { data: _bD } = await _q
+        .from('blog_posts')
+        .select('*')
+        .order('created_at', { ascending: false })
+        .limit(10);
+      
       if (_bD) _sb(_bD);
       _sl(false);
     };
@@ -95,17 +109,20 @@ const Home = () => {
   }, [_r]);
 
   return (
-    <div className="home-container" style={{ paddingBottom: '100px', minHeight: '100vh', overflowX: 'hidden' }}>
+    <div className="home-container" style={{ paddingBottom: '100px', minHeight: '100vh', overflowX: 'hidden', position: 'relative', zIndex: 1 }}>
       <_An />
-      <_C2 title="Inspirasi Masak Harian" description="Jelajahi rasa otentik dari berbagai negara & cerita kuliner terbaik." />
+      <_C2 title="Inspirasi Masak Harian" description="Jelajahi resep masakan jadi & lagu memasak untukmu." />
       
       <header style={{ display: 'flex', flexFlow: 'row nowrap', justifyContent: 'center', alignItems: 'center', gap: '8px', padding: '0 0 10px', marginTop: '-5px' }}>
         <img src="/Og-Icon-Coo-X-For-Fun.svg" alt="L0" style={{ width: 'clamp(189.96px, 72vw, 189.98px)', height: 'auto' }} />
         <img src={_I0} alt="L1" style={{ width: 'clamp(132.89px, 56.89vw, 259.86px)', height: 'auto' }} />
       </header>
 
-      <_C1 />
-      
+      {/* Konten Utama */}
+      <section style={{ maxWidth: '800px', margin: '20px auto 10px' }}>
+        <_FW />
+      </section>
+
       <_A0 k="idx-t" />
 
       <section style={{ marginTop: '3.2px' }}>
@@ -113,14 +130,21 @@ const Home = () => {
           <h3 style={{ fontWeight: '800', margin: 0, fontSize: '1.4rem' }}>Resep Masakan Jadi</h3>
           <_L to="/search" style={{ color: '#d35400', textDecoration: 'none', fontWeight: 'bold' }}>Lihat Semua →</_L>
         </div>
+        
+        {/* Grid Otomatis ke bawah (Support 100 data) */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '25px' }}>
           {_rR}
         </div>
-        {_l && <div style={{ textAlign: 'center', padding: '14.9px' }}>🍲</div>}
+        
+        {_l && <div style={{ textAlign: 'center', padding: '14.9px' }}>🍲 Memuat...</div>}
+      </section>
+
+      <section style={{ maxWidth: '800px', margin: '40px auto 20px' }}>
+        <_FW />
       </section>
 
       {_b.length > 0 && (
-        <section style={{ marginTop: '40px' }}>
+        <section style={{ marginTop: '20px' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
             <h3 style={{ fontWeight: '800', margin: 0, fontSize: '1.4rem' }}>Postingan Saya</h3>
             <_L to="/blog" style={{ color: '#d35400', fontWeight: 'bold', textDecoration: 'none' }}>Semua →</_L>
@@ -145,6 +169,7 @@ const Home = () => {
         </section>
       )}
 
+      {/* Floating Button */}
       <button onClick={() => _n('/add-recipe')} style={_fB}> + </button>
     </div>
   );
