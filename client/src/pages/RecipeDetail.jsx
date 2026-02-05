@@ -7,21 +7,42 @@ import RecipeHeader from '../components/Recipe/RecipeHeader';
 import IngredientsList from '../components/Recipe/IngredientsList';
 import StepsList from '../components/Recipe/StepsList';
 
-// --- Komponen Iklan (Optimized untuk Anti-Reflow) ---
+// --- HELPER: OPTIMASI GAMBAR (Penting untuk Performa) ---
+const optimizeImage = (url, width = 800) => {
+  if (!url) return '';
+  // 1. Optimasi Supabase
+  if (url.includes('supabase.co')) {
+    const separator = url.includes('?') ? '&' : '?';
+    return `${url}${separator}width=${width}&format=webp&quality=80`;
+  }
+  // 2. Optimasi Pexels
+  if (url.includes('pexels.com')) {
+    const separator = url.includes('?') ? '&' : '?';
+    return `${url}${separator}auto=compress&cs=tinysrgb&w=${width}&dpr=1`;
+  }
+  // 3. Optimasi Unsplash
+  if (url.includes('unsplash.com')) {
+    const separator = url.includes('?') ? '&' : '?';
+    return `${url}${separator}w=${width}&q=75&fm=webp`;
+  }
+  return url;
+};
+
+// --- KOMPONEN IKLAN (Optimized & Aman) ---
 const AdSection = React.memo(({ k }) => {
   const [visible, setVisible] = useState(true);
   
+  // Placeholder aman agar tidak error 500 saat loading script iklan
   const adContent = useMemo(() => `
     <!DOCTYPE html>
     <html>
       <head>
         <meta charset="utf-8">
-        <style>body, html { margin: 0; padding: 0; background: transparent; overflow: hidden; height: 250px; display: flex; justify-content: center; }</style>
+        <style>body, html { margin: 0; padding: 0; background: #fafafa; display: flex; justify-content: center; align-items: center; height: 250px; color: #ccc; font-family: sans-serif; }</style>
       </head>
       <body>
-        <div id="ad-wrapper">
-          <script type="text/javascript">atOptions = { 'key' : '00a1391f38d87ff5d574caa89f0d2959', 'format' : 'iframe', 'height' : 250, 'width' : 300, 'params' : {} };</script>
-          <script async src="https://www.highperformanceformat.com/00a1391f38d87ff5d574caa89f0d2959/invoke.js"></script>
+        <div style="border: 2px dashed #ddd; padding: 10px 20px; border-radius: 8px;">
+            <strong>Space Iklan</strong>
         </div>
       </body>
     </html>
@@ -34,7 +55,6 @@ const AdSection = React.memo(({ k }) => {
       position: 'relative', width: '100%', margin: '25px 0', 
       display: 'flex', justifyContent: 'center', minHeight: '250px', 
       backgroundColor: '#fafafa', borderRadius: '8px',
-      // OPTIMASI: Mencegah kalkulasi layout saat off-screen
       contentVisibility: 'auto', 
       containIntrinsicSize: '300px 250px' 
     }}>
@@ -55,7 +75,7 @@ const AdSection = React.memo(({ k }) => {
   );
 });
 
-// --- Komponen Utama ---
+// --- KOMPONEN UTAMA ---
 const RecipeDetail = () => {
   const { slug } = useParams();
   const [recipe, setRecipe] = useState(null);
@@ -201,13 +221,16 @@ const RecipeDetail = () => {
   return (
     <div style={{ maxWidth: '800px', margin: '0 auto', padding: '0 20px 100px', background: '#fff' }}>
       <SEOHelper title={recipe.title} description={recipe.description} image={recipe.image_url} />
+      
+      {/* HEADER TANPA LOGO */}
       <RecipeHeader author={`Oleh ${recipe.author_name || 'Chef'}`} date={recipe.created_at} country={recipe.country || 'Inter'} />
+      
       <h1 style={{ fontSize: 'clamp(1.8rem, 5vw, 2.5rem)', fontWeight: '900', marginTop: '20px' }}>{recipe.title}</h1>
 
       <div style={{ margin: '25px 0', borderRadius: '24px', overflow: 'hidden', boxShadow: '0 10px 30px rgba(0,0,0,0.1)' }}>
-        {/* OPTIMASI GAMBAR: aspectRatio & loading lazy mencegah layout shift/reflow */}
+        {/* IMAGE DENGAN OPTIMASI */}
         <img 
-          src={recipe.image_url} 
+          src={optimizeImage(recipe.image_url, 800)} 
           alt={recipe.title} 
           style={{ width: '100%', height: 'auto', aspectRatio: '16/9', objectFit: 'cover' }} 
           loading="lazy"
@@ -237,7 +260,6 @@ const RecipeDetail = () => {
                 padding: '8px 16px',
                 background: myReaction === key ? `${value.color}20` : '#f0f2f5',
                 borderRadius: '50px', cursor: 'pointer', transition: '0.2s',
-                // FIX: Menghapus properti border ganda
                 border: myReaction === key ? `1.5px solid ${value.color}` : '1.5px solid transparent',
                 transform: myReaction === key ? 'scale(1.05)' : 'scale(1)'
               }}
