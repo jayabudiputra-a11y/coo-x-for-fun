@@ -7,20 +7,16 @@ import RecipeHeader from '../components/Recipe/RecipeHeader';
 import IngredientsList from '../components/Recipe/IngredientsList';
 import StepsList from '../components/Recipe/StepsList';
 
-// --- HELPER: OPTIMASI GAMBAR (Penting untuk Performa) ---
 const optimizeImage = (url, width = 800) => {
   if (!url) return '';
-  // 1. Optimasi Supabase
   if (url.includes('supabase.co')) {
     const separator = url.includes('?') ? '&' : '?';
     return `${url}${separator}width=${width}&format=webp&quality=80`;
   }
-  // 2. Optimasi Pexels
   if (url.includes('pexels.com')) {
     const separator = url.includes('?') ? '&' : '?';
     return `${url}${separator}auto=compress&cs=tinysrgb&w=${width}&dpr=1`;
   }
-  // 3. Optimasi Unsplash
   if (url.includes('unsplash.com')) {
     const separator = url.includes('?') ? '&' : '?';
     return `${url}${separator}w=${width}&q=75&fm=webp`;
@@ -28,21 +24,30 @@ const optimizeImage = (url, width = 800) => {
   return url;
 };
 
-// --- KOMPONEN IKLAN (Optimized & Aman) ---
 const AdSection = React.memo(({ k }) => {
   const [visible, setVisible] = useState(true);
   
-  // Placeholder aman agar tidak error 500 saat loading script iklan
   const adContent = useMemo(() => `
     <!DOCTYPE html>
     <html>
       <head>
         <meta charset="utf-8">
-        <style>body, html { margin: 0; padding: 0; background: #fafafa; display: flex; justify-content: center; align-items: center; height: 250px; color: #ccc; font-family: sans-serif; }</style>
+        <style>
+          body, html { margin: 0; padding: 0; background: transparent; overflow: hidden; height: 250px; display: flex; justify-content: center; align-items: center; }
+        </style>
       </head>
       <body>
-        <div style="border: 2px dashed #ddd; padding: 10px 20px; border-radius: 8px;">
-            <strong>Space Iklan</strong>
+        <div id="container-00a1391f38d87ff5d574caa89f0d2959">
+          <script type="text/javascript">
+            atOptions = {
+              'key' : '00a1391f38d87ff5d574caa89f0d2959',
+              'format' : 'iframe',
+              'height' : 250,
+              'width' : 300,
+              'params' : {}
+            };
+          </script>
+          <script type="text/javascript" src="//www.highperformanceformat.com/00a1391f38d87ff5d574caa89f0d2959/invoke.js"></script>
         </div>
       </body>
     </html>
@@ -60,7 +65,11 @@ const AdSection = React.memo(({ k }) => {
     }}>
       <button 
         onClick={() => setVisible(false)} 
-        style={{ position: 'absolute', top: '5px', right: '5px', width: '28px', height: '28px', borderRadius: '50%', background: 'rgba(0,0,0,0.7)', color: '#fff', border: 'none', cursor: 'pointer', zIndex: 10 }}
+        style={{ 
+          position: 'absolute', top: '5px', right: '5px', width: '28px', height: '28px', 
+          borderRadius: '50%', background: 'rgba(0,0,0,0.7)', color: '#fff', 
+          border: 'none', cursor: 'pointer', zIndex: 10 
+        }}
       >
         ×
       </button>
@@ -75,18 +84,15 @@ const AdSection = React.memo(({ k }) => {
   );
 });
 
-// --- KOMPONEN UTAMA ---
 const RecipeDetail = () => {
   const { slug } = useParams();
   const [recipe, setRecipe] = useState(null);
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState(null);
 
-  // States Reaksi
   const [reactions, setReactions] = useState({ like: 0, love: 0, haha: 0, wow: 0, sad: 0, angry: 0 });
   const [myReaction, setMyReaction] = useState(null);
 
-  // States Komentar
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState('');
   const [submitting, setSubmitting] = useState(false);
@@ -133,7 +139,6 @@ const RecipeDetail = () => {
     window.scrollTo(0, 0);
   }, [slug]);
 
-  // --- LOGIC REAKSI ---
   const fetchReactions = async (recipeId, userId) => {
     const { data } = await supabase.from('recipe_reactions').select('reaction_type, user_id').eq('recipe_id', recipeId);
     if (data) {
@@ -175,7 +180,6 @@ const RecipeDetail = () => {
     }
   };
 
-  // --- LOGIC KOMENTAR ---
   const fetchComments = async (recipeId) => {
     const { data } = await supabase.from('recipe_comments').select('*').eq('recipe_id', recipeId).order('created_at', { ascending: false });
     if (data) setComments(data);
@@ -212,7 +216,6 @@ const RecipeDetail = () => {
     } catch (err) { alert("Gagal menghapus."); }
   };
 
-  // --- RENDER ---
   if (loading) return <div style={{ textAlign: 'center', padding: '100px', fontFamily: 'monospace' }}>🍲 Menyiapkan Bahan...</div>;
   if (!recipe) return <div style={{ textAlign: 'center', padding: '100px' }}><h2>Resep Tidak Ditemukan</h2></div>;
 
@@ -222,13 +225,11 @@ const RecipeDetail = () => {
     <div style={{ maxWidth: '800px', margin: '0 auto', padding: '0 20px 100px', background: '#fff' }}>
       <SEOHelper title={recipe.title} description={recipe.description} image={recipe.image_url} />
       
-      {/* HEADER TANPA LOGO */}
       <RecipeHeader author={`Oleh ${recipe.author_name || 'Chef'}`} date={recipe.created_at} country={recipe.country || 'Inter'} />
       
       <h1 style={{ fontSize: 'clamp(1.8rem, 5vw, 2.5rem)', fontWeight: '900', marginTop: '20px' }}>{recipe.title}</h1>
 
       <div style={{ margin: '25px 0', borderRadius: '24px', overflow: 'hidden', boxShadow: '0 10px 30px rgba(0,0,0,0.1)' }}>
-        {/* IMAGE DENGAN OPTIMASI */}
         <img 
           src={optimizeImage(recipe.image_url, 800)} 
           alt={recipe.title} 
