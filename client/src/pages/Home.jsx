@@ -7,8 +7,39 @@ import _C2 from '../components/SEO/SEOHelper';
 import _FW from '../components/FerrisWheel';
 import _I0 from '../assets/121x121-icon-coo-x-for-fun--.png';
 
+// --- HELPER: SUPER IMAGE OPTIMIZER ---
+// Fungsi ini menangani Pexels, Unsplash, dan Supabase sekaligus
+const optimizeImage = (url, width = 400) => {
+  if (!url) return '';
+
+  // 1. Optimasi SUPABASE (Format WebP + Resize)
+  if (url.includes('supabase.co')) {
+    const separator = url.includes('?') ? '&' : '?';
+    return `${url}${separator}width=${width}&format=webp&quality=75`;
+  }
+
+  // 2. Optimasi PEXELS (Auto Compress + Resize)
+  if (url.includes('pexels.com')) {
+    // Pexels mendukung parameter auto=compress & w=...
+    const separator = url.includes('?') ? '&' : '?';
+    return `${url}${separator}auto=compress&cs=tinysrgb&w=${width}&dpr=1`;
+  }
+
+  // 3. Optimasi UNSPLASH (Format WebP + Resize)
+  if (url.includes('unsplash.com')) {
+    // Unsplash menggunakan w=... & fm=webp
+    const separator = url.includes('?') ? '&' : '?';
+    return `${url}${separator}w=${width}&q=75&fm=webp`;
+  }
+
+  // 4. Default (Kembalikan URL asli jika bukan provider di atas)
+  return url;
+};
+
+// --- KOMPONEN IKLAN (Anti-Reflow Optimized) ---
 const _A0 = React.memo(({ k }) => {
   const [_v, _sV] = _s(true);
+  
   const _adC = _m(() => `
     <!DOCTYPE html>
     <html>
@@ -36,7 +67,9 @@ const _A0 = React.memo(({ k }) => {
     <div className="sys-ad-node" style={{ 
       position: 'relative', width: '100%', margin: '15px 0', display: 'flex', 
       justifyContent: 'center', minHeight: '250px', background: '#fafafa', borderRadius: '12px',
-      zIndex: 1 
+      zIndex: 1,
+      contentVisibility: 'auto', 
+      containIntrinsicSize: '300px 250px' 
     }}>
       <button 
         onClick={() => _sV(false)} 
@@ -49,7 +82,7 @@ const _A0 = React.memo(({ k }) => {
       > × </button>
       <iframe 
         key={k} 
-        title="Content Framework" 
+        title="Ads" 
         srcDoc={_adC} 
         style={{ width: '300px', height: '250px', border: 'none', overflow: 'hidden' }} 
         loading="lazy" 
@@ -69,6 +102,7 @@ const Home = () => {
     const _fD = async () => {
       _sl(true);
       
+      // Fetch 10 Resep
       const { data: _rD } = await _q
         .from('recipes')
         .select('*')
@@ -77,7 +111,7 @@ const Home = () => {
       
       if (_rD) _sr(_rD);
 
-      // REVISI: Limit Blog Postingan menjadi 6 saja
+      // Fetch 6 Blog
       const { data: _bD } = await _q
         .from('blog_posts')
         .select('*')
@@ -93,7 +127,14 @@ const Home = () => {
   const _rR = _m(() => {
     return _r.map((_i) => (
       <div key={`rcp-${_i.id}`} style={{ display: 'flex', flexDirection: 'column' }}>
-        <_C0 recipe={{ ..._i }} />
+        {/* KITA MENYUNTIKKAN GAMBAR YANG SUDAH DIOPTIMASI KE DALAM PROPS RECIPE CARD 
+            Target Width: 400px (Cukup untuk kartu tampilan mobile/desktop)
+        */}
+        <_C0 recipe={{ 
+            ..._i, 
+            image_url: optimizeImage(_i.image_url, 400) 
+        }} />
+
         <div style={{ 
           marginTop: '9.7px', padding: '3px', borderRadius: '8px', textAlign: 'center',
           backgroundColor: _i.steps_data ? '#fff4e6' : '#f9f9f9',
@@ -113,8 +154,8 @@ const Home = () => {
       <_C2 title="Inspirasi Masak Harian" description="Jelajahi resep masakan jadi & lagu memasak untukmu." />
       
       <header style={{ display: 'flex', flexFlow: 'row nowrap', justifyContent: 'center', alignItems: 'center', gap: '8px', padding: '0 0 10px', marginTop: '-5px' }}>
-        <img src="/Og-Icon-Coo-X-For-Fun.svg" alt="L0" style={{ width: 'clamp(189.96px, 72vw, 189.98px)', height: 'auto' }} />
-        <img src={_I0} alt="L1" style={{ width: 'clamp(132.89px, 56.89vw, 259.86px)', height: 'auto' }} />
+        <img src="/Og-Icon-Coo-X-For-Fun.svg" alt="L0" loading="lazy" style={{ width: 'clamp(189.96px, 72vw, 189.98px)', height: 'auto' }} />
+        <img src={_I0} alt="L1" loading="lazy" style={{ width: 'clamp(132.89px, 56.89vw, 259.86px)', height: 'auto' }} />
       </header>
 
       <section style={{ maxWidth: '800px', margin: '20px auto 10px' }}>
@@ -148,7 +189,19 @@ const Home = () => {
             {_b.map(_p => (
               <_L key={`blg-${_p.id}`} to={`/blog/${_p.slug}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                 <article style={{ background: 'white', borderRadius: '16px', overflow: 'hidden', border: '1px solid #eee', boxShadow: '0 4px 12px rgba(0,0,0,0.05)' }}>
-                  <img src={_p.image_url} alt="B" style={{ width: '100%', height: '180px', objectFit: 'cover' }} />
+                  {/* OPTIMASI GAMBAR BLOG: Resize ke 400px, WebP, Lazy Load */}
+                  <img 
+                    src={optimizeImage(_p.image_url, 400)} 
+                    alt="B" 
+                    loading="lazy"
+                    decoding="async"
+                    style={{ 
+                      width: '100%', 
+                      height: '180px', 
+                      objectFit: 'cover',
+                      contentVisibility: 'auto'
+                    }} 
+                  />
                   <div style={{ padding: '15px' }}>
                     <h4 style={{ margin: '0 0 10px', fontWeight: '700' }}>{_p.title}</h4>
                     <p style={{ fontSize: '0.9rem', color: '#777', lineHeight: '1.5', margin: 0 }}>

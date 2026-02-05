@@ -1,18 +1,63 @@
-import React, { useEffect as E, useState as S, useCallback as CB, useRef as UR } from 'react';
+import React, { useEffect as E, useState as S, useCallback as CB, useRef as UR, useMemo as M } from 'react';
 import { useSearchParams as U } from 'react-router-dom';
 import { supabase as Q } from '../supabaseClient';
 import C0 from '../components/Recipe/RecipeCard';
 import C1 from '../components/SEO/SEOHelper';
 
+// --- HELPER: OPTIMASI GAMBAR (Konsisten dengan Home) ---
+const optimizeImage = (url, width = 400) => {
+  if (!url) return '';
+  // 1. Supabase
+  if (url.includes('supabase.co')) {
+    const separator = url.includes('?') ? '&' : '?';
+    return `${url}${separator}width=${width}&format=webp&quality=75`;
+  }
+  // 2. Pexels
+  if (url.includes('pexels.com')) {
+    const separator = url.includes('?') ? '&' : '?';
+    return `${url}${separator}auto=compress&cs=tinysrgb&w=${width}&dpr=1`;
+  }
+  // 3. Unsplash
+  if (url.includes('unsplash.com')) {
+    const separator = url.includes('?') ? '&' : '?';
+    return `${url}${separator}w=${width}&q=75&fm=webp`;
+  }
+  return url;
+};
+
+// --- KOMPONEN IKLAN (Optimized) ---
 const A0 = React.memo(({ k }) => {
-  const adDoc = `<html><body style="margin:0;display:flex;justify-content:center;"><script>atOptions={'key':'00a1391f38d87ff5d574caa89f0d2959','format':'iframe','height':250,'width':300,'params':{}};</script><script src="https://www.highperformanceformat.com/00a1391f38d87ff5d574caa89f0d2959/invoke.js" onerror="console.warn('Ad blocked')"></script></body></html>`;
+  const adDoc = M(() => `
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <meta charset="utf-8">
+        <style>body, html { margin: 0; padding: 0; background: transparent; overflow: hidden; height: 250px; display: flex; justify-content: center; }</style>
+      </head>
+      <body>
+        <div id="w">
+          <script type="text/javascript">atOptions = { 'key' : '00a1391f38d87ff5d574caa89f0d2959', 'format' : 'iframe', 'height' : 250, 'width' : 300, 'params' : {} };</script>
+          <script async src="https://www.highperformanceformat.com/00a1391f38d87ff5d574caa89f0d2959/invoke.js"></script>
+        </div>
+      </body>
+    </html>
+  `, []);
+
   return (
-    <div style={{ position: 'relative', width: '100%', margin: '15px 0', display: 'flex', justifyContent: 'center', minHeight: '250px' }}>
+    <div style={{ 
+      position: 'relative', width: '100%', margin: '15px 0', display: 'flex', 
+      justifyContent: 'center', minHeight: '250px', background: '#fafafa', borderRadius: '12px',
+      // Optimasi Layout Shift
+      contentVisibility: 'auto', 
+      containIntrinsicSize: '300px 250px'
+    }}>
       <iframe
         key={k}
-        title="Ad"
+        title="Iklan Sponsor"
         srcDoc={adDoc}
-        style={{ width: '300px', height: '250px', border: 'none', overflow: 'hidden', background: '#fafafa' }}
+        style={{ width: '300px', height: '250px', border: 'none', overflow: 'hidden' }}
+        loading="lazy"
+        sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
       />
     </div>
   );
@@ -111,12 +156,15 @@ const SearchPage = () => {
           TEMUKAN RESEP
         </h1>
 
-        <form onSubmit={f0} style={{ position: 'relative' }}>
+        <form onSubmit={f0} style={{ position: 'relative' }} role="search">
           <input
             type="text"
             value={q}
             onChange={(e) => sQ(e.target.value)}
             placeholder="Cari menu..."
+            // FIX ACCESSIBILITY: Label untuk screen reader
+            aria-label="Kata kunci pencarian resep"
+            name="q"
             style={{
               width: '100%', padding: '16px 22px', borderRadius: '50px',
               border: '2px solid #eee', outline: 'none', fontSize: '1rem',
@@ -126,6 +174,8 @@ const SearchPage = () => {
           />
           <button
             type="submit"
+            // FIX ACCESSIBILITY: Label eksplisit
+            aria-label="Mulai Pencarian"
             style={{
               position: 'absolute', right: '6px', top: '6px', bottom: '6px',
               background: '#d35400', color: 'white', border: 'none',
@@ -142,6 +192,8 @@ const SearchPage = () => {
         <div style={{ position: 'relative', width: '100%', maxWidth: '323px', margin: '0 auto 20px', minHeight: '250px', display: 'flex', justifyContent: 'center' }}>
           <button
             onClick={() => sAdv(false)}
+            // FIX ACCESSIBILITY: Tombol "X" harus punya label
+            aria-label="Tutup Iklan"
             style={{ position: 'absolute', top: '-10px', right: '0px', width: '30px', height: '30px', background: '#000', color: '#fff', border: '2px solid #fff', borderRadius: '50%', fontSize: '16px', cursor: 'pointer', zIndex: 10, fontWeight: 'bold' }}
           > × </button>
           <A0 k={k0} />
@@ -160,9 +212,15 @@ const SearchPage = () => {
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))', gap: '15px' }}>
               {r.map((item, index) => {
                 const isLast = r.length === index + 1;
+                // MENERAPKAN OPTIMASI GAMBAR KE RECIPE CARD
+                const optimizedItem = {
+                    ...item,
+                    image_url: optimizeImage(item.image_url, 400)
+                };
+
                 return (
                   <div ref={isLast ? lastRecipeRef : null} key={`search-${item.id}-${index}`}>
-                    <C0 recipe={item} />
+                    <C0 recipe={optimizedItem} />
                   </div>
                 );
               })}
