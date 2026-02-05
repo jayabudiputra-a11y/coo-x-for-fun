@@ -27,7 +27,7 @@ const TermsOfService = () => {
       <p>Saya dapat mengubah ketentuan ini sewaktu-waktu. Penggunaan berkelanjutan Anda atas situs ini setelah perubahan tersebut dianggap sebagai persetujuan Anda.</p>
 
       <footer style={{ marginTop: '40px', borderTop: '1px solid #eee', paddingTop: '20px' }}>
-        <p>Kontak: <strong>hello@coo-x-for.fun</strong></p>
+        <p>Kontak: <strong>bbudi6621@gmail.com</strong></p>
       </footer>
     </div>
   );
