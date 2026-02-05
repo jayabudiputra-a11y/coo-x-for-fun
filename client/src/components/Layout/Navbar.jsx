@@ -104,30 +104,28 @@ const Navbar = () => {
 
               {_oM && (
                 <div style={{ 
-                    position: 'absolute', 
-                    top: '50px', 
-                    left: '50%', // RATA TENGAH HORIZONTAL
-                    transform: 'translateX(-50%)', // AGAR SELALU DI TENGAH SEMUA DEVICE
+                    position: 'fixed', // Pakai fixed agar patokan ke layar
+                    top: '70px', 
+                    left: '50%', 
+                    transform: 'translateX(-50%)', 
                     background: '#fff', 
-                    padding: '15px', 
+                    padding: '12px', 
                     borderRadius: '0px', 
-                    boxShadow: '8px 8px 0px #00ffff', 
-                    width: 'min(260px, 80vw)', // RESPONSIF UNTUK LEBAR 300px KE BAWAH
+                    boxShadow: '6px 6px 0px #00ffff', 
+                    width: '220px', // Perkecil ukuran player
                     border: '3px dashed #ff00ff', 
                     zIndex: 10001 
                 }}>
                    <div style={{ textAlign: 'center' }}>
                       {_fL ? (
-                        <div style={{ padding: '20px' }}><_Ld className="animate-spin" style={{ margin: '0 auto' }} /></div>
+                        <div style={{ padding: '10px' }}><_Ld className="animate-spin" size={20} style={{ margin: '0 auto' }} /></div>
                       ) : _mL.length > 0 ? (
                         <>
                           <div onClick={_hQuickPlay} style={{ cursor: 'pointer' }}>
                             <div style={{ 
-                              width: '120px', 
-                              height: '120px', 
-                              margin: '0 auto 10px', 
-                              borderRadius: '0px', 
-                              overflow: 'hidden',
+                              width: '100px', // Foto album lebih compact
+                              height: '100px', 
+                              margin: '0 auto 8px', 
                               border: '2px solid #000',
                               position: 'relative',
                               backgroundColor: '#eee'
@@ -139,24 +137,24 @@ const Navbar = () => {
                               />
                               {!_iP && (
                                 <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', background: 'rgba(0,0,0,0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff' }}>
-                                  <_Pl size={30} fill="currentColor" />
+                                  <_Pl size={25} fill="currentColor" />
                                 </div>
                               )}
                             </div>
-                            <h4 style={{ margin: '0 0 5px', fontSize: '0.9rem', color: '#333', fontFamily: 'Courier New', fontWeight: 'bold' }}>Lagu sambil masak Untukmu</h4>
-                            <p className="blink" style={{ margin: '0 0 10px', fontSize: '0.7rem', color: '#ff00ff', fontWeight: 'bold' }}>[ TAP TO PLAY ]</p>
+                            <h4 style={{ margin: '0 0 3px', fontSize: '0.8rem', color: '#333', fontFamily: 'Courier New', fontWeight: 'bold', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>Sambil Masak</h4>
+                            <p className="blink" style={{ margin: '0 0 8px', fontSize: '0.65rem', color: '#ff00ff', fontWeight: 'bold' }}>[ TAP TO PLAY ]</p>
                           </div>
                           
-                          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '12px' }}>
-                            <button onClick={(e) => _hN(e, 'prev')} style={_btnS}><_SbIcon size={18} fill="currentColor"/></button>
+                          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '10px' }}>
+                            <button onClick={(e) => _hN(e, 'prev')} style={_btnS}><_SbIcon size={16} fill="currentColor"/></button>
                             <button onClick={(e) => _hP(e)} style={_btnP}>
-                              {_iP ? <_Ps size={20} fill="currentColor"/> : <_Pl size={20} fill="currentColor" style={{marginLeft: '2px'}}/>}
+                              {_iP ? <_Ps size={18} fill="currentColor"/> : <_Pl size={18} fill="currentColor" style={{marginLeft: '2px'}}/>}
                             </button>
-                            <button onClick={(e) => _hN(e, 'next')} style={_btnS}><_Sf size={18} fill="currentColor"/></button>
+                            <button onClick={(e) => _hN(e, 'next')} style={_btnS}><_Sf size={16} fill="currentColor"/></button>
                           </div>
                         </>
                       ) : (
-                        <p style={{ fontSize: '0.8rem', color: '#999' }}>Belum ada lagu.</p>
+                        <p style={{ fontSize: '0.7rem', color: '#999' }}>Kosong.</p>
                       )}
                    </div>
                 </div>
@@ -165,7 +163,6 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* YOUTUBE PLAYER - START DETIK 10 */}
         {_mL.length > 0 && (
           <iframe
             ref={_aR}
@@ -192,13 +189,13 @@ const Navbar = () => {
 };
 
 const _btnP = {
-  width: '40px', height: '40px', borderRadius: '50%', border: '2px solid #000',
+  width: '35px', height: '35px', borderRadius: '50%', border: '2px solid #000',
   background: '#ff00ff', color: '#fff', cursor: 'pointer',
   display: 'flex', alignItems: 'center', justifyContent: 'center',
-  boxShadow: '3px 3px 0px #00ffff'
+  boxShadow: '2px 2px 0px #00ffff'
 };
 
-const _btnS = { background: 'none', border: 'none', color: '#000', cursor: 'pointer', padding: '5px' };
+const _btnS = { background: 'none', border: 'none', color: '#000', cursor: 'pointer', padding: '3px' };
 const _btnLogin = { background: '#d35400', color: '#fff', border: 'none', padding: '4px 10px', borderRadius: '20px', fontSize: '0.8rem', fontWeight: 'bold', cursor: 'pointer' };
 
 export default Navbar;
