@@ -11,14 +11,12 @@ const _FW = () => {
   const _ir = _uR([]);
   const _nv = _uN();
 
-  // Audio: Start 3s, Vol 1.0
   const _au = _uM(() => {
     const a = new Audio('https://tough-maroon-oa8tgcstic.edgeone.app/Glenn%20Miller%20-%20In%20The%20Mood%20[HQ]%20-%20symir547.mp3');
     a.volume = 1.0;
     return a;
   }, []);
 
-  // 1. FETCH DATA
   _e(() => {
     const _f = async () => {
       const { data: _d } = await _sb
@@ -39,10 +37,9 @@ const _FW = () => {
     _f();
   }, []);
 
-  // 2. POSISI ITEM (Awal)
   _e(() => {
     if (_i.length > 0) {
-      const _r = 130, _t = _i.length, _st = 360 / _t;
+      const _r = 110, _t = _i.length, _st = 360 / _t;
       _i.forEach((_, x) => {
         const _a = (x * _st) * (Math.PI / 180);
         if (_ir.current[x]) {
@@ -52,17 +49,14 @@ const _FW = () => {
     }
   }, [_i]);
 
-  // 3. LOGIKA PUTARAN (HASIL AKHIR DI JAM 12 / ATAS)
   const _hS = () => {
     if (_s || _i.length === 0) return;
     _sS(true); _sW(null);
-    
     _au.pause();
     _au.currentTime = 3;
 
     const _wi = Math.floor(Math.random() * _i.length);
     const _wItem = _i[_wi];
-    
     const _step = 360 / _i.length;
     const _tr = 2160 + 270 - (_wi * _step); 
 
@@ -85,8 +79,6 @@ const _FW = () => {
     _au.pause();
     if (_w && _w.slug) {
         _nv(`/resep/${_w.slug}`);
-    } else {
-        alert("Error slug");
     }
   };
 
@@ -95,38 +87,28 @@ const _FW = () => {
       <h3 style={_st.h}>Putar Menu Hari Ini!</h3>
       
       <div style={_st.ww}>
-        
-        {/* LINGKARAN RODA (BERPUTAR) */}
         <div ref={_wr} style={_st.wh}>
            {_i.map((x, k) => (
              <div key={k} ref={e => _ir.current[k] = e} style={_st.bc}>
-                {/* GARIS RUJI DIHAPUS SESUAI PERMINTAAN */}
                 <div style={_st.b}>
-                  <span style={_st.bt}>
-                    {x.title}
-                  </span>
+                  <span style={_st.bt}>{x.title}</span>
                 </div>
              </div>
            ))}
         </div>
-
-        {/* JARUM JAM (DIAM DI TENGAH, MENUNJUK KE ATAS) */}
         <div style={_st.p}></div> 
-
-        {/* TUTUP TENGAH (DIAM, MENUTUPI PANGKAL JARUM) */}
         <div style={_st.cp}></div>
-
       </div>
 
-      <button onClick={_hS} disabled={_s} style={{..._st.sb, opacity: _s ? 0.6 : 1, transform: _s ? 'scale(0.95)' : 'scale(1)'}}>
-        {_s ? "Sedang Mengundi..." : "PLAY NOW"}
+      <button onClick={_hS} disabled={_s} style={{..._st.sb, opacity: _s ? 0.6 : 1}}>
+        {_s ? "MENGUNDI..." : "PLAY NOW"}
       </button>
 
       {_w && (
         <div style={_st.mo}>
           <div style={_st.mc}>
-            <h2 style={{color: '#d35400', margin: '0 0 1px'}}>CONGRATULATIONS!</h2>
-            <p style={{fontSize: '1.1rem'}}>Menu masakan hari ini:</p>
+            <h2 style={_st.mTitle}>CONGRATULATIONS!</h2>
+            <p style={{fontSize: '1rem', margin: '10px 0'}}>Menu masakan hari ini:</p>
             <div style={_st.wb}>{_w.title}</div>
             <div style={{display:'flex', gap:'10px', justifyContent:'center', marginTop:'20px'}}>
                 <button onClick={() => {_sW(null); _au.pause();}} style={_st.cb}>Tutup</button>
@@ -141,67 +123,72 @@ const _FW = () => {
 
 const _st = {
   c: { 
-    margin: '20px 0', padding: '10px 30px', 
+    width: '100%', maxWidth: '500px', margin: '20px auto', padding: '20px 10px', 
     backgroundImage: 'url("https://i.gifer.com/33Hn.gif")', 
-    backgroundRepeat: 'repeat', 
-    backgroundSize: '132.08px', 
-    border: '4px dashed #ff0000', 
-    borderRadius: '50px', textAlign: 'center', position: 'relative', 
-    overflow: 'visible',
-    boxShadow: '0 10px 30px rgba(0,0,0,0.15)' 
+    backgroundRepeat: 'repeat', backgroundSize: '100px', 
+    border: '4px dashed #ff0000', borderRadius: '30px', 
+    textAlign: 'center', position: 'relative', boxSizing: 'border-box',
+    boxShadow: '0 10px 30px rgba(0,0,0,0.15)', overflow: 'hidden'
   },
   h: { 
     color: '#600', fontWeight: '900', textTransform: 'uppercase', 
-    marginBottom: '32.89px', fontSize: '1.7rem', textShadow: '2px 2px 0px #fff' 
+    marginBottom: '20px', fontSize: 'clamp(1.2rem, 5vw, 1.7rem)', textShadow: '2px 2px 0px #fff' 
   },
   ww: { 
-    position: 'relative', width: '280.25px', height: '320px', margin: '0 auto 20px',
+    position: 'relative', 
+    width: 'min(280px, 80vw)', // Responsif di HP kecil
+    aspectRatio: '1 / 1', 
+    margin: '0 auto 20px',
     display: 'flex', justifyContent: 'center', alignItems: 'center'
   },
   p: { 
-    position: 'absolute', 
-    top: '50%',      
-    left: '50%',     
+    position: 'absolute', top: '50%', left: '50%', 
     transform: 'translate(-50%, -100%)', 
-    width: '18px',   
-    height: '95px',  
-    background: '#d35400',
-    clipPath: 'polygon(50% 0, 100% 100%, 0 100%)', 
-    zIndex: 50,      
-    filter: 'drop-shadow(2px 4px 4px rgba(0,0,0,0.4))',
-    transformOrigin: 'bottom center'
+    width: '14px', height: '80px',  
+    background: '#d35400', clipPath: 'polygon(50% 0, 100% 100%, 0 100%)', 
+    zIndex: 50, transformOrigin: 'bottom center'
   },
   cp: { 
-    position: 'absolute',
-    top: '50%', left: '50%',
+    position: 'absolute', top: '50%', left: '50%', 
     transform: 'translate(-50%, -50%)',
-    width: '40px', height: '40px', 
-    background: '#600', 
-    borderRadius: '50%', 
-    zIndex: 60, 
-    boxShadow: '0 0 10px rgba(0,0,0,0.5)',
-    border: '4px solid #fff'
+    width: '35px', height: '35px', background: '#600', 
+    borderRadius: '50%', zIndex: 60, border: '3px solid #fff'
   },
   wh: { 
-    width: '100%', height: '100%', position: 'relative', borderRadius: '80%', 
-    border: '8px solid #600', display: 'flex', justifyContent: 'center', 
-    alignItems: 'center', background: 'rgba(255,255,255,0.9)', 
-    zIndex: 10 
+    width: '100%', height: '100%', position: 'relative', borderRadius: '50%', 
+    border: '6px solid #600', background: 'rgba(255,255,255,0.9)', zIndex: 10 
   },
-  bc: { position: 'absolute', top: '50%', left: '50%', width: '0', height: '0', display: 'flex', justifyContent: 'center', alignItems: 'center' },
+  bc: { position: 'absolute', top: '50%', left: '50%', width: '0', height: '0' },
   b: { 
-    position: 'absolute', width: '90px', padding: '8px 4px', background: '#fff', 
-    border: '3px solid #600', borderRadius: '8px', textAlign: 'center', 
-    zIndex: 2, boxShadow: '0 4px 6px rgba(0,0,0,0.2)', 
-    display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '40px' 
+    position: 'absolute', width: '75px', padding: '6px 3px', background: '#fff', 
+    border: '2px solid #600', borderRadius: '6px', textAlign: 'center', 
+    transform: 'translate(-50%, -50%)', minHeight: '35px',
+    display: 'flex', alignItems: 'center', justifyContent: 'center' 
   },
-  bt: { fontSize: '0.71rem', fontWeight: 'bold', color: '#333', lineHeight: '1.1' },
-  sb: { padding: '15px 40px', fontSize: '1.2rem', fontWeight: 'bold', color: '#fff', backgroundColor: '#d35400', border: '3px solid #fff', borderRadius: '50px', cursor: 'pointer', boxShadow: '0 5px 15px rgba(211, 84, 0, 0.4)', transition: 'all 0.3s ease' },
-  mo: { position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0,0,0,0.85)', zIndex: 1000, display: 'flex', justifyContent: 'center', alignItems: 'center', backdropFilter: 'blur(5px)' },
-  mc: { background: 'white', padding: '40px', borderRadius: '20px', textAlign: 'center', maxWidth: '90%', width: '400px', boxShadow: '0 20px 50px rgba(0,0,0,0.5)', border: '4px solid #febf04', animation: 'popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)' },
-  wb: { background: '#fff4e6', color: '#d35400', padding: '15px', borderRadius: '10px', fontWeight: 'bold', fontSize: '1.3rem', margin: '20px 0', border: '2px dashed #d35400' },
-  cb: { padding: '10px 20px', border: 'none', background: '#ccc', cursor: 'pointer', borderRadius: '8px', fontWeight: 'bold' },
-  vb: { padding: '10px 20px', border: 'none', background: '#d35400', color: 'white', cursor: 'pointer', borderRadius: '8px', fontWeight: 'bold' }
+  bt: { fontSize: '0.65rem', fontWeight: 'bold', color: '#333', lineHeight: '1' },
+  sb: { 
+    padding: '12px 30px', fontSize: '1rem', fontWeight: 'bold', 
+    color: '#fff', backgroundColor: '#d35400', border: '2px solid #fff', 
+    borderRadius: '50px', cursor: 'pointer', transition: '0.3s' 
+  },
+  mo: { 
+    position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', 
+    background: 'rgba(0,0,0,0.85)', zIndex: 10000, 
+    display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '15px' 
+  },
+  mc: { 
+    background: 'white', padding: '25px', borderRadius: '15px', 
+    textAlign: 'center', width: '100%', maxWidth: '320px', // Ukuran modal aman di HP
+    boxShadow: '0 10px 30px rgba(0,0,0,0.5)', border: '4px solid #febf04'
+  },
+  mTitle: { color: '#d35400', margin: '0', fontSize: '1.4rem', fontWeight: '900' },
+  wb: { 
+    background: '#fff4e6', color: '#d35400', padding: '12px', 
+    borderRadius: '8px', fontWeight: 'bold', fontSize: '1.1rem', 
+    margin: '15px 0', border: '2px dashed #d35400' 
+  },
+  cb: { padding: '8px 16px', border: 'none', background: '#ccc', borderRadius: '6px', fontWeight: 'bold' },
+  vb: { padding: '8px 16px', border: 'none', background: '#d35400', color: 'white', borderRadius: '6px', fontWeight: 'bold' }
 };
 
 export default _FW;

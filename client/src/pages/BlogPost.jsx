@@ -25,31 +25,30 @@ const A = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, [x])
 
-  if (l) return <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} style={{ padding: '50px', textAlign: 'center', color: '#fff', fontFamily: 'monospace' }}>Memuat...</motion.div>
-  if (!p) return <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} style={{ padding: '50px', textAlign: 'center', color: '#fff', fontFamily: 'monospace' }}>Artikel Tidak Ditemukan</motion.div>
+  if (l) return <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} style={{ padding: '50px', textAlign: 'center', color: '#000', fontFamily: 'monospace' }}>Memuat...</motion.div>
+  if (!p) return <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} style={{ padding: '50px', textAlign: 'center', color: '#000', fontFamily: 'monospace' }}>Artikel Tidak Ditemukan</motion.div>
 
   const judulData = p.title;
   const kontenData = p.content;
 
   const s = {
+    // REVISI: Latar belakang utama diganti Putih Bersih
     w: { maxWidth: '800px', margin: '0 auto', padding: '15px 10px 100px', boxSizing: 'border-box' },
     
-    // REVISI TOMBOL BACK: Teks putih solid, tanpa bayangan ungu pada font
     b: { 
       display: 'inline-block !important', 
       background: '#000000 !important', 
-      color: '#ffffff !important', // Putih solid
+      color: '#ffffff !important', 
       padding: '10px 20px', 
       fontSize: '12px', 
       fontWeight: '900', 
       textDecoration: 'none !important', 
-      border: '2px solid #ffffff', 
-      boxShadow: '4px 4px 0 #00ffff', // Shadow tetap cyan agar retro
+      border: '2px solid #000', 
+      boxShadow: '4px 4px 0 #00ffff', 
       marginBottom: '25px', 
       textTransform: 'uppercase',
       fontFamily: "'Open Sans', sans-serif",
-      letterSpacing: '1px',
-      textShadow: 'none !important' // Pastikan tidak ada bayangan ungu pada font
+      letterSpacing: '1px'
     },
     
     k: { 
@@ -57,38 +56,43 @@ const A = () => {
       border: '4px solid #000', 
       boxShadow: '8px 8px 0px #ff00ff', 
       overflow: 'hidden', 
-      maxWidth: '500px', 
+      maxWidth: '550px', 
       width: '100%', 
       margin: '0 auto',
       boxSizing: 'border-box'
     },
+    
     t: { 
       background: '#fff', 
       color: '#000', 
-      padding: '20px 15px', 
+      padding: '25px 15px', 
       textAlign: 'center', 
-      fontSize: 'clamp(18px, 5vw, 24px)', 
+      fontSize: 'clamp(20px, 6vw, 26px)', 
       fontWeight: '900',
       textTransform: 'uppercase', 
       letterSpacing: '1px', 
       margin: 0,
       display: 'flex',
+      flexDirection: 'column', // Agar logo & judul rapi vertikal di mobile
       alignItems: 'center',
       justifyContent: 'center',
-      gap: '10px',
+      gap: '15px',
       borderBottom: '5px solid #000',
       fontFamily: "'Open Sans', sans-serif"
     },
-    logo: { width: '28px', height: '28px', objectFit: 'contain' },
+    
+    // REVISI: Logo diperbesar
+    logo: { width: '60px', height: '60px', objectFit: 'contain' },
+    
     i: { width: '100%', display: 'block', borderBottom: '5px solid #000', objectFit: 'cover', height: 'auto' },
-    c: { padding: '20px', fontFamily: "'Open Sans', sans-serif", boxSizing: 'border-box' },
+    c: { padding: '25px', fontFamily: "'Open Sans', sans-serif", boxSizing: 'border-box' },
     bd: { display: 'inline-block', background: '#ffff00', color: '#000', padding: '5px 10px', fontSize: '10px', fontWeight: 900, border: '2px solid #000', marginBottom: '15px' },
-    d: { fontSize: '14px', lineHeight: 1.6, color: '#444', marginBottom: '20px', textAlign: 'justify', whiteSpace: 'pre-line', fontWeight: '600' },
-    hl: { background: '#00ffff', border: '2px solid #000', padding: '12px', margin: '15px 0', fontStyle: 'italic', fontSize: '13px', boxShadow: '4px 4px 0 #ff00ff' },
+    d: { fontSize: '15px', lineHeight: 1.7, color: '#111', marginBottom: '20px', textAlign: 'justify', whiteSpace: 'pre-line', fontWeight: '500' },
+    hl: { background: '#00ffff', border: '2px solid #000', padding: '15px', margin: '20px 0', fontStyle: 'italic', fontSize: '14px', boxShadow: '4px 4px 0 #ff00ff' },
     dl: { margin: '0 0 20px', padding: 0 },
-    dlg: { padding: '10px 0', borderBottom: '1px solid #eee' },
+    dlg: { padding: '10px 0', borderBottom: '1px solid #ddd' },
     dt: { color: '#ff00ff', display: 'block', marginBottom: '2px', fontSize: '11px', textTransform: 'uppercase', fontWeight: '900' },
-    dd: { margin: 0, fontSize: '13px', color: '#555' },
+    dd: { margin: 0, fontSize: '14px', color: '#000', fontWeight: 'bold' },
     
     fb: { 
       display: 'block !important', 
@@ -106,6 +110,7 @@ const A = () => {
     }
   }
 
+  // Smart Banner Ad: Menggunakan iframe sandboxing untuk pemuatan lebih cepat
   const BannerAd = () => {
     const scale = windowWidth < 728 ? (windowWidth - 20) / 728 : 1;
     const height = 90 * scale;
@@ -114,7 +119,7 @@ const A = () => {
       <div style={{
         width: '100%',
         height: `${height}px`,
-        margin: '20px 0',
+        margin: '25px 0',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
@@ -129,13 +134,14 @@ const A = () => {
         }}>
           <iframe
             title="banner-ad"
+            loading="eager"
             srcDoc={`
               <html>
                 <body style="margin:0;padding:0;display:flex;justify-content:center;align-items:center;">
                   <script type="text/javascript">
                     atOptions = { 'key' : '91c8fb5f0a628b5ce0d9941ec5de7c59', 'format' : 'iframe', 'height' : 90, 'width' : 728, 'params' : {} };
                   </script>
-                  <script type="text/javascript" src="https://www.highperformanceformat.com/91c8fb5f0a628b5ce0d9941ec5de7c59/invoke.js"></script>
+                  <script async type="text/javascript" src="https://www.highperformanceformat.com/91c8fb5f0a628b5ce0d9941ec5de7c59/invoke.js"></script>
                 </body>
               </html>
             `}
@@ -147,7 +153,7 @@ const A = () => {
   };
 
   return (
-    <div style={{ background: '#0d0d0d', minHeight: '100vh', overflowX: 'hidden' }}>
+    <div style={{ background: '#ffffff', minHeight: '100vh', overflowX: 'hidden' }}>
       <meta name="monetag" content="23efc5a7bff5e4fcf3e21e3fb407b3cd" />
       <SEOHelper title={judulData} description={kontenData.substring(0, 150)} image={p.image_url} />
       
@@ -160,8 +166,9 @@ const A = () => {
         
         <motion.article initial={{ y: 30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} style={s.k}>
           <div style={s.t}>
+            {/* Logo diperbesar di sini */}
             <img src="/logo.svg" alt="logo" style={s.logo} />
-            <span style={{ flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{judulData}</span>
+            <span style={{ margin: 0, lineHeight: 1.2 }}>{judulData}</span>
           </div>
 
           <img src={p.image_url} alt={judulData} style={s.i} />

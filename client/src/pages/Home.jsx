@@ -7,7 +7,6 @@ import _C2 from '../components/SEO/SEOHelper';
 import _FW from '../components/FerrisWheel';
 import _I0 from '../assets/121x121-icon-coo-x-for-fun--.png';
 
-// Komponen Iklan Internal (Tetap dipertahankan)
 const _A0 = React.memo(({ k }) => {
   const [_v, _sV] = _s(true);
   const _adC = _m(() => `
@@ -37,7 +36,7 @@ const _A0 = React.memo(({ k }) => {
     <div className="sys-ad-node" style={{ 
       position: 'relative', width: '100%', margin: '15px 0', display: 'flex', 
       justifyContent: 'center', minHeight: '250px', background: '#fafafa', borderRadius: '12px',
-      zIndex: 1 // Pastikan di bawah dropdown navbar
+      zIndex: 1 
     }}>
       <button 
         onClick={() => _sV(false)} 
@@ -69,21 +68,21 @@ const Home = () => {
   _e(() => {
     const _fD = async () => {
       _sl(true);
-      // Fetch 100 Resep
+      
       const { data: _rD } = await _q
         .from('recipes')
         .select('*')
         .order('id', { ascending: false })
-        .limit(100); 
+        .limit(10); 
       
       if (_rD) _sr(_rD);
 
-      // Fetch 10 Blog
+      // REVISI: Limit Blog Postingan menjadi 6 saja
       const { data: _bD } = await _q
         .from('blog_posts')
         .select('*')
         .order('created_at', { ascending: false })
-        .limit(10);
+        .limit(6);
       
       if (_bD) _sb(_bD);
       _sl(false);
@@ -118,7 +117,6 @@ const Home = () => {
         <img src={_I0} alt="L1" style={{ width: 'clamp(132.89px, 56.89vw, 259.86px)', height: 'auto' }} />
       </header>
 
-      {/* Konten Utama */}
       <section style={{ maxWidth: '800px', margin: '20px auto 10px' }}>
         <_FW />
       </section>
@@ -127,11 +125,10 @@ const Home = () => {
 
       <section style={{ marginTop: '3.2px' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '15px', alignItems: 'center' }}>
-          <h3 style={{ fontWeight: '800', margin: 0, fontSize: '1.4rem' }}>Resep Masakan Jadi</h3>
+          <h3 style={{ fontWeight: '800', margin: 0, fontSize: '1.4rem' }}>Resep Terbaru</h3>
           <_L to="/search" style={{ color: '#d35400', textDecoration: 'none', fontWeight: 'bold' }}>Lihat Semua →</_L>
         </div>
         
-        {/* Grid Otomatis ke bawah (Support 100 data) */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '25px' }}>
           {_rR}
         </div>
@@ -139,14 +136,12 @@ const Home = () => {
         {_l && <div style={{ textAlign: 'center', padding: '14.9px' }}>🍲 Memuat...</div>}
       </section>
 
-      <section style={{ maxWidth: '800px', margin: '40px auto 20px' }}>
-        <_FW />
-      </section>
+      <_A0 k="idx-m" />
 
       {_b.length > 0 && (
-        <section style={{ marginTop: '20px' }}>
+        <section style={{ marginTop: '40px' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-            <h3 style={{ fontWeight: '800', margin: 0, fontSize: '1.4rem' }}>Postingan Saya</h3>
+            <h3 style={{ fontWeight: '800', margin: 0, fontSize: '1.4rem' }}>Postingan Saya (6)</h3>
             <_L to="/blog" style={{ color: '#d35400', fontWeight: 'bold', textDecoration: 'none' }}>Semua →</_L>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '20px' }}>
@@ -169,7 +164,6 @@ const Home = () => {
         </section>
       )}
 
-      {/* Floating Button */}
       <button onClick={() => _n('/add-recipe')} style={_fB}> + </button>
     </div>
   );
