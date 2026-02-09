@@ -1,9 +1,10 @@
 import { createClient } from '@supabase/supabase-js';
 import RSS from 'rss';
 import fs from 'fs';
+import 'dotenv/config';
 
-const supabaseUrl = 'https://uezvvetwyknejcodnzus.supabase.co';
-const supabaseKey = 'sb_publishable_N6LVkUKC2vYzTGRv1XPTyg_OAAxwagn';
+const supabaseUrl = process.env.VITE_SUPABASE_URL;
+const supabaseKey = process.env.VITE_SUPABASE_PUBLISHABLE_DEFAULT_KEY;
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 const BASE_URL = 'https://www.coo-x-for.fun';
@@ -22,7 +23,7 @@ async function generateSEO() {
   const feed = new RSS({
     title: 'Coo-X For Fun - Resep Masakan',
     description: 'Kumpulan resep masakan lezat dan mudah.',
-    feed_url: `${BASE_URL}/rss.xml`,
+    feed_url: `${BASE_URL}/rss/index.xml`,
     site_url: BASE_URL,
     language: 'id',
   });
