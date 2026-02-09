@@ -56,15 +56,14 @@ async function generateSEO() {
   sitemapXml += `</urlset>`;
 
   try {
-    const distRssDir = './dist/rss';
-    if (!fs.existsSync(distRssDir)) fs.mkdirSync(distRssDir, { recursive: true });
+    const dirs = ['./dist/rss', './public/rss', './dist', './public'];
+    dirs.forEach(dir => {
+      if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+    });
     
-    fs.writeFileSync(`${distRssDir}/index.xml`, feed.xml({ indent: true }));
+    fs.writeFileSync('./dist/rss/index.xml', feed.xml({ indent: true }));
     fs.writeFileSync('./dist/sitemap.xml', sitemapXml);
-    
-    const publicRssDir = './public/rss';
-    if (!fs.existsSync(publicRssDir)) fs.mkdirSync(publicRssDir, { recursive: true });
-    fs.writeFileSync(`${publicRssDir}/index.xml`, feed.xml({ indent: true }));
+    fs.writeFileSync('./public/rss/index.xml', feed.xml({ indent: true }));
     fs.writeFileSync('./public/sitemap.xml', sitemapXml);
   } catch (err) {
     process.exit(1);

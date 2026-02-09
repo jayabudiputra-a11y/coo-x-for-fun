@@ -52,7 +52,6 @@ const AddRecipe = () => {
       const authorName = user.user_metadata.full_name || 'Chef Anonymous';
       const authorId = user.id;
 
-      // 2. Insert ke Tabel Recipes
       const { data: rD, error: rE } = await Q.from('recipes').insert([{
         title: cleanTitle,
         slug: gS(cleanTitle),
