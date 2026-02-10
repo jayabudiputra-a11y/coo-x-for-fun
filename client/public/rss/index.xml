@@ -1,200 +1,284 @@
 <?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title><![CDATA[Coo-X For Fun - Resep Masakan]]></title>
-        <description><![CDATA[Kumpulan resep masakan lezat dan mudah.]]></description>
+        <title><![CDATA[Coo-X For Fun - Resep & Blog Masakan]]></title>
+        <description><![CDATA[Kumpulan resep masakan lezat dan artikel kuliner terbaru.]]></description>
         <link>https://www.coo-x-for.fun</link>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Mon, 09 Feb 2026 23:51:09 GMT</lastBuildDate>
-        <atom:link href="https://www.coo-x-for.fun/rss/index.xml" rel="self" type="application/rss+xml"/>
+        <lastBuildDate>Tue, 10 Feb 2026 00:08:40 GMT</lastBuildDate>
+        <atom:link href="https://www.coo-x-for.fun/rss" rel="self" type="application/rss+xml"/>
         <language><![CDATA[id]]></language>
         <item>
             <title><![CDATA[Sate Taichan Panggang Teflon]]></title>
             <description><![CDATA[Resep masakan lezat oleh Visda Ummu2H]]></description>
-            <link>https://www.coo-x-for.fun/#/resep/sate-taichan-teflon</link>
-            <guid isPermaLink="true">https://www.coo-x-for.fun/#/resep/sate-taichan-teflon</guid>
-            <pubDate>Mon, 09 Feb 2026 00:00:00 GMT</pubDate>
+            <link>https://www.coo-x-for.fun/resep/sate-taichan-teflon</link>
+            <guid isPermaLink="true">https://www.coo-x-for.fun/resep/sate-taichan-teflon</guid>
+            <pubDate>Tue, 10 Feb 2026 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Dimsum Ayam]]></title>
             <description><![CDATA[Resep masakan lezat oleh Sia]]></description>
-            <link>https://www.coo-x-for.fun/#/resep/dimsum-ayam</link>
-            <guid isPermaLink="true">https://www.coo-x-for.fun/#/resep/dimsum-ayam</guid>
-            <pubDate>Mon, 09 Feb 2026 00:00:00 GMT</pubDate>
+            <link>https://www.coo-x-for.fun/resep/dimsum-ayam</link>
+            <guid isPermaLink="true">https://www.coo-x-for.fun/resep/dimsum-ayam</guid>
+            <pubDate>Tue, 10 Feb 2026 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Rahasia Nasi Liwet Sunda Gurih 2026]]></title>
             <description><![CDATA[Resep masakan lezat oleh Gurihnya Medan Blogger]]></description>
-            <link>https://www.coo-x-for.fun/#/resep/nasi-liwet-sunda-gurih-2026</link>
-            <guid isPermaLink="true">https://www.coo-x-for.fun/#/resep/nasi-liwet-sunda-gurih-2026</guid>
-            <pubDate>Mon, 09 Feb 2026 00:00:00 GMT</pubDate>
+            <link>https://www.coo-x-for.fun/resep/nasi-liwet-sunda-gurih-2026</link>
+            <guid isPermaLink="true">https://www.coo-x-for.fun/resep/nasi-liwet-sunda-gurih-2026</guid>
+            <pubDate>Tue, 10 Feb 2026 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Gado-Gado Jakarta]]></title>
             <description><![CDATA[Resep masakan lezat oleh admin]]></description>
-            <link>https://www.coo-x-for.fun/#/resep/gado-gado-jakarta-31</link>
-            <guid isPermaLink="true">https://www.coo-x-for.fun/#/resep/gado-gado-jakarta-31</guid>
-            <pubDate>Mon, 09 Feb 2026 00:00:00 GMT</pubDate>
+            <link>https://www.coo-x-for.fun/resep/gado-gado-jakarta-31</link>
+            <guid isPermaLink="true">https://www.coo-x-for.fun/resep/gado-gado-jakarta-31</guid>
+            <pubDate>Tue, 10 Feb 2026 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Lasagna Panggang Klasik]]></title>
             <description><![CDATA[Resep masakan lezat oleh admin]]></description>
-            <link>https://www.coo-x-for.fun/#/resep/lasagna-klasik</link>
-            <guid isPermaLink="true">https://www.coo-x-for.fun/#/resep/lasagna-klasik</guid>
-            <pubDate>Mon, 09 Feb 2026 00:00:00 GMT</pubDate>
+            <link>https://www.coo-x-for.fun/resep/lasagna-klasik</link>
+            <guid isPermaLink="true">https://www.coo-x-for.fun/resep/lasagna-klasik</guid>
+            <pubDate>Tue, 10 Feb 2026 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Rendang Sapi Padang]]></title>
             <description><![CDATA[Resep masakan lezat oleh admin]]></description>
-            <link>https://www.coo-x-for.fun/#/resep/rendang-sapi</link>
-            <guid isPermaLink="true">https://www.coo-x-for.fun/#/resep/rendang-sapi</guid>
-            <pubDate>Mon, 09 Feb 2026 00:00:00 GMT</pubDate>
+            <link>https://www.coo-x-for.fun/resep/rendang-sapi</link>
+            <guid isPermaLink="true">https://www.coo-x-for.fun/resep/rendang-sapi</guid>
+            <pubDate>Tue, 10 Feb 2026 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Udang Bakso Balado]]></title>
             <description><![CDATA[Resep masakan lezat oleh Sia]]></description>
-            <link>https://www.coo-x-for.fun/#/resep/udang-bakso-balado-qm9ei</link>
-            <guid isPermaLink="true">https://www.coo-x-for.fun/#/resep/udang-bakso-balado-qm9ei</guid>
-            <pubDate>Mon, 09 Feb 2026 00:00:00 GMT</pubDate>
+            <link>https://www.coo-x-for.fun/resep/udang-bakso-balado-qm9ei</link>
+            <guid isPermaLink="true">https://www.coo-x-for.fun/resep/udang-bakso-balado-qm9ei</guid>
+            <pubDate>Tue, 10 Feb 2026 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Souvlaki]]></title>
             <description><![CDATA[Resep masakan lezat oleh admin]]></description>
-            <link>https://www.coo-x-for.fun/#/resep/souvlaki</link>
-            <guid isPermaLink="true">https://www.coo-x-for.fun/#/resep/souvlaki</guid>
-            <pubDate>Mon, 09 Feb 2026 00:00:00 GMT</pubDate>
+            <link>https://www.coo-x-for.fun/resep/souvlaki</link>
+            <guid isPermaLink="true">https://www.coo-x-for.fun/resep/souvlaki</guid>
+            <pubDate>Tue, 10 Feb 2026 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Borscht]]></title>
             <description><![CDATA[Resep masakan lezat oleh admin]]></description>
-            <link>https://www.coo-x-for.fun/#/resep/borscht</link>
-            <guid isPermaLink="true">https://www.coo-x-for.fun/#/resep/borscht</guid>
-            <pubDate>Mon, 09 Feb 2026 00:00:00 GMT</pubDate>
+            <link>https://www.coo-x-for.fun/resep/borscht</link>
+            <guid isPermaLink="true">https://www.coo-x-for.fun/resep/borscht</guid>
+            <pubDate>Tue, 10 Feb 2026 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Chicken Adobo]]></title>
             <description><![CDATA[Resep masakan lezat oleh admin]]></description>
-            <link>https://www.coo-x-for.fun/#/resep/adobo</link>
-            <guid isPermaLink="true">https://www.coo-x-for.fun/#/resep/adobo</guid>
-            <pubDate>Mon, 09 Feb 2026 00:00:00 GMT</pubDate>
+            <link>https://www.coo-x-for.fun/resep/adobo</link>
+            <guid isPermaLink="true">https://www.coo-x-for.fun/resep/adobo</guid>
+            <pubDate>Tue, 10 Feb 2026 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Feijoada]]></title>
             <description><![CDATA[Resep masakan lezat oleh admin]]></description>
-            <link>https://www.coo-x-for.fun/#/resep/feijoada</link>
-            <guid isPermaLink="true">https://www.coo-x-for.fun/#/resep/feijoada</guid>
-            <pubDate>Mon, 09 Feb 2026 00:00:00 GMT</pubDate>
+            <link>https://www.coo-x-for.fun/resep/feijoada</link>
+            <guid isPermaLink="true">https://www.coo-x-for.fun/resep/feijoada</guid>
+            <pubDate>Tue, 10 Feb 2026 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Schnitzel]]></title>
             <description><![CDATA[Resep masakan lezat oleh admin]]></description>
-            <link>https://www.coo-x-for.fun/#/resep/schnitzel</link>
-            <guid isPermaLink="true">https://www.coo-x-for.fun/#/resep/schnitzel</guid>
-            <pubDate>Mon, 09 Feb 2026 00:00:00 GMT</pubDate>
+            <link>https://www.coo-x-for.fun/resep/schnitzel</link>
+            <guid isPermaLink="true">https://www.coo-x-for.fun/resep/schnitzel</guid>
+            <pubDate>Tue, 10 Feb 2026 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Nasi Lemak]]></title>
             <description><![CDATA[Resep masakan lezat oleh admin]]></description>
-            <link>https://www.coo-x-for.fun/#/resep/nasi-lemak</link>
-            <guid isPermaLink="true">https://www.coo-x-for.fun/#/resep/nasi-lemak</guid>
-            <pubDate>Mon, 09 Feb 2026 00:00:00 GMT</pubDate>
+            <link>https://www.coo-x-for.fun/resep/nasi-lemak</link>
+            <guid isPermaLink="true">https://www.coo-x-for.fun/resep/nasi-lemak</guid>
+            <pubDate>Tue, 10 Feb 2026 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Paella Seafood]]></title>
             <description><![CDATA[Resep masakan lezat oleh admin]]></description>
-            <link>https://www.coo-x-for.fun/#/resep/paella</link>
-            <guid isPermaLink="true">https://www.coo-x-for.fun/#/resep/paella</guid>
-            <pubDate>Mon, 09 Feb 2026 00:00:00 GMT</pubDate>
+            <link>https://www.coo-x-for.fun/resep/paella</link>
+            <guid isPermaLink="true">https://www.coo-x-for.fun/resep/paella</guid>
+            <pubDate>Tue, 10 Feb 2026 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Fish and Chips]]></title>
             <description><![CDATA[Resep masakan lezat oleh admin]]></description>
-            <link>https://www.coo-x-for.fun/#/resep/fish-chips</link>
-            <guid isPermaLink="true">https://www.coo-x-for.fun/#/resep/fish-chips</guid>
-            <pubDate>Mon, 09 Feb 2026 00:00:00 GMT</pubDate>
+            <link>https://www.coo-x-for.fun/resep/fish-chips</link>
+            <guid isPermaLink="true">https://www.coo-x-for.fun/resep/fish-chips</guid>
+            <pubDate>Tue, 10 Feb 2026 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Pho Bo]]></title>
             <description><![CDATA[Resep masakan lezat oleh admin]]></description>
-            <link>https://www.coo-x-for.fun/#/resep/pho-bo</link>
-            <guid isPermaLink="true">https://www.coo-x-for.fun/#/resep/pho-bo</guid>
-            <pubDate>Mon, 09 Feb 2026 00:00:00 GMT</pubDate>
+            <link>https://www.coo-x-for.fun/resep/pho-bo</link>
+            <guid isPermaLink="true">https://www.coo-x-for.fun/resep/pho-bo</guid>
+            <pubDate>Tue, 10 Feb 2026 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Kebab Turki]]></title>
             <description><![CDATA[Resep masakan lezat oleh admin]]></description>
-            <link>https://www.coo-x-for.fun/#/resep/kebab-turki</link>
-            <guid isPermaLink="true">https://www.coo-x-for.fun/#/resep/kebab-turki</guid>
-            <pubDate>Mon, 09 Feb 2026 00:00:00 GMT</pubDate>
+            <link>https://www.coo-x-for.fun/resep/kebab-turki</link>
+            <guid isPermaLink="true">https://www.coo-x-for.fun/resep/kebab-turki</guid>
+            <pubDate>Tue, 10 Feb 2026 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Croissant Butter]]></title>
             <description><![CDATA[Resep masakan lezat oleh admin]]></description>
-            <link>https://www.coo-x-for.fun/#/resep/croissant</link>
-            <guid isPermaLink="true">https://www.coo-x-for.fun/#/resep/croissant</guid>
-            <pubDate>Mon, 09 Feb 2026 00:00:00 GMT</pubDate>
+            <link>https://www.coo-x-for.fun/resep/croissant</link>
+            <guid isPermaLink="true">https://www.coo-x-for.fun/resep/croissant</guid>
+            <pubDate>Tue, 10 Feb 2026 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Tacos Beef]]></title>
             <description><![CDATA[Resep masakan lezat oleh admin]]></description>
-            <link>https://www.coo-x-for.fun/#/resep/tacos-beef</link>
-            <guid isPermaLink="true">https://www.coo-x-for.fun/#/resep/tacos-beef</guid>
-            <pubDate>Mon, 09 Feb 2026 00:00:00 GMT</pubDate>
+            <link>https://www.coo-x-for.fun/resep/tacos-beef</link>
+            <guid isPermaLink="true">https://www.coo-x-for.fun/resep/tacos-beef</guid>
+            <pubDate>Tue, 10 Feb 2026 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Chicken Curry]]></title>
             <description><![CDATA[Resep masakan lezat oleh admin]]></description>
-            <link>https://www.coo-x-for.fun/#/resep/chicken-curry</link>
-            <guid isPermaLink="true">https://www.coo-x-for.fun/#/resep/chicken-curry</guid>
-            <pubDate>Mon, 09 Feb 2026 00:00:00 GMT</pubDate>
+            <link>https://www.coo-x-for.fun/resep/chicken-curry</link>
+            <guid isPermaLink="true">https://www.coo-x-for.fun/resep/chicken-curry</guid>
+            <pubDate>Tue, 10 Feb 2026 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Dim Sum Hakau]]></title>
             <description><![CDATA[Resep masakan lezat oleh admin]]></description>
-            <link>https://www.coo-x-for.fun/#/resep/dim-sum</link>
-            <guid isPermaLink="true">https://www.coo-x-for.fun/#/resep/dim-sum</guid>
-            <pubDate>Mon, 09 Feb 2026 00:00:00 GMT</pubDate>
+            <link>https://www.coo-x-for.fun/resep/dim-sum</link>
+            <guid isPermaLink="true">https://www.coo-x-for.fun/resep/dim-sum</guid>
+            <pubDate>Tue, 10 Feb 2026 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Cheese Burger]]></title>
             <description><![CDATA[Resep masakan lezat oleh admin]]></description>
-            <link>https://www.coo-x-for.fun/#/resep/cheese-burger</link>
-            <guid isPermaLink="true">https://www.coo-x-for.fun/#/resep/cheese-burger</guid>
-            <pubDate>Mon, 09 Feb 2026 00:00:00 GMT</pubDate>
+            <link>https://www.coo-x-for.fun/resep/cheese-burger</link>
+            <guid isPermaLink="true">https://www.coo-x-for.fun/resep/cheese-burger</guid>
+            <pubDate>Tue, 10 Feb 2026 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Tom Yum Goong]]></title>
             <description><![CDATA[Resep masakan lezat oleh admin]]></description>
-            <link>https://www.coo-x-for.fun/#/resep/tom-yum</link>
-            <guid isPermaLink="true">https://www.coo-x-for.fun/#/resep/tom-yum</guid>
-            <pubDate>Mon, 09 Feb 2026 00:00:00 GMT</pubDate>
+            <link>https://www.coo-x-for.fun/resep/tom-yum</link>
+            <guid isPermaLink="true">https://www.coo-x-for.fun/resep/tom-yum</guid>
+            <pubDate>Tue, 10 Feb 2026 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Kimchi Jjigae]]></title>
             <description><![CDATA[Resep masakan lezat oleh admin]]></description>
-            <link>https://www.coo-x-for.fun/#/resep/kimchi-jjigae</link>
-            <guid isPermaLink="true">https://www.coo-x-for.fun/#/resep/kimchi-jjigae</guid>
-            <pubDate>Mon, 09 Feb 2026 00:00:00 GMT</pubDate>
+            <link>https://www.coo-x-for.fun/resep/kimchi-jjigae</link>
+            <guid isPermaLink="true">https://www.coo-x-for.fun/resep/kimchi-jjigae</guid>
+            <pubDate>Tue, 10 Feb 2026 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Pizza Margherita]]></title>
             <description><![CDATA[Resep masakan lezat oleh admin]]></description>
-            <link>https://www.coo-x-for.fun/#/resep/pizza-margherita</link>
-            <guid isPermaLink="true">https://www.coo-x-for.fun/#/resep/pizza-margherita</guid>
-            <pubDate>Mon, 09 Feb 2026 00:00:00 GMT</pubDate>
+            <link>https://www.coo-x-for.fun/resep/pizza-margherita</link>
+            <guid isPermaLink="true">https://www.coo-x-for.fun/resep/pizza-margherita</guid>
+            <pubDate>Tue, 10 Feb 2026 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Sushi Roll]]></title>
             <description><![CDATA[Resep masakan lezat oleh admin]]></description>
-            <link>https://www.coo-x-for.fun/#/resep/sushi-roll</link>
-            <guid isPermaLink="true">https://www.coo-x-for.fun/#/resep/sushi-roll</guid>
-            <pubDate>Mon, 09 Feb 2026 00:00:00 GMT</pubDate>
+            <link>https://www.coo-x-for.fun/resep/sushi-roll</link>
+            <guid isPermaLink="true">https://www.coo-x-for.fun/resep/sushi-roll</guid>
+            <pubDate>Tue, 10 Feb 2026 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Nasi Goreng Spesial]]></title>
             <description><![CDATA[Resep masakan lezat oleh admin]]></description>
-            <link>https://www.coo-x-for.fun/#/resep/nasi-goreng</link>
-            <guid isPermaLink="true">https://www.coo-x-for.fun/#/resep/nasi-goreng</guid>
-            <pubDate>Mon, 09 Feb 2026 00:00:00 GMT</pubDate>
+            <link>https://www.coo-x-for.fun/resep/nasi-goreng</link>
+            <guid isPermaLink="true">https://www.coo-x-for.fun/resep/nasi-goreng</guid>
+            <pubDate>Tue, 10 Feb 2026 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Cuti-Cuti Malaysia: Taiping, Perak 2013]]></title>
+            <description><![CDATA[Artikel terbaru: Cuti-Cuti Malaysia: Taiping, Perak 2013]]></description>
+            <link>https://www.coo-x-for.fun/blog/cuti-cuti-malaysia-taiping-perak-2013</link>
+            <guid isPermaLink="true">https://www.coo-x-for.fun/blog/cuti-cuti-malaysia-taiping-perak-2013</guid>
+            <pubDate>Tue, 10 Feb 2026 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Ayam Ungkep Medan: Pedas, Asam, dan Mantap!]]></title>
+            <description><![CDATA[Artikel terbaru: Ayam Ungkep Medan: Pedas, Asam, dan Mantap!]]></description>
+            <link>https://www.coo-x-for.fun/blog/ayam-ungkep-medan</link>
+            <guid isPermaLink="true">https://www.coo-x-for.fun/blog/ayam-ungkep-medan</guid>
+            <pubDate>Tue, 10 Feb 2026 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Mie Aceh Titi Bobrok]]></title>
+            <description><![CDATA[Artikel terbaru: Mie Aceh Titi Bobrok]]></description>
+            <link>https://www.coo-x-for.fun/blog/mie-aceh-titi-bobrok-medan</link>
+            <guid isPermaLink="true">https://www.coo-x-for.fun/blog/mie-aceh-titi-bobrok-medan</guid>
+            <pubDate>Tue, 10 Feb 2026 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Restoran Nelayan]]></title>
+            <description><![CDATA[Artikel terbaru: Restoran Nelayan]]></description>
+            <link>https://www.coo-x-for.fun/blog/restoran-nelayan-medan</link>
+            <guid isPermaLink="true">https://www.coo-x-for.fun/blog/restoran-nelayan-medan</guid>
+            <pubDate>Tue, 10 Feb 2026 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Kuliner Khas Medan Terbaik 2026]]></title>
+            <description><![CDATA[Artikel terbaru: Kuliner Khas Medan Terbaik 2026]]></description>
+            <link>https://www.coo-x-for.fun/blog/kuliner-khas-medan-2026</link>
+            <guid isPermaLink="true">https://www.coo-x-for.fun/blog/kuliner-khas-medan-2026</guid>
+            <pubDate>Tue, 10 Feb 2026 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Manfaat Kayu Manis: Resep Umur Panjang Alami 2026]]></title>
+            <description><![CDATA[Artikel terbaru: Manfaat Kayu Manis: Resep Umur Panjang Alami 2026]]></description>
+            <link>https://www.coo-x-for.fun/blog/resep-umur-panjang-kayu-manis</link>
+            <guid isPermaLink="true">https://www.coo-x-for.fun/blog/resep-umur-panjang-kayu-manis</guid>
+            <pubDate>Tue, 10 Feb 2026 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[GULAI SAPI MELAYU]]></title>
+            <description><![CDATA[Artikel terbaru: GULAI SAPI MELAYU]]></description>
+            <link>https://www.coo-x-for.fun/blog/gulai-sapi-melayu</link>
+            <guid isPermaLink="true">https://www.coo-x-for.fun/blog/gulai-sapi-melayu</guid>
+            <pubDate>Tue, 10 Feb 2026 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Savor Authentic Balinese Flavors!]]></title>
+            <description><![CDATA[Artikel terbaru: Savor Authentic Balinese Flavors!]]></description>
+            <link>https://www.coo-x-for.fun/blog/savor-authentic-balinese-flavors-mades-warung-ngurah-rai</link>
+            <guid isPermaLink="true">https://www.coo-x-for.fun/blog/savor-authentic-balinese-flavors-mades-warung-ngurah-rai</guid>
+            <pubDate>Tue, 10 Feb 2026 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[PROFIL BUDI PUTRA JAYA]]></title>
+            <description><![CDATA[Artikel terbaru: PROFIL BUDI PUTRA JAYA]]></description>
+            <link>https://www.coo-x-for.fun/blog/profil-budi-putra-jaya</link>
+            <guid isPermaLink="true">https://www.coo-x-for.fun/blog/profil-budi-putra-jaya</guid>
+            <pubDate>Tue, 10 Feb 2026 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[MEDAN PRIDE]]></title>
+            <description><![CDATA[Artikel terbaru: MEDAN PRIDE]]></description>
+            <link>https://www.coo-x-for.fun/blog/new-year-2026-medan-pride</link>
+            <guid isPermaLink="true">https://www.coo-x-for.fun/blog/new-year-2026-medan-pride</guid>
+            <pubDate>Tue, 10 Feb 2026 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[MIE ACEH TITI BOBROK]]></title>
+            <description><![CDATA[Artikel terbaru: MIE ACEH TITI BOBROK]]></description>
+            <link>https://www.coo-x-for.fun/blog/mie-aceh-titi-bobrok</link>
+            <guid isPermaLink="true">https://www.coo-x-for.fun/blog/mie-aceh-titi-bobrok</guid>
+            <pubDate>Tue, 10 Feb 2026 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[SATE PADANG AJO]]></title>
+            <description><![CDATA[Artikel terbaru: SATE PADANG AJO]]></description>
+            <link>https://www.coo-x-for.fun/blog/sate-padang-ajo</link>
+            <guid isPermaLink="true">https://www.coo-x-for.fun/blog/sate-padang-ajo</guid>
+            <pubDate>Tue, 10 Feb 2026 00:00:00 GMT</pubDate>
         </item>
     </channel>
 </rss>

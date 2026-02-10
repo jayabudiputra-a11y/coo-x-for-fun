@@ -1,5 +1,5 @@
 import React from 'react';
-import { HashRouter as HR, Routes as RS, Route as RE } from 'react-router-dom';
+import { BrowserRouter as BR, Routes as RS, Route as RE } from 'react-router-dom';
 import { HelmetProvider as HP } from 'react-helmet-async';
 
 import MyspaceTheme from './styles/MyspaceTheme';
@@ -22,7 +22,7 @@ function App() {
   return (
     <HP>
       <MyspaceTheme />
-      <HR>
+      <BR>
         <N0 />
         <main style={{ position: 'relative', zIndex: 1 }}>
           <RS>
@@ -40,7 +40,7 @@ function App() {
           </RS>
         </main>
         <F0 />
-      </HR>
+      </BR>
     </HP>
   );
 }

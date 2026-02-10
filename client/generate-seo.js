@@ -11,19 +11,24 @@ const BASE_URL = 'https://www.coo-x-for.fun';
 const TODAY = new Date().toISOString().split('T')[0];
 
 async function generateSEO() {
-  const { data: recipes, error } = await supabase
+  const { data: recipes, error: recipeError } = await supabase
     .from('recipes')
     .select('title, slug, author_name')
     .order('id', { ascending: false });
 
-  if (error) {
+  const { data: blogs, error: blogError } = await supabase
+    .from('blog_posts')
+    .select('title, slug')
+    .order('created_at', { ascending: false });
+
+  if (recipeError || blogError) {
     process.exit(1);
   }
 
   const feed = new RSS({
-    title: 'Coo-X For Fun - Resep Masakan',
-    description: 'Kumpulan resep masakan lezat dan mudah.',
-    feed_url: `${BASE_URL}/rss/index.xml`,
+    title: 'Coo-X For Fun - Resep & Blog Masakan',
+    description: 'Kumpulan resep masakan lezat dan artikel kuliner terbaru.',
+    feed_url: `${BASE_URL}/rss`,
     site_url: BASE_URL,
     language: 'id',
   });
@@ -32,18 +37,19 @@ async function generateSEO() {
 
   const staticPages = [
     { url: '/', priority: '1.0', changefreq: 'daily' },
-    { url: '/#/add-recipe', priority: '0.6', changefreq: 'monthly' },
-    { url: '/#/blog', priority: '0.7', changefreq: 'weekly' },
+    { url: '/add-recipe', priority: '0.6', changefreq: 'monthly' },
+    { url: '/blog', priority: '0.7', changefreq: 'weekly' },
+    { url: '/search', priority: '0.5', changefreq: 'monthly' },
   ];
 
   staticPages.forEach(page => {
-    const fullUrl = page.url === '/' ? BASE_URL : `${BASE_URL}${page.url}`;
+    const fullUrl = `${BASE_URL}${page.url === '/' ? '' : page.url}`;
     sitemapXml += `  <url>\n    <loc>${fullUrl}</loc>\n    <lastmod>${TODAY}</lastmod>\n    <changefreq>${page.changefreq}</changefreq>\n    <priority>${page.priority}</priority>\n  </url>\n`;
   });
 
   if (recipes) {
     recipes.forEach((recipe) => {
-      const recipeUrl = `${BASE_URL}/#/resep/${recipe.slug}`;
+      const recipeUrl = `${BASE_URL}/resep/${recipe.slug}`;
       feed.item({
         title: recipe.title,
         description: `Resep masakan lezat oleh ${recipe.author_name}`,
@@ -51,6 +57,19 @@ async function generateSEO() {
         date: TODAY,
       });
       sitemapXml += `  <url>\n    <loc>${recipeUrl}</loc>\n    <lastmod>${TODAY}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>0.8</priority>\n  </url>\n`;
+    });
+  }
+
+  if (blogs) {
+    blogs.forEach((post) => {
+      const blogUrl = `${BASE_URL}/blog/${post.slug}`;
+      feed.item({
+        title: post.title,
+        description: `Artikel terbaru: ${post.title}`,
+        url: blogUrl,
+        date: TODAY,
+      });
+      sitemapXml += `  <url>\n    <loc>${blogUrl}</loc>\n    <lastmod>${TODAY}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>0.7</priority>\n  </url>\n`;
     });
   }
 
