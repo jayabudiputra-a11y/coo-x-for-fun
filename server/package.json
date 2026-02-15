@@ -4,14 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js",
-    "clean": "node -e \"const fs = require('fs'); if (fs.existsSync('./dist')) fs.rmSync('./dist', { recursive: true, force: true });\"",
-    "prebuild": "node ../client/generate-seo.js",
-    "build": "echo \"Building server...\"",
-    "postbuild": "echo \"SEO Generated successfully\"",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "dev": "vite",
+  "clean": "node -e \"const fs = require('fs'); if (fs.existsSync('./dist')) fs.rmSync('./dist', { recursive: true, force: true });\"",
+  "prebuild": "npm run clean",
+  "build": "vite build && node generate-seo.js",
+  "lint": "eslint .",
+  "preview": "vite preview"
+},
   "keywords": [],
   "author": "",
   "license": "ISC",
