@@ -8,7 +8,7 @@
   "dev": "vite",
   "clean": "node -e \"const fs = require('fs'); if (fs.existsSync('./dist')) fs.rmSync('./dist', { recursive: true, force: true });\"",
   "prebuild": "npm run clean",
-  "build": "vite build --debug && node generate-seo.js",
+  "build": "vite build && node generate-seo.js",
   "lint": "eslint .",
   "preview": "vite preview"
 },
