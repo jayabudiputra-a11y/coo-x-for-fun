@@ -14,6 +14,8 @@
     { "source": "/rss", "destination": "/rss/index.xml" },
     { "source": "/sitemap.xml", "destination": "/sitemap.xml" },
     { "source": "/assets/(.*)", "destination": "/assets/$1" },
-    { "source": "/((?!api/).*)", "destination": "/index.html" }
+    { "source": "/resep/(.*)", "destination": "/index.html" },
+    { "source": "/blog/(.*)", "destination": "/index.html" },
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
