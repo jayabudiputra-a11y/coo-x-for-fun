@@ -73,7 +73,6 @@ export default defineConfig({
     outDir: 'dist',
     minify: 'esbuild',
     reportCompressedSize: false,
-    // Menghindari masalah aset yang tidak ditemukan saat navigasi dalam
     assetsDir: 'assets',
     rollupOptions: {
       output: {
