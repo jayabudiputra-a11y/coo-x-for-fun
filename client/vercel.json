@@ -12,8 +12,8 @@
     }
   ],
   "routes": [
-    { "source": "/rss", "dest": "/rss/index.xml" },
-    { "source": "/sitemap.xml", "dest": "/sitemap.xml" },
+    { "src": "/rss", "dest": "/rss/index.xml" },
+    { "src": "/sitemap.xml", "dest": "/sitemap.xml" },
     { "handle": "filesystem" },
     { "src": "/(.*)", "dest": "/index.html" }
   ]
