@@ -107,7 +107,13 @@ const Home = () => {
         _sr(_sanitized);
       }
       
-      if (_cachedBlogs) _sb(_cachedBlogs);
+      if (_cachedBlogs) {
+        const _sanitizedBlogs = _cachedBlogs.map(item => ({
+          ...item,
+          image_url: (item.image_url?.startsWith('blob:') || !item.image_url) ? '' : item.image_url
+        }));
+        _sb(_sanitizedBlogs);
+      }
 
       const { data: _rD } = await _q
         .from('recipes')
@@ -220,6 +226,9 @@ const Home = () => {
                       objectFit: 'cover',
                       contentVisibility: 'auto'
                     }} 
+                    onError={(e) => { 
+                      e.target.src = 'https://placehold.co/400?text=Error+Load'; 
+                    }}
                   />
                   <div style={{ padding: '15px' }}>
                     <h4 style={{ margin: '0 0 10px', fontWeight: '700' }}>{_p.title}</h4>

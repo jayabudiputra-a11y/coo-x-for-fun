@@ -19,7 +19,6 @@ const RecipeCard = ({ recipe }) => {
       const _ck = `rcp_img_${recipe.id}`;
       const _cached = _gC(_ck);
       
-      // Validasi Cache: Jika cache berisi 'blob:', abaikan karena pasti sudah mati (ERR_FILE_NOT_FOUND)
       if (_cached && !_cached.startsWith('blob:')) {
         if (_m) _sIU(_cached);
         return;
@@ -43,8 +42,6 @@ const RecipeCard = ({ recipe }) => {
         
         if (_m) {
           _sIU(_fU);
-          // JANGAN simpan _fU (blob) ke setCache karena blob akan mati saat refresh
-          // Cukup biarkan di state memori saja
           _sSH({ lastView: recipe.id, ts: Date.now() });
         }
       } catch (_err) {
@@ -72,10 +69,8 @@ const RecipeCard = ({ recipe }) => {
           alt={_t} 
           className="recipe-img"
           loading="lazy" 
-          crossOrigin={recipe.image_url?.includes('img-global.cpcdn.com') ? undefined : "anonymous"}
           style={_st.im}
           onError={(e) => { 
-            e.target.crossOrigin = undefined;
             e.target.src = 'https://placehold.co/400?text=Error+Load'; 
           }}
         />

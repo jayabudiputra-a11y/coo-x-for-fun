@@ -102,7 +102,6 @@ const _RD = () => {
       if (_rD && _m) {
         _sRcp(_rD);
         const _oU = _oI(_rD.image_url, 800);
-
         const _isCookpad = _oU.includes('img-global.cpcdn.com');
 
         if (_isCookpad) {
@@ -142,9 +141,7 @@ const _RD = () => {
           alt={_rcp.title}
           style={{ width: '100%', height: 'auto', aspectRatio: '16/9', objectFit: 'cover' }}
           loading="lazy"
-          crossOrigin={_rcp.image_url?.includes('img-global.cpcdn.com') ? undefined : "anonymous"}
           onError={(e) => { 
-            e.target.crossOrigin = undefined;
             e.target.src = 'https://placehold.co/400?text=Error+Load'; 
           }}
         />
