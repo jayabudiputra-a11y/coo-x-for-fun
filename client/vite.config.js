@@ -5,8 +5,7 @@ export default defineConfig({
   plugins: [react()],
   base: '/',
   worker: {
-    format: 'es',
-    plugins: () => [react()]
+    format: 'es'
   },
   optimizeDeps: {
     exclude: ['@jsquash/avif', '@jsquash/webp']
