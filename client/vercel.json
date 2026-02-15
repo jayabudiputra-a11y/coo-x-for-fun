@@ -1,26 +1,12 @@
 {
   "version": 2,
-  "framework": "vite",
-  "public": true,
   "cleanUrls": true,
   "trailingSlash": false,
   "rewrites": [
-    {
-      "source": "/rss",
-      "destination": "/rss/index.xml"
-    },
-    {
-      "source": "/sitemap.xml",
-      "destination": "/sitemap.xml"
-    },
-    {
-      "source": "/assets/(.*)",
-      "destination": "/assets/$1"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
-    }
+    { "source": "/rss", "destination": "/rss/index.xml" },
+    { "source": "/sitemap.xml", "destination": "/sitemap.xml" },
+    { "handle": "filesystem" },
+    { "source": "/(.*)", "destination": "/index.html" }
   ],
   "headers": [
     {
