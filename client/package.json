@@ -5,13 +5,11 @@
   "description": "Rebuild SEO 2026",
   "type": "module",
   "scripts": {
-  "dev": "vite",
-  "clean": "node -e \"const fs = require('fs'); if (fs.existsSync('./dist')) fs.rmSync('./dist', { recursive: true, force: true });\"",
-  "prebuild": "npm run clean",
-  "build": "vite build && node generate-seo.js",
-  "lint": "eslint .",
-  "preview": "vite preview"
-},
+    "dev": "vite",
+    "build": "vite build && node generate-seo.js",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
   "dependencies": {
     "@jsquash/avif": "^2.1.1",
     "@jsquash/webp": "^1.5.0",
@@ -40,6 +38,6 @@
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.4.24",
     "globals": "^16.5.0",
-    "vite": "^7.2.4"
+    "vite": "^7.3.1"
   }
 }
