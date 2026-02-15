@@ -2,12 +2,6 @@
   "version": 2,
   "cleanUrls": true,
   "trailingSlash": false,
-  "rewrites": [
-    { "source": "/rss", "destination": "/rss/index.xml" },
-    { "source": "/sitemap.xml", "destination": "/sitemap.xml" },
-    { "handle": "filesystem" },
-    { "source": "/(.*)", "destination": "/index.html" }
-  ],
   "headers": [
     {
       "source": "/(.*)",
@@ -16,5 +10,11 @@
         { "key": "Cross-Origin-Embedder-Policy", "value": "credentialless" }
       ]
     }
+  ],
+  "routes": [
+    { "source": "/rss", "dest": "/rss/index.xml" },
+    { "source": "/sitemap.xml", "dest": "/sitemap.xml" },
+    { "handle": "filesystem" },
+    { "src": "/(.*)", "dest": "/index.html" }
   ]
 }
