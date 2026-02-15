@@ -110,10 +110,7 @@ const _RD = () => {
         } else {
           try {
             const _bF = await _dBIF();
-            const _r = await fetch(_oU, { mode: 'cors' });
-            if (!_r.ok) throw 0;
-            const _b = await _r.blob();
-            const _tB = await _tI(URL.createObjectURL(_b), _bF);
+            const _tB = await _tI(_oU, _bF);
             _sDI(URL.createObjectURL(_tB));
           } catch {
             _sDI(_oU);
@@ -146,6 +143,10 @@ const _RD = () => {
           style={{ width: '100%', height: 'auto', aspectRatio: '16/9', objectFit: 'cover' }}
           loading="lazy"
           crossOrigin={_rcp.image_url?.includes('img-global.cpcdn.com') ? undefined : "anonymous"}
+          onError={(e) => { 
+            e.target.crossOrigin = undefined;
+            e.target.src = 'https://placehold.co/400?text=Error+Load'; 
+          }}
         />
       </div>
       <div style={{ borderTop: '2px solid #f0f2f5', borderBottom: '2px solid #f0f2f5', padding: '20px 0', margin: '20px 0' }}>
