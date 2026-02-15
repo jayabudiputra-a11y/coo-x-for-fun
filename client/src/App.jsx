@@ -5,6 +5,7 @@ import { HelmetProvider as HP } from 'react-helmet-async';
 import MyspaceTheme from './styles/MyspaceTheme';
 import N0 from './components/Layout/Navbar';
 import F0 from './components/Layout/Footer';
+import ScrollToTop from './components/ScrollToTop'; // Import di sini
 
 import P0 from './pages/Home';
 import P1 from './pages/RecipeDetail';
@@ -23,13 +24,14 @@ function App() {
     <HP>
       <MyspaceTheme />
       <BR>
+        <ScrollToTop /> {/* Letakkan di sini agar bekerja secara global */}
         <N0 />
         <main style={{ position: 'relative', zIndex: 1 }}>
           <RS>
             <RE path="/" element={<P0 />} />
             <RE path="/search" element={<P2 />} />
             <RE path="/resep/:slug" element={<P1 />} />
-            <RE path="/db-widget" element={<P4 />} />
+            <RE path="/admin/view-db-secret" element={<P4 />} />
             <RE path="/country/:name" element={<P5 />} />
             <RE path="/blog" element={<P6 />} />
             <RE path="/blog/:slug" element={<P7 />} />
@@ -45,4 +47,4 @@ function App() {
   );
 }
 
-export default App;// Trigger deploy
+export default App;

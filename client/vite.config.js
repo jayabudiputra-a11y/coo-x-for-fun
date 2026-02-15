@@ -4,6 +4,9 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   plugins: [react()],
   base: '/',
+  optimizeDeps: {
+    exclude: ['@jsquash/avif', '@jsquash/webp']
+  },
   build: {
     sourcemap: false,
     outDir: 'dist',
@@ -18,6 +21,10 @@ export default defineConfig({
   server: {
     hmr: {
       overlay: false
+    },
+    headers: {
+      'Cross-Origin-Opener-Policy': 'same-origin',
+      'Cross-Origin-Embedder-Policy': 'credentialless',
     }
   }
 });

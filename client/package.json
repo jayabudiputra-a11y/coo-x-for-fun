@@ -13,6 +13,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@jsquash/avif": "^2.1.1",
+    "@jsquash/webp": "^1.5.0",
     "@supabase/supabase-js": "^2.39.7",
     "@vercel/analytics": "^1.6.1",
     "axios": "^1.13.4",

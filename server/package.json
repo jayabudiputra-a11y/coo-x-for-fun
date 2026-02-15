@@ -4,6 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "clean": "node -e \"const fs = require('fs'); if (fs.existsSync('./dist')) fs.rmSync('./dist', { recursive: true, force: true });\"",
+    "prebuild": "node ../client/generate-seo.js",
+    "build": "echo \"Building server...\"",
+    "postbuild": "echo \"SEO Generated successfully\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -17,7 +23,6 @@
     "express": "^5.2.1",
     "framer-motion": "^12.29.2",
     "helmet": "^8.1.0",
-    "i18next-http-middleware": "^3.9.2",
     "rss": "^1.2.2",
     "supabase-js": "^0.0.1-security"
   },
