@@ -5,13 +5,13 @@
   "description": "Rebuild SEO 2026",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "clean": "node -e \"const fs = require('fs'); if (fs.existsSync('./dist')) fs.rmSync('./dist', { recursive: true, force: true });\"",
-    "prebuild": "npm run clean",
-    "build": "vite build && node generate-seo.js",
-    "lint": "eslint .",
-    "preview": "vite preview"
-  },
+  "dev": "vite",
+  "clean": "node -e \"const fs = require('fs'); if (fs.existsSync('./dist')) fs.rmSync('./dist', { recursive: true, force: true });\"",
+  "prebuild": "npm run clean",
+  "build": "vite build --debug && node generate-seo.js",
+  "lint": "eslint .",
+  "preview": "vite preview"
+},
   "dependencies": {
     "@jsquash/avif": "^2.1.1",
     "@jsquash/webp": "^1.5.0",

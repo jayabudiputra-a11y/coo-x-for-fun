@@ -4,19 +4,12 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   plugins: [react()],
   base: '/',
-  worker: { format: 'es' },
-  optimizeDeps: {
-    exclude: ['@jsquash/avif', '@jsquash/webp']
+  worker: {
+    format: 'es'
   },
   build: {
-    target: 'esnext',
     outDir: 'dist',
-    commonjsOptions: { transformMixedEsModules: true }
-  },
-  server: {
-    headers: {
-      'Cross-Origin-Opener-Policy': 'same-origin',
-      'Cross-Origin-Embedder-Policy': 'credentialless',
-    }
+    minify: 'esbuild',
+    reportCompressedSize: false
   }
 });
