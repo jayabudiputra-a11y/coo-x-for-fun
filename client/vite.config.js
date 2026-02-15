@@ -5,12 +5,14 @@ export default defineConfig({
   plugins: [react()],
   base: '/',
   worker: {
-    format: 'es'
+    format: 'es',
+    plugins: () => [react()]
   },
   optimizeDeps: {
     exclude: ['@jsquash/avif', '@jsquash/webp']
   },
   build: {
+    target: 'esnext',
     sourcemap: false,
     outDir: 'dist',
     rollupOptions: {
@@ -22,9 +24,7 @@ export default defineConfig({
     }
   },
   server: {
-    hmr: {
-      overlay: false
-    },
+    hmr: { overlay: false },
     headers: {
       'Cross-Origin-Opener-Policy': 'same-origin',
       'Cross-Origin-Embedder-Policy': 'credentialless',
