@@ -125,6 +125,16 @@ const _RD = () => {
     return () => { _m = false; };
   }, [_sl]);
 
+  _e(() => {
+    let _cl = document.querySelector("link[rel='canonical']");
+    if (!_cl) {
+      _cl = document.createElement("link");
+      _cl.setAttribute("rel", "canonical");
+      document.head.appendChild(_cl);
+    }
+    _cl.setAttribute("href", `https://www.coo-x-for.fun${window.location.pathname}`);
+  }, [_sl]);
+
   if (_ld) return <div style={{ textAlign: 'center', padding: '100px', fontFamily: 'monospace' }}>🍲 Menyiapkan Bahan...</div>;
   if (!_rcp) return <div style={{ textAlign: 'center', padding: '100px' }}><h2>Resep Tidak Ditemukan</h2></div>;
 

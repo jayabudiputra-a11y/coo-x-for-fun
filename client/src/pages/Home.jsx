@@ -56,18 +56,16 @@ const _A0 = React.memo(({ k }) => {
 
   return (
     <div className="sys-ad-node" style={{ 
-      position: 'relative', width: '100%', margin: '15px 0', display: 'flex', 
-      justifyContent: 'center', minHeight: '250px', background: '#fafafa', borderRadius: '12px',
-      zIndex: 1,
-      contentVisibility: 'auto', 
-      containIntrinsicSize: '300px 250px' 
+      position: 'relative', width: '100%', maxWidth: '728px', margin: '20px auto', 
+      display: 'flex', justifyContent: 'center', minHeight: '90px', 
+      background: '#fafafa', borderRadius: '12px', zIndex: 1, overflow: 'hidden' 
     }}>
       <button 
         onClick={() => _sV(false)} 
         style={{ 
-          position: 'absolute', top: '0px', right: 'calc(50% - 150px)', width: '22px', height: '22px', 
-          borderRadius: '0 12px 0 12px', background: 'rgba(0,0,0,0.8)', color: '#fff', 
-          border: 'none', cursor: 'pointer', zIndex: 10, fontSize: '14px',
+          position: 'absolute', top: '0px', right: '0px', width: '24px', height: '24px', 
+          borderRadius: '0 12px 0 12px', background: 'rgba(0,0,0,0.6)', color: '#fff', 
+          border: 'none', cursor: 'pointer', zIndex: 10, fontSize: '12px',
           display: 'flex', justifyContent: 'center', alignItems: 'center', fontWeight: 'bold'
         }}
       > × </button>
@@ -75,7 +73,7 @@ const _A0 = React.memo(({ k }) => {
         key={k} 
         title="Ads" 
         srcDoc={_adC} 
-        style={{ width: '300px', height: '250px', border: 'none', overflow: 'hidden' }} 
+        style={{ width: '100%', maxWidth: '300px', height: '250px', border: 'none', overflow: 'hidden' }} 
         loading="lazy" 
         sandbox="allow-scripts allow-same-origin allow-forms allow-popups" 
       />
@@ -146,94 +144,98 @@ const Home = () => {
 
   const _rR = _m(() => {
     return _r.map((_i) => (
-      <div key={`rcp-${_i.id}`} style={{ display: 'flex', flexDirection: 'column' }}>
+      <div key={`rcp-${_i.id}`} style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
         <_C0 recipe={{ 
             ..._i, 
             image_url: optimizeImage(_i.image_url, 400) 
         }} />
         <div style={{ 
-          marginTop: '9.7px', padding: '3px', borderRadius: '8px', textAlign: 'center',
-          backgroundColor: _i.steps_data ? '#fff4e6' : '#f9f9f9',
-          border: _i.steps_data ? '1px solid #ffd8a8' : '1px solid #eee'
+          marginTop: 'auto', paddingTop: '10px' 
         }}>
-          <span style={{ fontSize: '0.85rem', color: _i.steps_data ? '#d35400' : '#ccc', fontWeight: 'bold' }}>
-            {_i.steps_data ? "Resep Sempurna" : "Lihat Cepat"}
-          </span>
+          <div style={{ padding: '6px', borderRadius: '8px', textAlign: 'center', backgroundColor: _i.steps_data ? '#fff4e6' : '#f9f9f9', border: _i.steps_data ? '1px solid #ffd8a8' : '1px solid #eee' }}>
+            <span style={{ fontSize: '0.85rem', color: _i.steps_data ? '#d35400' : '#ccc', fontWeight: 'bold' }}>
+              {_i.steps_data ? "Resep Sempurna" : "Lihat Cepat"}
+            </span>
+          </div>
         </div>
       </div>
     ));
   }, [_r]);
 
   return (
-    <div className="home-container" style={{ 
-      width: '100%',
-      maxWidth: '1200px',
-      margin: '0 auto',
-      padding: '0 20px 100px',
-      minHeight: '100vh', 
-      overflowX: 'hidden', 
-      position: 'relative', 
-      zIndex: 1,
-      textAlign: 'center'
+    <div style={{ 
+      width: '100%', maxWidth: '1200px', margin: '0 auto', padding: '0 20px 100px', 
+      minHeight: '100vh', overflowX: 'hidden', position: 'relative', zIndex: 1, 
+      boxSizing: 'border-box', fontFamily: 'system-ui, sans-serif'
     }}>
       <_An />
       <_C2 title="Inspirasi Masak Harian" description="Jelajahi resep masakan jadi & lagu memasak untukmu." />
       
-      <header style={{ display: 'flex', flexFlow: 'row nowrap', justifyContent: 'center', alignItems: 'center', gap: '8px', padding: '0 0 10px', marginTop: '-5px' }}>
-        <img src="/Og-Icon-Coo-X-For-Fun.svg" alt="L0" loading="lazy" style={{ width: 'clamp(189.96px, 72vw, 189.98px)', height: 'auto' }} />
-        <img src={_I0} alt="L1" loading="lazy" style={{ width: 'clamp(132.89px, 56.89vw, 259.86px)', height: 'auto' }} />
+      <header style={{ 
+        display: 'flex', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center', 
+        gap: '15px', padding: '20px 0', borderBottom: '1px solid #eee', marginBottom: '25px'
+      }}>
+        <img src="/Og-Icon-Coo-X-For-Fun.svg" alt="L0" loading="lazy" style={{ width: '100%', maxWidth: '200px', height: 'auto', objectFit: 'contain' }} />
+        <img src={_I0} alt="L1" loading="lazy" style={{ width: '100%', maxWidth: '140px', height: 'auto', objectFit: 'contain' }} />
       </header>
 
-      <section style={{ maxWidth: '800px', margin: '20px auto 10px' }}>
+      <section style={{ width: '100%', maxWidth: '800px', margin: '0 auto 40px' }}>
         <_FW />
       </section>
 
       <_A0 k="idx-t" />
 
-      <section style={{ marginTop: '3.2px' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '15px', alignItems: 'center' }}>
-          <h3 style={{ fontWeight: '800', margin: 0, fontSize: '1.4rem' }}>Resep Terbaru</h3>
-          <_L to="/search" style={{ color: '#d35400', textDecoration: 'none', fontWeight: 'bold' }}>Lihat Semua →</_L>
+      <section style={{ marginTop: '20px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px', flexWrap: 'wrap', gap: '10px' }}>
+          <h3 style={{ fontWeight: '900', margin: 0, fontSize: 'clamp(1.2rem, 4vw, 1.6rem)', color: '#222' }}>Resep Terbaru</h3>
+          <_L to="/search" style={{ color: '#d35400', textDecoration: 'none', fontWeight: 'bold', fontSize: '0.95rem', padding: '5px 10px', background: '#fff4e6', borderRadius: '20px' }}>Lihat Semua →</_L>
         </div>
         
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '25px' }}>
+        <div style={{ 
+          display: 'grid', 
+          gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 260px), 1fr))', 
+          gap: '20px', 
+          alignItems: 'stretch' 
+        }}>
           {_rR}
         </div>
         
-        {_l && <div style={{ textAlign: 'center', padding: '14.9px' }}>🍲 Memuat...</div>}
+        {_l && <div style={{ textAlign: 'center', padding: '20px', color: '#666', fontWeight: 'bold' }}>🍲 Memuat Resep...</div>}
       </section>
 
       <_A0 k="idx-m" />
 
       {_b.length > 0 && (
-        <section style={{ marginTop: '40px' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-            <h3 style={{ fontWeight: '800', margin: 0, fontSize: '1.4rem' }}>Postingan Saya (6)</h3>
-            <_L to="/blog" style={{ color: '#d35400', fontWeight: 'bold', textDecoration: 'none' }}>Semua →</_L>
+        <section style={{ marginTop: '50px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px', flexWrap: 'wrap', gap: '10px' }}>
+            <h3 style={{ fontWeight: '900', margin: 0, fontSize: 'clamp(1.2rem, 4vw, 1.6rem)', color: '#222' }}>Postingan Saya</h3>
+            <_L to="/blog" style={{ color: '#d35400', textDecoration: 'none', fontWeight: 'bold', fontSize: '0.95rem', padding: '5px 10px', background: '#fff4e6', borderRadius: '20px' }}>Semua →</_L>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '20px' }}>
+          
+          <div style={{ 
+            display: 'grid', 
+            gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 300px), 1fr))', 
+            gap: '24px', 
+            alignItems: 'stretch' 
+          }}>
             {_b.map(_p => (
-              <_L key={`blg-${_p.id}`} to={`/blog/${_p.slug}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-                <article style={{ background: 'white', borderRadius: '16px', overflow: 'hidden', border: '1px solid #eee', boxShadow: '0 4px 12px rgba(0,0,0,0.05)' }}>
+              <_L key={`blg-${_p.id}`} to={`/blog/${_p.slug}`} style={{ textDecoration: 'none', color: 'inherit', display: 'block', height: '100%' }}>
+                <article style={{ 
+                  background: 'white', borderRadius: '16px', overflow: 'hidden', border: '1px solid #eaeaea', 
+                  boxShadow: '0 4px 12px rgba(0,0,0,0.06)', display: 'flex', flexDirection: 'column', height: '100%', transition: 'transform 0.2s'
+                }}>
                   <img 
                     src={optimizeImage(_p.image_url, 400)} 
                     alt="B" 
                     loading="lazy"
                     decoding="async"
-                    style={{ 
-                      width: '100%', 
-                      height: '180px', 
-                      objectFit: 'cover',
-                      contentVisibility: 'auto'
-                    }} 
-                    onError={(e) => { 
-                      e.target.src = 'https://placehold.co/400?text=Error+Load'; 
-                    }}
+                    style={{ width: '100%', height: '180px', objectFit: 'cover', borderBottom: '1px solid #eee' }} 
+                    onError={(e) => { e.target.src = 'https://placehold.co/400?text=Error+Load'; }}
                   />
-                  <div style={{ padding: '15px' }}>
-                    <h4 style={{ margin: '0 0 10px', fontWeight: '700' }}>{_p.title}</h4>
-                    <p style={{ fontSize: '0.9rem', color: '#777', lineHeight: '1.5', margin: 0, textAlign: 'left' }}>
-                      {_p.content?.substring(0, 80)}...
+                  <div style={{ padding: '20px', flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
+                    <h4 style={{ margin: '0 0 10px', fontWeight: '800', fontSize: '1.1rem', color: '#111', lineHeight: '1.4' }}>{_p.title}</h4>
+                    <p style={{ fontSize: '0.95rem', color: '#666', lineHeight: '1.6', margin: 0 }}>
+                      {_p.content?.substring(0, 90)}...
                     </p>
                   </div>
                 </article>
@@ -245,15 +247,14 @@ const Home = () => {
         </section>
       )}
 
-      <button onClick={() => _n('/add-recipe')} style={_fB}> + </button>
+      <button onClick={() => _n('/add-recipe')} style={{ 
+        position: 'fixed', bottom: '30px', right: '30px', width: '60px', height: '60px',
+        backgroundColor: '#d35400', color: 'white', borderRadius: '50%', border: 'none',
+        fontSize: '32px', cursor: 'pointer', zIndex: 1000, boxShadow: '0 6px 20px rgba(211,84,0,0.4)',
+        display: 'flex', justifyContent: 'center', alignItems: 'center', transition: 'transform 0.2s'
+      }}> + </button>
     </div>
   );
-};
-
-const _fB = {
-  position: 'fixed', bottom: '100px', right: '25px', width: '60px', height: '60px',
-  backgroundColor: '#f3a133', color: 'white', borderRadius: '50%', border: 'none',
-  fontSize: '30px', cursor: 'pointer', zIndex: 1000, boxShadow: '0 4px 15px rgba(0,0,0,0.3)'
 };
 
 export default Home;

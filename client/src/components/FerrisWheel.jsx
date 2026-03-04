@@ -136,7 +136,7 @@ const _st = {
   },
   ww: { 
     position: 'relative', 
-    width: 'min(280px, 80vw)', // Responsif di HP kecil
+    width: 'min(280px, 80vw)',
     aspectRatio: '1 / 1', 
     margin: '0 auto 20px',
     display: 'flex', justifyContent: 'center', alignItems: 'center'
@@ -178,7 +178,7 @@ const _st = {
   },
   mc: { 
     background: 'white', padding: '25px', borderRadius: '15px', 
-    textAlign: 'center', width: '100%', maxWidth: '320px', // Ukuran modal aman di HP
+    textAlign: 'center', width: '100%', maxWidth: '320px',
     boxShadow: '0 10px 30px rgba(0,0,0,0.5)', border: '4px solid #febf04'
   },
   mTitle: { color: '#d35400', margin: '0', fontSize: '1.4rem', fontWeight: '900' },

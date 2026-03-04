@@ -9,7 +9,6 @@ const SEOHelper = ({ title, description, image, slug }) => {
       <title>{title} | Coo-X-For.Fun</title>
       <meta name="description" content={description} />
       
-      {/* Ini akan me-replace tag canonical jika yang di index.html sudah dihapus */}
       <link rel="canonical" href={url} />
       
       <meta property="og:site_name" content="Coo-X-For.Fun" />

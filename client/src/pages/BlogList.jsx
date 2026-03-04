@@ -24,47 +24,81 @@ const BlogList = () => {
     _q.from('blog_posts').select('*').order('created_at', { ascending: false })
       .then(({ data }) => {
         if (data) {
-          _sp(data);
-          _sC('blog_list_main', data);
+          const updatedData = data.map(item => {
+            if (item.slug === 'resep-umur-panjang-kayu-manis') {
+              return { 
+                ...item, 
+                image_url: 'https://zlwhvkexgjisyhakxyoe.supabase.co/storage/v1/object/public/self/ilustrasi-teh-kayu-manis_169.jpeg' 
+              };
+            }
+            return item;
+          });
+
+          _sp(updatedData);
+          _sC('blog_list_main', updatedData);
           _sSH({ list_view: Date.now() });
         }
       });
   }, []);
 
   return (
-    <div className="container" style={{ maxWidth: '600px', margin: '0 auto', padding: '0 16px' }}>
+    <div className="container" style={{ 
+      maxWidth: '1200px', 
+      margin: '0 auto', 
+      padding: '0 20px', 
+      minHeight: '100vh',
+      boxSizing: 'border-box'
+    }}>
       <_S2 title="Postingan Saya" description="Temukan review makanan jujur dan tempat makan terbaik." />
       
-      <header style={{ textAlign: 'center', margin: '30px 0' }}>
-        <h1 style={{ color: '#d35400', fontSize: '1.8rem', textTransform: 'uppercase', margin: '0 0 8px 0' }}>
+      <header style={{ textAlign: 'center', margin: '40px 0' }}>
+        <h1 style={{ 
+          color: '#d35400', 
+          fontSize: 'clamp(1.8rem, 5vw, 2.5rem)', 
+          textTransform: 'uppercase', 
+          margin: '0 0 10px 0',
+          fontWeight: '900'
+        }}>
           Postingan Saya
         </h1>
-        <p style={{ color: '#666', fontSize: '0.9rem', margin: 0 }}>
+        <p style={{ color: '#666', fontSize: 'clamp(0.9rem, 2vw, 1.1rem)', margin: 0 }}>
           Review Jujur Makanan & Tempat
         </p>
       </header>
 
-      <main style={{ display: 'flex', flexDirection: 'column', gap: '24px', paddingBottom: '40px' }}>
+      <main style={{ 
+        display: 'grid', 
+        gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 320px), 1fr))', 
+        gap: '24px', 
+        paddingBottom: '60px',
+        alignItems: 'stretch'
+      }}>
         {_p.map((_item, _idx) => (
-          <_L to={`/blog/${_item.slug}`} key={_item.id} style={{ textDecoration: 'none', display: 'block' }}>
+          <_L to={`/blog/${_item.slug}`} key={_item.id} style={{ textDecoration: 'none', display: 'block', height: '100%' }}>
             <article style={{ 
-              background: 'white', borderRadius: '16px', overflow: 'hidden', 
-              boxShadow: '0 4px 20px rgba(0,0,0,0.08)', border: '1px solid #f0f0f0',
-              transition: 'transform 0.2s ease-in-out'
+              background: 'white', 
+              borderRadius: '16px', 
+              overflow: 'hidden', 
+              boxShadow: '0 4px 20px rgba(0,0,0,0.08)', 
+              border: '1px solid #f0f0f0',
+              transition: 'transform 0.2s ease-in-out',
+              display: 'flex',
+              flexDirection: 'column',
+              height: '100%'
             }}>
-              <div style={{ position: 'relative', width: '100%', paddingTop: '56.25%' }}>
+              <div style={{ position: 'relative', width: '100%', paddingTop: '56.25%', flexShrink: 0 }}>
                 <BlogImage url={_item.image_url} alt={_item.title} format={_f} priority={_idx === 0} />
               </div>
-              <div style={{ padding: '20px' }}>
-                <h2 style={{ fontSize: '1.25rem', margin: '0 0 12px 0', color: '#222', lineHeight: '1.4' }}>
+              <div style={{ padding: '20px', display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
+                <h2 style={{ fontSize: '1.25rem', margin: '0 0 12px 0', color: '#222', lineHeight: '1.4', fontWeight: '800' }}>
                   {_item.title}
                 </h2>
-                <p style={{ fontSize: '0.95rem', color: '#555', lineHeight: '1.6', margin: 0 }}>
+                <p style={{ fontSize: '0.95rem', color: '#555', lineHeight: '1.6', margin: 0, flexGrow: 1 }}>
                   {_item.content?.substring(0, 120)}... 
-                  <span style={{ color: '#d35400', fontWeight: 'bold', marginLeft: '5px', display: 'inline-block' }}>
-                    Baca Review Lengkap →
-                  </span>
                 </p>
+                <span style={{ color: '#d35400', fontWeight: 'bold', marginTop: '12px', display: 'inline-block' }}>
+                  Baca Review Lengkap →
+                </span>
               </div>
             </article>
           </_L>
@@ -78,12 +112,22 @@ const BlogImage = ({ url, alt, format, priority }) => {
   const [_src, _set] = _s(url);
   _e(() => {
     let _active = true;
-    const _cK = `img_thmb_${btoa(url).slice(0,16)}`;
+    let _cK = '';
+    
+    try {
+      _cK = `img_thmb_${btoa(encodeURIComponent(url)).slice(0,16)}`;
+    } catch (e) {
+      _cK = `img_thmb_${url.length}`;
+    }
+
     const _cached = _gC(_cK);
     if (_cached) { _set(_cached); return; }
 
     fetch(url, { mode: 'cors' })
-      .then(_r => _r.blob())
+      .then(_r => {
+        if (!_r.ok) throw new Error('Fetch Error');
+        return _r.blob();
+      })
       .then(_b => _tI(URL.createObjectURL(_b), format))
       .then(_res => {
         const _u = URL.createObjectURL(_res);
@@ -98,6 +142,7 @@ const BlogImage = ({ url, alt, format, priority }) => {
       src={_src} alt={alt} 
       style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover' }}
       loading={priority ? "eager" : "lazy"}
+      onError={(e) => { e.target.src = 'https://placehold.co/800x400?text=Gambar+Tidak+Tersedia'; }}
     />
   );
 };

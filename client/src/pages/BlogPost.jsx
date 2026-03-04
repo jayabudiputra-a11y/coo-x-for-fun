@@ -31,16 +31,21 @@ const A = () => {
       if (!_data) {
         const { data: _d } = await _S.from('blog_posts').select('*').eq('slug', _x).single();
         _data = _d;
-        if (_data) _sC(`post_${_x}`, _data);
       }
 
       if (_data) {
+        if (_x === 'resep-umur-panjang-kayu-manis') {
+          _data.image_url = 'https://zlwhvkexgjisyhakxyoe.supabase.co/storage/v1/object/public/self/ilustrasi-teh-kayu-manis_169.jpeg';
+        }
+
+        _sC(`post_${_x}`, _data);
         _y(_data);
         _sSH({ post_id: _data.id, slug: _x });
         
         const _fmt = await _dB();
         try {
           const _res = await fetch(_data.image_url, { mode: 'cors' });
+          if (!_res.ok) throw new Error('Fetch Error');
           const _blob = await _res.blob();
           const _trans = await _tI(URL.createObjectURL(_blob), _fmt);
           _sDI(URL.createObjectURL(_trans));
@@ -60,21 +65,67 @@ const A = () => {
   if (!_p) return <_m.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} style={{ padding: '50px', textAlign: 'center', color: '#000', fontFamily: 'monospace' }}>Artikel Tidak Ditemukan</_m.div>
 
   const _sT = {
-    w: { maxWidth: '800px', margin: '0 auto', padding: '15px 10px 100px', boxSizing: 'border-box' },
-    b: { display: 'inline-block !important', background: '#000000 !important', color: '#ffffff !important', padding: '10px 20px', fontSize: '12px', fontWeight: '900', textDecoration: 'none !important', border: '2px solid #000', boxShadow: '4px 4px 0 #00ffff', marginBottom: '25px', textTransform: 'uppercase', fontFamily: "'Open Sans', sans-serif", letterSpacing: '1px' },
-    k: { background: '#fff', border: '4px solid #000', boxShadow: '8px 8px 0px #ff00ff', overflow: 'hidden', maxWidth: '550px', width: '100%', margin: '0 auto', boxSizing: 'border-box' },
-    t: { background: '#fff', color: '#000', padding: '25px 15px', textAlign: 'center', fontSize: 'clamp(20px, 6vw, 26px)', fontWeight: '900', textTransform: 'uppercase', letterSpacing: '1px', margin: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '15px', borderBottom: '5px solid #000', fontFamily: "'Open Sans', sans-serif" },
+    w: { 
+      maxWidth: '1000px', 
+      margin: '0 auto', 
+      padding: _wW > 768 ? '40px 20px 100px' : '15px 10px 100px', 
+      boxSizing: 'border-box' 
+    },
+    b: { 
+      display: 'inline-block !important', 
+      background: '#000000 !important', 
+      color: '#ffffff !important', 
+      padding: '10px 20px', 
+      fontSize: '12px', 
+      fontWeight: '900', 
+      textDecoration: 'none !important', 
+      border: '2px solid #000', 
+      boxShadow: '4px 4px 0 #00ffff', 
+      marginBottom: '25px', 
+      textTransform: 'uppercase', 
+      fontFamily: "'Open Sans', sans-serif", 
+      letterSpacing: '1px' 
+    },
+    k: { 
+      background: '#fff', 
+      border: _wW > 768 ? '6px solid #000' : '4px solid #000', 
+      boxShadow: _wW > 768 ? '12px 12px 0px #ff00ff' : '8px 8px 0px #ff00ff', 
+      overflow: 'hidden', 
+      maxWidth: '800px', 
+      width: '100%', 
+      margin: '0 auto', 
+      boxSizing: 'border-box' 
+    },
+    t: { 
+      background: '#fff', 
+      color: '#000', 
+      padding: _wW > 768 ? '40px 30px' : '25px 15px', 
+      textAlign: 'center', 
+      fontSize: 'clamp(24px, 5vw, 36px)', 
+      fontWeight: '900', 
+      textTransform: 'uppercase', 
+      letterSpacing: '1px', 
+      margin: 0, 
+      display: 'flex', 
+      flexDirection: 'column', 
+      alignItems: 'center', 
+      justifyContent: 'center', 
+      gap: '15px', 
+      borderBottom: _wW > 768 ? '6px solid #000' : '5px solid #000', 
+      fontFamily: "'Open Sans', sans-serif",
+      lineHeight: 1.3
+    },
     logo: { width: '60px', height: '60px', objectFit: 'contain' },
-    i: { width: '100%', display: 'block', borderBottom: '5px solid #000', objectFit: 'cover', height: 'auto' },
-    c: { padding: '25px', fontFamily: "'Open Sans', sans-serif", boxSizing: 'border-box' },
+    i: { width: '100%', display: 'block', borderBottom: _wW > 768 ? '6px solid #000' : '5px solid #000', objectFit: 'cover', height: 'auto', maxHeight: '500px' },
+    c: { padding: _wW > 768 ? '40px' : '25px', fontFamily: "'Open Sans', sans-serif", boxSizing: 'border-box' },
     bd: { display: 'inline-block', background: '#ffff00', color: '#000', padding: '5px 10px', fontSize: '10px', fontWeight: 900, border: '2px solid #000', marginBottom: '15px' },
-    d: { fontSize: '15px', lineHeight: 1.7, color: '#111', marginBottom: '20px', textAlign: 'justify', whiteSpace: 'pre-line', fontWeight: '500' },
-    hl: { background: '#00ffff', border: '2px solid #000', padding: '15px', margin: '20px 0', fontStyle: 'italic', fontSize: '14px', boxShadow: '4px 4px 0 #ff00ff' },
+    d: { fontSize: _wW > 768 ? '18px' : '15px', lineHeight: 1.8, color: '#111', marginBottom: '30px', textAlign: 'justify', whiteSpace: 'pre-line', fontWeight: '500' },
+    hl: { background: '#00ffff', border: '2px solid #000', padding: '15px', margin: '20px 0', fontStyle: 'italic', fontSize: _wW > 768 ? '16px' : '14px', boxShadow: '4px 4px 0 #ff00ff' },
     dl: { margin: '0 0 20px', padding: 0 },
     dlg: { padding: '10px 0', borderBottom: '1px solid #ddd' },
     dt: { color: '#ff00ff', display: 'block', marginBottom: '2px', fontSize: '11px', textTransform: 'uppercase', fontWeight: '900' },
-    dd: { margin: 0, fontSize: '14px', color: '#000', fontWeight: 'bold' },
-    fb: { display: 'block !important', background: '#0026ff !important', color: '#ffffff !important', textAlign: 'center', padding: '15px', border: '2px solid #000', textDecoration: 'none !important', fontWeight: '900', fontSize: '13px', boxShadow: '4px 4px 0 #ff00ff', textTransform: 'uppercase', marginTop: '15px' }
+    dd: { margin: 0, fontSize: _wW > 768 ? '16px' : '14px', color: '#000', fontWeight: 'bold' },
+    fb: { display: 'block !important', background: '#0026ff !important', color: '#ffffff !important', textAlign: 'center', padding: '15px', border: '2px solid #000', textDecoration: 'none !important', fontWeight: '900', fontSize: '14px', boxShadow: '4px 4px 0 #ff00ff', textTransform: 'uppercase', marginTop: '20px' }
   };
 
   const BannerAd = () => {
@@ -90,7 +141,7 @@ const A = () => {
 
   return (
     <div style={{ background: '#ffffff', minHeight: '100vh', overflowX: 'hidden' }}>
-      <_SH title={_p.title} description={_p.content.substring(0, 150)} image={_p.image_url} />
+      <_SH title={_p.title} description={_p.content.substring(0, 150)} image={_p.image_url} slug={`blog/${_p.slug}`} />
       <div style={_sT.w}>
         <BannerAd />
         <_m.div initial={{ x: -20, opacity: 0 }} animate={{ x: 0, opacity: 1 }}>
@@ -99,9 +150,9 @@ const A = () => {
         <_m.article initial={{ y: 30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} style={_sT.k}>
           <div style={_sT.t}>
             <img src="/logo.svg" alt="logo" style={_sT.logo} />
-            <span style={{ margin: 0, lineHeight: 1.2 }}>{_p.title}</span>
+            <span>{_p.title}</span>
           </div>
-          <img src={_dI || _p.image_url} alt={_p.title} style={_sT.i} />
+          <img src={_dI || _p.image_url} alt={_p.title} style={_sT.i} onError={(e) => { e.target.src = 'https://placehold.co/800x400?text=Gambar+Tidak+Tersedia'; }} />
           <div style={_sT.c}>
             <span style={_sT.bd}>[ VERIFIED ]</span>
             <p style={_sT.d}>{_p.content}</p>

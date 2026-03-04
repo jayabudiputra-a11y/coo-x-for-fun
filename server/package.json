@@ -4,12 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-  "dev": "vite",
-  "clean": "node -e \"const fs = require('fs'); if (fs.existsSync('./dist')) fs.rmSync('./dist', { recursive: true, force: true });\"",
-  "prebuild": "npm run clean",
-  "build": "vite build && node generate-seo.js",
-  "lint": "eslint .",
-  "preview": "vite preview"
+  "start": "node index.js",
+  "dev": "nodemon index.js",
+  "build": "echo \"Server build complete\"",
+  "test": "echo \"Error: no test specified\" && exit 1"
 },
   "keywords": [],
   "author": "",
