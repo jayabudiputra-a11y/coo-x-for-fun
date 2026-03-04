@@ -106,10 +106,13 @@ const Home = () => {
       }
       
       if (_cachedBlogs) {
-        const _sanitizedBlogs = _cachedBlogs.map(item => ({
-          ...item,
-          image_url: (item.image_url?.startsWith('blob:') || !item.image_url) ? '' : item.image_url
-        }));
+        const _sanitizedBlogs = _cachedBlogs.map(item => {
+          let url = (item.image_url?.startsWith('blob:') || !item.image_url) ? '' : item.image_url;
+          if (item.slug === 'resep-umur-panjang-kayu-manis') {
+            url = 'https://zlwhvkexgjisyhakxyoe.supabase.co/storage/v1/object/public/self/ilustrasi-teh-kayu-manis_169.jpeg';
+          }
+          return { ...item, image_url: url };
+        });
         _sb(_sanitizedBlogs);
       }
 
@@ -131,8 +134,14 @@ const Home = () => {
         .limit(6);
       
       if (_bD) {
-        _sb(_bD);
-        _sC('home_blogs', _bD);
+        const _fixedBD = _bD.map(item => {
+          if (item.slug === 'resep-umur-panjang-kayu-manis') {
+            return { ...item, image_url: 'https://zlwhvkexgjisyhakxyoe.supabase.co/storage/v1/object/public/self/ilustrasi-teh-kayu-manis_169.jpeg' };
+          }
+          return item;
+        });
+        _sb(_fixedBD);
+        _sC('home_blogs', _fixedBD);
       }
 
       _sSH({ home_view: Date.now() });
