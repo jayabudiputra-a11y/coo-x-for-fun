@@ -6,9 +6,7 @@
   "scripts": {
   "start": "node index.js",
   "dev": "nodemon index.js",
-  "build": "echo \"Server build complete\"",
-  "test": "echo \"Error: no test specified\" && exit 1"
-},
+  "build": "vite build && node generate-seo.js && node -e \"require('fs').copyFileSync('public/robots.txt', 'dist/robots.txt')\""},
   "keywords": [],
   "author": "",
   "license": "ISC",
