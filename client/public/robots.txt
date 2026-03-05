@@ -1,4 +1,5 @@
 User-agent: *
+Allow: /
 Allow: /rss
 Allow: /api/rss
 Sitemap: https://www.coo-x-for.fun/sitemap.xml
