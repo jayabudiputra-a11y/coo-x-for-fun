@@ -13,12 +13,10 @@
     }
   ],
   "rewrites": [
-    { "source": "/rss", "destination": "/rss/index.xml" },
-    { "source": "/sitemap.xml", "destination": "/sitemap.xml" },
     { "source": "/robots.txt", "destination": "/robots.txt" },
+    { "source": "/sitemap.xml", "destination": "/sitemap.xml" },
+    { "source": "/rss", "destination": "/rss/index.xml" },
     { "source": "/assets/(.*)", "destination": "/assets/$1" },
-    { "source": "/favicon.ico", "destination": "/favicon.ico" },
-    { "source": "/manifest.webmanifest", "destination": "/manifest.webmanifest" },
-    { "source": "/((?!api/|assets/|.*\\.|robots\\.txt).*)", "destination": "/index.html" }
+    { "source": "/((?!api/|robots\\.txt|sitemap\\.xml|.*\\..*).*)", "destination": "/index.html" }
   ]
 }
