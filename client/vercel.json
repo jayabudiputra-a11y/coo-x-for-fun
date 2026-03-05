@@ -15,9 +15,10 @@
   "rewrites": [
     { "source": "/rss", "destination": "/rss/index.xml" },
     { "source": "/sitemap.xml", "destination": "/sitemap.xml" },
+    { "source": "/robots.txt", "destination": "/robots.txt" },
     { "source": "/assets/(.*)", "destination": "/assets/$1" },
     { "source": "/favicon.ico", "destination": "/favicon.ico" },
     { "source": "/manifest.webmanifest", "destination": "/manifest.webmanifest" },
-    { "source": "/((?!api/|assets/|.*\\.).*)", "destination": "/index.html" }
+    { "source": "/((?!api/|assets/|.*\\.|robots\\.txt).*)", "destination": "/index.html" }
   ]
 }
