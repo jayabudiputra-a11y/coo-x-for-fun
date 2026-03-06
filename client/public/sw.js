@@ -1,14 +1,25 @@
 const IMG_CACHE = "coox-img-v2";
 
 self.addEventListener("fetch", event => {
-  if (event.request.destination !== "image") return;
-  
-  // LOGIKA BARU: Jika domain Cookpad, biarkan browser ambil langsung (bypass SW logic)
   if (event.request.url.includes('img-global.cpcdn.com')) {
-    return; 
+    return;
   }
 
-  event.respondWith(handleImage(event.request));
+  if (event.request.destination === "image") {
+    event.respondWith(handleImage(event.request));
+    return;
+  }
+
+  event.respondWith(
+    fetch(event.request).then((response) => {
+      if (response.redirected) {
+        return Response.redirect(response.url, 302);
+      }
+      return response;
+    }).catch((error) => {
+      console.error('Fetch error:', error);
+    })
+  );
 });
 
 async function handleImage(request) {
@@ -20,7 +31,6 @@ async function handleImage(request) {
     const net = await fetch(request);
     if (!net.ok) throw new Error();
     
-    // Simpan ke cache
     cache.put(request, net.clone());
     return net;
   } catch (err) {

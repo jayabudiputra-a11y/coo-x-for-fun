@@ -8,6 +8,12 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       injectRegister: 'auto',
+      includeAssets: [
+        'favicon.ico', 
+        '121x121-icon-coo-x-for-fun--.png', 
+        'logo.svg', 
+        'Og-Icon-Coo-X-For-Fun.svg'
+      ],
       // Memastikan rute seperti /resep/:slug tidak 404 saat reload
       workbox: {
         navigateFallback: '/index.html',
@@ -50,6 +56,16 @@ export default defineConfig({
         start_url: '/',
         icons: [
           {
+            src: 'favicon.ico',
+            sizes: '64x64 32x32 24x24 16x16',
+            type: 'image/x-icon'
+          },
+          {
+            src: '121x121-icon-coo-x-for-fun--.png',
+            sizes: '121x121',
+            type: 'image/png'
+          },
+          {
             src: 'logo.svg',
             sizes: '192x192',
             type: 'image/svg+xml',
@@ -60,6 +76,11 @@ export default defineConfig({
             sizes: '512x512',
             type: 'image/svg+xml',
             purpose: 'any maskable'
+          },
+          {
+            src: 'Og-Icon-Coo-X-For-Fun.svg',
+            sizes: 'any',
+            type: 'image/svg+xml'
           }
         ]
       }
