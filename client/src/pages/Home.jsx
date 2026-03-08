@@ -11,46 +11,45 @@ import { setSessionHash as _sSH } from '../utils/cookieHash';
 import { queueAction as _qA, flushQueue as _fQ } from '../utils/indexedDbQueue';
 import { registerSW as _rSW } from '../registerSW';
 
+const _px = (u) => u ? `/api/proxy?url=${encodeURIComponent(u)}` : '';
+
+const _xd = [
+  'blogger.googleusercontent.com',
+  'cdn.medcom.id',
+  'lh3.googleusercontent.com',
+  'img.youtube.com',
+  'static.instagram.com',
+  'pbs.twimg.com',
+];
+
+const _isCors = (u) => {
+  if (!u) return false;
+  try { return _xd.some(d => new URL(u).hostname.endsWith(d)); }
+  catch { return false; }
+};
+
 const optimizeImage = (url, width = 400) => {
   if (!url) return '';
   if (url.includes('blob:')) return url;
+  if (_isCors(url)) return _px(url);
   if (url.includes('supabase.co')) {
-    const separator = url.includes('?') ? '&' : '?';
-    return `${url}${separator}width=${width}&format=webp&quality=75`;
+    const s = url.includes('?') ? '&' : '?';
+    return `${url}${s}width=${width}&format=webp&quality=75`;
   }
   if (url.includes('pexels.com')) {
-    const separator = url.includes('?') ? '&' : '?';
-    return `${url}${separator}auto=compress&cs=tinysrgb&w=${width}&dpr=1`;
+    const s = url.includes('?') ? '&' : '?';
+    return `${url}${s}auto=compress&cs=tinysrgb&w=${width}&dpr=1`;
   }
   if (url.includes('unsplash.com')) {
-    const separator = url.includes('?') ? '&' : '?';
-    return `${url}${separator}w=${width}&q=75&fm=webp`;
+    const s = url.includes('?') ? '&' : '?';
+    return `${url}${s}w=${width}&q=75&fm=webp`;
   }
   return url;
 };
 
 const _A0 = React.memo(({ k }) => {
   const [_v, _sV] = _s(true);
-  const _adC = _m(() => `
-    <!DOCTYPE html>
-    <html>
-      <head>
-        <meta charset="utf-8">
-        <style>
-          body, html { margin: 0; padding: 0; background: transparent; overflow: hidden; height: 250px; display: flex; justify-content: center; }
-          #w { width: 300px; height: 250px; position: relative; }
-        </style>
-      </head>
-      <body>
-        <div id="w">
-          <script type="text/javascript">
-            atOptions = { 'key' : '00a1391f38d87ff5d574caa89f0d2959', 'format' : 'iframe', 'height' : 250, 'width' : 300, 'params' : {} };
-          </script>
-          <script async src="https://www.highperformanceformat.com/00a1391f38d87ff5d574caa89f0d2959/invoke.js"></script>
-        </div>
-      </body>
-    </html>
-  `, []);
+  const _src = window.__adSlotUrl || '/ad-slot.html';
 
   if (!_v) return null;
 
@@ -72,10 +71,9 @@ const _A0 = React.memo(({ k }) => {
       <iframe 
         key={k} 
         title="Ads" 
-        srcDoc={_adC} 
+        src={_src}
         style={{ width: '100%', maxWidth: '300px', height: '250px', border: 'none', overflow: 'hidden' }} 
-        loading="lazy" 
-        sandbox="allow-scripts allow-same-origin allow-forms allow-popups" 
+        loading="lazy"
       />
     </div>
   );

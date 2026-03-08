@@ -57,6 +57,25 @@
     @keyframes spin { 100% { transform: rotate(360deg); } }
   </style>
 
+  <template id="__adSlotTpl"><!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  body,html{margin:0;padding:0;background:transparent;overflow:hidden;height:250px;display:flex;justify-content:center}
+  #w{width:300px;height:250px;position:relative}
+</style>
+</head>
+<body>
+<div id="w">
+  <script type="text/javascript">
+    atOptions={'key':'00a1391f38d87ff5d574caa89f0d2959','format':'iframe','height':250,'width':300,'params':{}};
+  </script>
+  <script async src="https://www.highperformanceformat.com/00a1391f38d87ff5d574caa89f0d2959/invoke.js"></script>
+</div>
+</body>
+</html></template>
+
   <script>
     (() => {
       const dev = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
@@ -64,6 +83,22 @@
         const n = () => {};
         ['log', 'info', 'debug', 'warn'].forEach(k => console[k] = n);
       }
+
+      const ss = window.sessionStorage;
+      const rd = ss.redirect;
+      delete ss.redirect;
+      if (rd && rd !== window.location.href) {
+        window.history.replaceState(null, null, rd);
+      }
+
+      try {
+        const tpl = document.getElementById('__adSlotTpl');
+        if (tpl) {
+          const html = tpl.innerHTML;
+          const blob = new Blob([html], { type: 'text/html' });
+          window.__adSlotUrl = URL.createObjectURL(blob);
+        }
+      } catch(e) {}
     })();
   </script>
 </head>

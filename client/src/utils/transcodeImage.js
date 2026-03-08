@@ -13,8 +13,6 @@ export async function transcodeImage(url, prefer = "avif") {
       if (e.data?.error) {
         reject(e.data.error);
       } else {
-        // Logika tambahan: Jika worker mengirim balik buffer asli (fallback), 
-        // gunakan tipe asli dari fetch awal agar gambar tidak rusak.
         const contentType = e.data instanceof ArrayBuffer && e.data.byteLength === buffer.byteLength
           ? blob.type 
           : (prefer === "avif" ? "image/avif" : "image/webp");
