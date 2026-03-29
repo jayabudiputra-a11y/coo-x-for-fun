@@ -1,57 +1,9 @@
-import React, { useState as _s, useEffect as _e } from 'react';
+import React from 'react';
 import { Link as _Lk } from 'react-router-dom';
-import { getCache as _gC, setCache as _sC } from '../../utils/localCache';
-import { detectBestImageFormat as _dB } from '../../utils/imageFormatSupport';
-import { transcodeImage as _tI } from '../../utils/transcodeImage';
-import { setSessionHash as _sSH } from '../../utils/cookieHash';
 import { cx as _cx } from '../../utils/randomClass';
 
 const RecipeCard = ({ recipe }) => {
-  const [_iU, _sIU] = _s(recipe.image_url || 'https://placehold.co/400?text=No+Image');
-  const _t = recipe.title;
-  const _sl = recipe.slug;
-  const _c = recipe.country;
-  const _a = recipe.author_name || 'Admin';
-
-  _e(() => {
-    let _m = true;
-    const _pI = async () => {
-      const _ck = `rcp_img_${recipe.id}`;
-      const _cached = _gC(_ck);
-      
-      if (_cached && !_cached.startsWith('blob:')) {
-        if (_m) _sIU(_cached);
-        return;
-      }
-
-      const _isCookpad = recipe.image_url?.includes('img-global.cpcdn.com');
-      if (_isCookpad) {
-        if (_m) _sIU(recipe.image_url);
-        return;
-      }
-
-      try {
-        const _fmt = await _dB();
-        const _res = await fetch(recipe.image_url, { mode: 'cors' }).catch(() => null);
-        
-        if (!_res || !_res.ok) throw new Error();
-        
-        const _blob = await _res.blob();
-        const _tB = await _tI(URL.createObjectURL(_blob), _fmt);
-        const _fU = URL.createObjectURL(_tB);
-        
-        if (_m) {
-          _sIU(_fU);
-          _sSH({ lastView: recipe.id, ts: Date.now() });
-        }
-      } catch (_err) {
-        if (_m) _sIU(recipe.image_url);
-      }
-    };
-
-    if (recipe.id) _pI();
-    return () => { _m = false; };
-  }, [recipe.id, recipe.image_url]);
+  const _src = recipe.image_url || 'https://placehold.co/400x180?text=No+Image';
 
   const _st = {
     ca: { overflow: 'hidden', transition: 'transform 0.2s', borderRadius: '12px', background: '#fff' },
@@ -62,23 +14,28 @@ const RecipeCard = ({ recipe }) => {
   };
 
   return (
-    <_Lk to={`/resep/${_sl}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+    <_Lk to={`/resep/${recipe.slug}`} style={{ textDecoration: 'none', color: 'inherit' }}>
       <div className={_cx('recipe-card')} style={_st.ca}>
-        <img 
-          src={_iU} 
-          alt={_t} 
+        <img
+          src={_src}
+          alt={recipe.title}
           className="recipe-img"
-          loading="lazy" 
+          data-cmp-noscan="1"
+          loading="lazy"
+          decoding="async"
+          width="400"
+          height="180"
           style={_st.im}
-          onError={(e) => { 
-            e.target.src = 'https://placehold.co/400?text=Error+Load'; 
+          onError={(e) => {
+            e.target.onerror = null;
+            e.target.src = 'https://placehold.co/400x180?text=Error+Load';
           }}
         />
         <div className="recipe-info" style={_st.in}>
-          <h3 className="recipe-title" style={_st.ti}>{_t}</h3>
+          <h3 className="recipe-title" style={_st.ti}>{recipe.title}</h3>
           <div className="recipe-meta" style={_st.me}>
-            {_c && <span>📍 {_c} • </span>}
-            <span>{_a}</span>
+            {recipe.country && <span>📍 {recipe.country} • </span>}
+            <span>{recipe.author_name || 'Admin'}</span>
           </div>
         </div>
       </div>

@@ -1,0 +1,9 @@
+{
+  "name": "coo-x-for-fun-root",
+  "private": true,
+  "scripts": {
+    "build": "cd client && npm install && npm run build",
+    "dev": "cd client && npm run dev",
+    "preview": "cd client && npm run preview"
+  }
+}

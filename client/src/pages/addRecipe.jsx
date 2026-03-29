@@ -3,6 +3,71 @@ import { supabase as Q } from '../supabaseClient';
 import { useNavigate as UN } from 'react-router-dom';
 import SEO from '../components/SEO/SEOHelper';
 
+// ─── IndexNow Configuration ───────────────────────────────────────────────────
+const _IN_KEY      = import.meta.env.VITE_INDEXNOW_KEY          || '';
+const _IN_HOST     = import.meta.env.VITE_SITE_HOST             || 'www.coo-x-for.fun';
+const _IN_KEY_LOC  = import.meta.env.VITE_INDEXNOW_KEY_LOCATION || `https://${_IN_HOST}/${_IN_KEY}.txt`;
+const _IN_ENDPOINT = 'https://api.indexnow.org/IndexNow';
+
+/**
+ * _submitNewRecipeIndexNow
+ * Submit URL resep yang baru saja dipublish ke Bing IndexNow API.
+ * Ini adalah momen paling kritis — URL baru = harus segera di-index.
+ * - Skip di localhost / dev.
+ * - Dedup via sessionStorage (prefix indexnow_add_ agar tidak konflik
+ *   dengan useRecipe "indexnow_submitted_" atau App.jsx "indexnow_app_").
+ *
+ * @param {string} slug  - slug resep yang baru dibuat
+ */
+const _submitNewRecipeIndexNow = async (slug) => {
+  try {
+    const _hn = window.location.hostname;
+    if (_hn === 'localhost' || _hn === '127.0.0.1') return;
+
+    if (!_IN_KEY) {
+      console.warn('[IndexNow] VITE_INDEXNOW_KEY tidak di-set. Submission dilewati.');
+      return;
+    }
+
+    // Prefix berbeda agar tidak bentrok dengan dedup di file lain
+    const _dedup = `indexnow_add_${slug}`;
+    if (sessionStorage.getItem(_dedup)) return;
+
+    const _targetUrl = `https://${_IN_HOST}/resep/${slug}`;
+
+    const _res = await fetch(_IN_ENDPOINT, {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json; charset=utf-8' },
+      body:    JSON.stringify({
+        host:        _IN_HOST,
+        key:         _IN_KEY,
+        keyLocation: _IN_KEY_LOC,
+        urlList:     [_targetUrl],
+      }),
+    });
+
+    if (_res.ok) {
+      sessionStorage.setItem(_dedup, '1');
+      console.info(`[IndexNow] New recipe submitted: ${_targetUrl} → HTTP ${_res.status}`);
+    } else {
+      const _map = {
+        400: 'Bad Request — format tidak valid.',
+        403: 'Forbidden — key tidak valid atau tidak ditemukan.',
+        422: 'Unprocessable Entity — URL tidak sesuai host atau key.',
+        429: 'Too Many Requests — terlalu banyak submission.',
+      };
+      console.warn(
+        `[IndexNow] Gagal submit new recipe ${_targetUrl}: HTTP ${_res.status} — ` +
+        (_map[_res.status] || 'Error tidak diketahui.')
+      );
+    }
+  } catch (_err) {
+    // Jangan crash flow utama jika IndexNow gagal
+    console.error('[IndexNow] Exception saat submit new recipe:', _err);
+  }
+};
+
+// ─── Component Utama (source asli dipertahankan penuh) ────────────────────────
 const AddRecipe = () => {
   const n0 = UN();
   const [l, sL] = S(false);
@@ -48,38 +113,50 @@ const AddRecipe = () => {
       const finalImageUrl = urlData.publicUrl;
 
       const cleanTitle = f0.t.trim();
-      
       const authorName = user.user_metadata.full_name || 'Chef Anonymous';
       const authorId = user.id;
+
+      // Siapkan steps_data sekaligus untuk disimpan di kolom recipes
+      const sA = f0.s.split('\n')
+        .map(line => line.replace(/^[\d\s.)\]-]+/g, '').trim())
+        .filter(line => line !== "")
+        .map((st, idx) => ({
+          step_number: idx + 1,
+          langkah_langkah_nya: st,
+          image_url: null
+        }));
 
       const { data: rD, error: rE } = await Q.from('recipes').insert([{
         title: cleanTitle,
         slug: gS(cleanTitle),
         description: f0.d,
         ingredients: f0.i.split('\n').filter(x => x.trim() !== ""),
+        steps_data: sA.length > 0 ? sA : null,
         country: f0.c,
         image_url: finalImageUrl,
-        author_name: authorName, 
-        user_id: authorId       
+        author_name: authorName,
+        user_id: authorId
       }]).select().single();
 
       if (rE) throw rE;
 
-      const sA = f0.s.split('\n')
-        .map(line => line.replace(/^[\d\s.)\]-]+/g, '').trim())
-        .filter(line => line !== "")
-        .map((st, idx) => ({
+      // Tetap simpan ke tabel steps untuk kompatibilitas
+      if (sA.length > 0) {
+        const stepsForTable = sA.map(s => ({
           recipe_title: cleanTitle,
-          step_number: idx + 1,
-          langkah_langkah_nya: st,
+          step_number: s.step_number,
+          langkah_langkah_nya: s.langkah_langkah_nya,
           author: authorName,
           image_url: null
         }));
-
-      if (sA.length > 0) {
-        const { error: sE } = await Q.from('steps').insert(sA);
-        if (sE) throw sE;
+        const { error: sE } = await Q.from('steps').insert(stepsForTable);
+        if (sE) console.warn("steps table insert warn:", sE.message);
       }
+
+      // ── IndexNow: submit URL resep baru ke Bing sebelum navigasi ──
+      // Ini fire-and-forget — tidak await agar UX tidak tertahan.
+      // Resep baru adalah URL fresh yang paling butuh segera di-index.
+      _submitNewRecipeIndexNow(rD.slug);
 
       alert("Resep Berhasil Terbit!");
       n0(`/resep/${rD.slug}`);

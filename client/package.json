@@ -4,11 +4,34 @@
   "version": "1.0.3",
   "description": "Rebuild SEO 2026",
   "type": "module",
+  "author": "Coo-X-For.Fun",
+  "license": "UNLICENSED",
+  "homepage": "https://www.coo-x-for.fun",
+  "keywords": [
+    "resep",
+    "kuliner",
+    "masakan",
+    "indonesia",
+    "food"
+  ],
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not op_mini all"
+  ],
   "scripts": {
     "dev": "vite",
-    "build": "vite build && node generate-seo.js && node -e \"require('fs').copyFileSync('public/robots.txt', 'dist/robots.txt')\"",
+    "build": "vite build && node generate-seo.js && node copy-robots.mjs",
+    "build:clean": "rm -rf dist && npm run build",
+    "submit": "node submit-indexnow.mjs",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "lint:fix": "eslint . --fix",
+    "preview": "vite preview",
+    "analyze": "vite build --mode analyze"
   },
   "dependencies": {
     "@jsquash/avif": "^2.1.1",

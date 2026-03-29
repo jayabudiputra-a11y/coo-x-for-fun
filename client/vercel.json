@@ -1,10 +1,110 @@
 {
   "version": 2,
-  "cleanUrls": true,
-  "trailingSlash": false,
+  "public": true,
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "coo-x-for.fun" }],
+      "destination": "https://www.coo-x-for.fun/$1",
+      "permanent": true
+    }
+  ],
+  "headers": [
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    },
+    {
+      "source": "/sitemap.xml",
+      "headers": [
+        { "key": "Content-Type", "value": "application/xml; charset=utf-8" },
+        { "key": "Cache-Control", "value": "public, max-age=3600" }
+      ]
+    },
+    {
+      "source": "/recipe-sitemap.xml",
+      "headers": [
+        { "key": "Content-Type", "value": "application/xml; charset=utf-8" },
+        { "key": "Cache-Control", "value": "public, max-age=3600" }
+      ]
+    },
+    {
+      "source": "/blog-sitemap.xml",
+      "headers": [
+        { "key": "Content-Type", "value": "application/xml; charset=utf-8" },
+        { "key": "Cache-Control", "value": "public, max-age=3600" }
+      ]
+    },
+    {
+      "source": "/sitemap-index.xml",
+      "headers": [
+        { "key": "Content-Type", "value": "application/xml; charset=utf-8" },
+        { "key": "Cache-Control", "value": "public, max-age=3600" }
+      ]
+    },
+    {
+      "source": "/rss/index.xml",
+      "headers": [
+        { "key": "Content-Type", "value": "application/rss+xml; charset=utf-8" },
+        { "key": "Cache-Control", "value": "public, max-age=3600" }
+      ]
+    },
+    {
+      "source": "/robots.txt",
+      "headers": [
+        { "key": "Content-Type", "value": "text/plain; charset=utf-8" }
+      ]
+    },
+    {
+      "source": "/(.*\\.svg|.*\\.png|.*\\.ico|.*\\.webp|.*\\.jpg|.*\\.jpeg)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=604800, stale-while-revalidate=2592000" }
+      ]
+    },
+    {
+      "source": "/resep/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=3600, stale-while-revalidate=86400" },
+        { "key": "X-Content-Type-Options", "value": "nosniff" }
+      ]
+    },
+    {
+      "source": "/blog/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=3600, stale-while-revalidate=86400" },
+        { "key": "X-Content-Type-Options", "value": "nosniff" }
+      ]
+    },
+    {
+      "source": "/6b44359f0a0b4023851f06ee900053b6.txt",
+      "headers": [
+        { "key": "Content-Type", "value": "text/plain; charset=utf-8" },
+        { "key": "Cache-Control", "value": "public, max-age=86400" }
+      ]
+    }
+  ],
   "rewrites": [
-    { "source": "/robots.txt", "destination": "/robots.txt" },
-    { "source": "/sitemap.xml", "destination": "/sitemap.xml" },
-    { "source": "/((?!api/|.*\\..*).*)", "destination": "/index.html" }
+    { "source": "/llms.txt",                                        "destination": "/llms.txt" },
+    { "source": "/sw.js",                                           "destination": "/sw.js" },
+    { "source": "/workbox-:hash.js",                                "destination": "/workbox-:hash.js" },
+    { "source": "/manifest.json",                                   "destination": "/manifest.json" },
+    { "source": "/robots.txt",                                      "destination": "/robots.txt" },
+    { "source": "/sitemap.xml",                                     "destination": "/sitemap.xml" },
+    { "source": "/recipe-sitemap.xml",                              "destination": "/recipe-sitemap.xml" },
+    { "source": "/blog-sitemap.xml",                                "destination": "/blog-sitemap.xml" },
+    { "source": "/sitemap-index.xml",                               "destination": "/sitemap-index.xml" },
+    { "source": "/favicon.ico",                                     "destination": "/favicon.ico" },
+    { "source": "/logo.svg",                                        "destination": "/logo.svg" },
+    { "source": "/Og-Icon-Coo-X-For-Fun.svg",                      "destination": "/Og-Icon-Coo-X-For-Fun.svg" },
+    { "source": "/121x121-icon-coo-x-for-fun--.png",               "destination": "/121x121-icon-coo-x-for-fun--.png" },
+    { "source": "/6b44359f0a0b4023851f06ee900053b6.txt",           "destination": "/6b44359f0a0b4023851f06ee900053b6.txt" },
+    {
+      "source": "/((?!api/|assets/|rss/|.*\\..*).*)",
+      "destination": "/index.html"
+    }
   ]
 }

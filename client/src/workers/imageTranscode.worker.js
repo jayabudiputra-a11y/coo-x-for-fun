@@ -1,7 +1,6 @@
 import avifWasmUrl from "@jsquash/avif/codec/enc/avif_enc.wasm?url";
 import webpWasmUrl from "@jsquash/webp/codec/enc/webp_enc.wasm?url";
 
-// PERBAIKAN: Import langsung dari sub-path /encode
 import encodeAvif, { init as initAvif } from "@jsquash/avif/encode";
 import encodeWebp, { init as initWebp } from "@jsquash/webp/encode";
 
@@ -14,7 +13,6 @@ const _initAvif = async () => {
     const wasmRes = await fetch(avifWasmUrl);
     if (!wasmRes.ok) throw new Error("avif wasm fetch failed");
     const wasmBuf = await wasmRes.arrayBuffer();
-    // Inisialisasi dengan buffer WASM
     await initAvif(wasmBuf);
     _avifReady = true;
     return true;
@@ -41,9 +39,10 @@ const _initWebp = async () => {
 
 self.onmessage = async (e) => {
   try {
-    // Pastikan e.data berisi ImageData (yang punya property .data, .width, .height)
-    // Jika imageBuffer masih berupa ArrayBuffer mentah, Anda perlu me-decode-nya dulu
-    const { imageBuffer, type, quality = 0.8 } = e.data;
+    const { imageBuffer, type, quality = 0.35 } = e.data;
+
+    const _q = Math.min(quality, 0.5);
+
     let result;
 
     if (type === "avif") {
@@ -52,16 +51,15 @@ self.onmessage = async (e) => {
         self.postMessage(imageBuffer, [imageBuffer]);
         return;
       }
-      // jSquash encode biasanya menerima ImageData object
       result = await encodeAvif(imageBuffer, {
-        quality: Math.round(quality * 100)
+        quality: Math.round(_q * 100)
       });
     } else {
       try {
         const ok = await _initWebp();
         if (!ok) throw new Error("webp init failed");
         result = await encodeWebp(imageBuffer, {
-          quality: Math.round(quality * 100)
+          quality: Math.round(_q * 100)
         });
       } catch (webpErr) {
         self.postMessage(imageBuffer, [imageBuffer]);

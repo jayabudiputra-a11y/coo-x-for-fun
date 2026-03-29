@@ -3,20 +3,20 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "commonjs",
   "scripts": {
-  "start": "node index.js",
-  "dev": "nodemon index.js",
-  "build": "vite build && node generate-seo.js && node -e \"require('fs').copyFileSync('public/robots.txt', 'dist/robots.txt')\""},
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "submit": "cd client && node submit-indexnow.mjs"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
   "dependencies": {
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.6",
     "dotenv": "^17.2.3",
     "express": "^5.2.1",
-    "framer-motion": "^12.29.2",
     "helmet": "^8.1.0",
     "rss": "^1.2.2",
     "supabase-js": "^0.0.1-security"

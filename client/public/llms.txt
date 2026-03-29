@@ -1,0 +1,29 @@
+# Coo-X-For.Fun
+
+> Platform resep masakan harian dan inspirasi kuliner dunia untuk keluarga Indonesia.
+
+Coo-X-For.Fun adalah situs web kuliner berbahasa Indonesia yang menyediakan resep masakan lengkap, review tempat makan jujur, dan inspirasi memasak dari berbagai penjuru dunia.
+
+## Konten Utama
+
+- [Beranda](https://www.coo-x-for.fun/): Resep terbaru dan postingan kuliner pilihan
+- [Cari Resep](https://www.coo-x-for.fun/search): Pencarian resep berdasarkan nama, bahan, atau negara asal
+- [Jurnal Kuliner](https://www.coo-x-for.fun/blog): Review makanan dan tempat makan jujur
+
+## Tentang Situs
+
+- Bahasa: Indonesia (id-ID)
+- Topik: Resep masakan, kuliner nusantara, kuliner internasional, review makanan
+- Target audiens: Keluarga Indonesia yang ingin memasak di rumah
+- Lokasi: Indonesia
+
+## Data & API
+
+- Sitemap: https://www.coo-x-for.fun/sitemap.xml
+- RSS Feed: https://www.coo-x-for.fun/rss/index.xml
+- Robots: https://www.coo-x-for.fun/robots.txt
+
+## Kebijakan
+
+- [Kebijakan Privasi](https://www.coo-x-for.fun/privacy)
+- [Syarat Layanan](https://www.coo-x-for.fun/terms)

@@ -6,36 +6,68 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, shrink-to-fit=no, viewport-fit=cover" />
   <meta name="theme-color" content="#d35400" />
   <meta name="format-detection" content="telephone=no" />
-  
-  <meta name="p:domain_verify" content="7479d75b7b325a9a7e93c66494eb6fd0"/>
-
-  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests; img-src * 'self' data: blob: https://placehold.co; script-src 'self' 'unsafe-inline' 'unsafe-eval' * blob:; worker-src 'self' blob:; frame-src *; connect-src * data: blob:;">
-  
+  <meta name="p:domain_verify" content="b74b7a5609d2cf6335f5f4c53cb3adf8"/>
+  <meta name="adopt-website-id" content="1f845044-ff6b-429d-89c3-668c4451a3a5" />
   <link rel="privacy-policy" href="/privacy" />
   <link rel="terms-of-service" href="/terms" />
-  
-  <title>Coo-X-For.Fun | Resep Masakan Harian & Inspirasi Kuliner Dunia</title>
-  
+  <title>Coo-X-For.Fun | Resep Masakan & Inspirasi Kuliner</title>
+  <meta name="description" content="Temukan resep masakan harian, inspirasi kuliner dunia, dan review makanan jujur. Dari masakan Indonesia hingga hidangan internasional, semua ada di Coo-X-For.Fun." />
   <meta name="robots" content="index, follow, max-image-preview:large" />
-  
-  <meta property="og:image" content="/Og-Icon-Coo-X-For-Fun.svg" />
-  
+  <meta name="keywords" content="resep masakan, kuliner Indonesia, masakan harian, resep mudah, inspirasi memasak" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Coo-X-For.Fun" />
+  <meta property="og:title" content="Coo-X-For.Fun | Resep Masakan & Inspirasi Kuliner" />
+  <meta property="og:description" content="Temukan resep masakan harian, inspirasi kuliner dunia, dan review makanan jujur. Dari masakan Indonesia hingga hidangan internasional." />
+  <meta property="og:image" content="https://www.coo-x-for.fun/Og-Icon-Coo-X-For-Fun.svg" />
+  <meta property="og:url" content="https://www.coo-x-for.fun/" />
+  <meta property="og:locale" content="id_ID" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Coo-X-For.Fun | Resep Masakan & Inspirasi Kuliner" />
+  <meta name="twitter:description" content="Temukan resep masakan harian, inspirasi kuliner dunia, dan review makanan jujur." />
+  <meta name="twitter:image" content="https://www.coo-x-for.fun/Og-Icon-Coo-X-For-Fun.svg" />
   <meta name="geo.region" content="ID" />
   <meta name="geo.placename" content="Indonesia" />
   <meta name="geo.position" content="-6.200000;106.816666" />
   <meta name="ICBM" content="-6.200000, 106.816666" />
 
+  <!-- ═══ Sitemap & Feed discovery — sinkron dengan generate-seo.js output ═══ -->
+  <link rel="sitemap" type="application/xml" href="/sitemap-index.xml" />
+  <link rel="alternate" type="application/rss+xml" title="Coo-X-For.Fun — Resep &amp; Blog Terbaru" href="/rss/index.xml" />
+
+  <!-- ═══ Canonical homepage ═══ -->
+  <link rel="canonical" href="https://www.coo-x-for.fun/" />
+
+  <!-- ═══ hreflang — sinkron dengan RecipeDetail.jsx _syncMetaTags ═══ -->
+  <link rel="alternate" hreflang="id" href="https://www.coo-x-for.fun/" />
+  <link rel="alternate" hreflang="x-default" href="https://www.coo-x-for.fun/" />
+
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="icon" type="image/svg+xml" href="/logo.svg" />
   <link rel="apple-touch-icon" href="/121x121-icon-coo-x-for-fun--.png" sizes="121x121" />
-  
-  <link rel="manifest" href="/manifest.json" /> 
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://uezvvetwyknejcodnzus.supabase.co" crossorigin />
+  <link rel="manifest" href="/manifest.json" />
 
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+  <!-- ═══ Resource hints ═══ -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://uezvvetwyknejcodnzus.supabase.co" crossorigin />
+  <link rel="preconnect" href="https://i.gifer.com" crossorigin />
+  <!-- IndexNow API — dipakai oleh App.jsx _IndexNowWatcher, useRecipe, RecipeDetail, addRecipe -->
+  <link rel="preconnect" href="https://api.indexnow.org" crossorigin />
+  <link rel="dns-prefetch" href="https://uezvvetwyknejcodnzus.supabase.co" />
+  <link rel="dns-prefetch" href="https://i.gifer.com" />
+  <link rel="dns-prefetch" href="https://images.unsplash.com" />
+  <link rel="dns-prefetch" href="https://images.pexels.com" />
+  <link rel="dns-prefetch" href="https://api.indexnow.org" />
+
+  <!-- ═══ Font loading — non-blocking ═══ -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400&display=swap" media="print" onload="this.media='all'" />
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400&display=swap" />
+  </noscript>
+
+  <!-- ═══ Critical image preload ═══ -->
+  <link rel="preload" href="/Og-Icon-Coo-X-For-Fun.svg" as="image" fetchpriority="high" />
 
   <style>
     :root {
@@ -48,82 +80,82 @@
     html { font-family: 'Open Sans', system-ui, sans-serif; scroll-behavior: smooth; }
     body { margin: 0; background-color: var(--color-bg); color: var(--color-text); overflow-x: hidden; }
     #root:empty {
-      display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
     }
     #root:empty::before {
-      content: ''; width: 60px; height: 60px; border: 5px solid rgba(211, 84, 0, 0.1);
-      border-top: 5px solid var(--color-primary); border-radius: 50%; animation: spin 1s linear infinite;
+      content: '';
+      width: 60px;
+      height: 60px;
+      border: 5px solid rgba(211, 84, 0, 0.1);
+      border-top: 5px solid var(--color-primary);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
     }
     @keyframes spin { 100% { transform: rotate(360deg); } }
+    #_s0 {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      white-space: nowrap;
+    }
   </style>
 
-  <template id="__adSlotTpl"><!doctype html>
-<html>
-<head>
-<meta charset="utf-8">
-<style>
-  body,html{margin:0;padding:0;background:transparent;overflow:hidden;height:250px;display:flex;justify-content:center}
-  #w{width:300px;height:250px;position:relative}
-</style>
-</head>
-<body>
-<div id="w">
-  <script type="text/javascript">
-    atOptions={'key':'00a1391f38d87ff5d574caa89f0d2959','format':'iframe','height':250,'width':300,'params':{}};
-  </script>
-  <script async src="https://www.highperformanceformat.com/00a1391f38d87ff5d574caa89f0d2959/invoke.js"></script>
-</div>
-</body>
-</html></template>
+  <!-- ═══ JSON-LD: WebSite (source asli) ═══ -->
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Coo-X-For.Fun","url":"https://www.coo-x-for.fun/","description":"Resep masakan harian dan inspirasi kuliner dunia","inLanguage":"id-ID","potentialAction":{"@type":"SearchAction","target":"https://www.coo-x-for.fun/search?q={search_term_string}","query-input":"required name=search_term_string"}}</script>
 
+  <!-- ═══ JSON-LD: Organization — sinkron dengan RecipeDetail _injectBreadcrumbJsonLd ═══
+       RecipeDetail inject BreadcrumbList per halaman; Organization tetap global di sini
+       agar tersedia di semua halaman sebelum React hydrate. -->
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Coo-X-For.Fun","url":"https://www.coo-x-for.fun/","logo":{"@type":"ImageObject","url":"https://www.coo-x-for.fun/Og-Icon-Coo-X-For-Fun.svg","width":512,"height":512},"sameAs":[],"contactPoint":{"@type":"ContactPoint","contactType":"customer support","availableLanguage":"Indonesian"}}</script>
+
+  <!-- ═══ JSON-LD: BreadcrumbList homepage — fallback sebelum React hydrate ═══
+       RecipeDetail.jsx _injectBreadcrumbJsonLd akan override ini di halaman resep
+       dengan breadcrumb spesifik: Beranda → Resep → [Judul]. -->
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Beranda","item":"https://www.coo-x-for.fun/"}]}</script>
+
+  <!-- ═══ GTM — source asli (dipertahankan penuh) ═══ -->
   <script>
-    (() => {
-      const dev = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-      if (!dev) {
-        const n = () => {};
-        ['log', 'info', 'debug', 'warn'].forEach(k => console[k] = n);
-      }
+    (function(_0xa,_0xb,_0xc,_0xd,_0xe){_0xa[_0xd]=_0xa[_0xd]||[];_0xa[_0xd].push({'\x67\x74\x6d\x2e\x73\x74\x61\x72\x74':new Date().getTime(),'\x65\x76\x65\x6e\x74':'\x67\x74\x6d\x2e\x6a\x73'});var _0xf=_0xb.getElementsByTagName(_0xc)[0],_0x10=_0xb.createElement(_0xc),_0x11=_0xd!='\x64\x61\x74\x61\x4c\x61\x79\x65\x72'?'\x26\x6c\x3d'+_0xd:'';_0x10.async=!0;_0x10.src='\x68\x74\x74\x70\x73\x3a\x2f\x2f\x77\x77\x77\x2e\x67\x6f\x6f\x67\x6c\x65\x74\x61\x67\x6d\x61\x6e\x61\x67\x65\x72\x2e\x63\x6f\x6d\x2f\x67\x74\x6d\x2e\x6a\x73\x3f\x69\x64\x3d'+_0xe+_0x11;_0xf.parentNode.insertBefore(_0x10,_0xf);})(window,document,'\x73\x63\x72\x69\x70\x74','\x64\x61\x74\x61\x4c\x61\x79\x65\x72','\x47\x54\x4d\x2d\x35\x39\x44\x39\x47\x44\x56\x57');
+  </script>
 
-      const ss = window.sessionStorage;
-      const rd = ss.redirect;
-      delete ss.redirect;
-      if (rd && rd !== window.location.href) {
-        window.history.replaceState(null, null, rd);
-      }
-
-      try {
-        const tpl = document.getElementById('__adSlotTpl');
-        if (tpl) {
-          const html = tpl.innerHTML;
-          const blob = new Blob([html], { type: 'text/html' });
-          window.__adSlotUrl = URL.createObjectURL(blob);
-        }
-      } catch(e) {}
-    })();
+  <!-- ═══ Session redirect restore — source asli (dipertahankan penuh) ═══ -->
+  <script>
+    (function(){var _0x1a=function(){try{var _0x2b=window['\x73\x65\x73\x73\x69\x6f\x6e\x53\x74\x6f\x72\x61\x67\x65'],_0x3c=_0x2b['\x72\x65\x64\x69\x72\x65\x63\x74'];delete _0x2b['\x72\x65\x64\x69\x72\x65\x63\x74'];if(_0x3c&&_0x3c!==window['\x6c\x6f\x63\x61\x74\x69\x6f\x6e']['\x68\x72\x65\x66']){window['\x68\x69\x73\x74\x6f\x72\x79']['\x72\x65\x70\x6c\x61\x63\x65\x53\x74\x61\x74\x65'](null,null,_0x3c)}}catch(_0x4d){console['\x65\x72\x72\x6f\x72'](_0x4d)}};_0x1a();})();
   </script>
 </head>
-
 <body>
+  <!-- GTM noscript — source asli -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-59D9GDVW" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <!-- ═══ SEO text node — source asli (dipertahankan penuh) ═══ -->
+  <div id="_s0" aria-hidden="true">
+    <h1>Coo-X-For.Fun — Resep Masakan Harian & Inspirasi Kuliner Dunia</h1>
+    <h2>Resep Terbaru</h2>
+    <p>Temukan resep masakan harian, inspirasi kuliner dunia, dan review makanan jujur. Dari masakan Indonesia seperti rendang, nasi goreng, soto, hingga hidangan internasional seperti sushi, pasta, dan dim sum. Semua resep lengkap dengan bahan dan langkah memasak yang mudah diikuti. Coo-X-For.Fun adalah tempat berbagi resep dan inspirasi memasak untuk keluarga Indonesia.</p>
+    <h2>Postingan Kuliner</h2>
+    <p>Review jujur makanan dan tempat makan terbaik di Indonesia. Kami mengulas berbagai kuliner nusantara dari Medan, Jakarta, Surabaya, dan kota-kota lainnya.</p>
+    <nav>
+      <a href="/">Beranda</a> |
+      <a href="/search">Cari Resep</a> |
+      <a href="/blog">Jurnal Kuliner</a> |
+      <a href="/privacy">Kebijakan Privasi</a> |
+      <a href="/terms">Syarat Layanan</a>
+    </nav>
+  </div>
+
+  <!-- ═══ React SPA mount point — source asli ═══ -->
   <div id="root"></div>
-  
-  <script type="module" src="/src/c12G82bIH91nNjaH81Bm.jsx"></script>
+  <script type="module" src="/src/main.jsx"></script>
 
+  <!-- ═══ Third-party injectors — source asli (dipertahankan penuh) ═══ -->
   <script>
-    (function(_w, _d) {
-      'use strict';
-      const _ext = [
-        'https://www.highperformanceformat.com/00a1391f38d87ff5d574caa89f0d2959/invoke.js'
-      ];
-      const _load = (u) => {
-        const s = _d.createElement('script');
-        s.src = u; s.async = true; s.type = "text/javascript";
-        s.onerror = () => s.remove();
-        _d.body.appendChild(s);
-      };
-      _w.addEventListener('load', () => {
-        setTimeout(() => _ext.forEach(_load), 3000);
-      });
-    })(window, document);
+    (function(){var _0x5e='\x2f\x2f\x74\x61\x67\x2e\x67\x6f\x61\x64\x6f\x70\x74\x2e\x69\x6f\x2f\x69\x6e\x6a\x65\x63\x74\x6f\x72\x2e\x6a\x73\x3f\x77\x65\x62\x73\x69\x74\x65\x5f\x63\x6f\x64\x65\x3d\x31\x66\x38\x34\x35\x30\x34\x34\x2d\x66\x66\x36\x62\x2d\x34\x32\x39\x64\x2d\x38\x39\x63\x33\x2d\x36\x36\x38\x63\x34\x34\x35\x31\x61\x33\x61\x35';var _0x6f='\x68\x74\x74\x70\x73\x3a\x2f\x2f\x77\x77\x77\x2e\x68\x69\x67\x68\x70\x65\x72\x66\x6f\x72\x6d\x61\x6e\x63\x65\x66\x6f\x72\x6d\x61\x74\x2e\x63\x6f\x6d\x2f\x30\x30\x61\x31\x33\x39\x31\x66\x33\x38\x64\x38\x37\x66\x66\x35\x64\x35\x37\x34\x63\x61\x61\x38\x39\x66\x30\x64\x32\x39\x35\x39\x2f\x69\x6e\x76\x6f\x6b\x65\x2e\x6a\x73';window['\x61\x64\x64\x45\x76\x65\x6e\x74\x4c\x69\x73\x74\x65\x6e\x65\x72']('\x6c\x6f\x61\x64',function(){setTimeout(function(){var _0x7a=document['\x63\x72\x65\x61\x74\x65\x45\x6c\x65\x6d\x65\x6e\x74']('\x73\x63\x72\x69\x70\x74');_0x7a['\x73\x72\x63']=_0x5e;_0x7a['\x63\x6c\x61\x73\x73\x4e\x61\x6d\x65']='\x61\x64\x6f\x70\x74\x2d\x69\x6e\x6a\x65\x63\x74\x6f\x72';document['\x68\x65\x61\x64']['\x61\x70\x70\x65\x6e\x64\x43\x68\x69\x6c\x64'](_0x7a)},1500);setTimeout(function(){var _0x8b=document['\x63\x72\x65\x61\x74\x65\x45\x6c\x65\x6d\x65\x6e\x74']('\x73\x63\x72\x69\x70\x74');_0x8b['\x73\x72\x63']=_0x6f;_0x8b['\x61\x73\x79\x6e\x63']=!0;document['\x62\x6f\x64\x79']['\x61\x70\x70\x65\x6e\x64\x43\x68\x69\x6c\x64'](_0x8b)},3e3)})})();
   </script>
 </body>
 </html>

@@ -1,0 +1,116 @@
+> [debug] [2026-03-15T16:08:50.732Z] Found config in file "D:\projects\coo-x-for-fun\client\vercel.json"
+Vercel CLI 50.13.2
+> [debug] [2026-03-15T16:08:50.739Z] user supplied a possible target for deployment or an extension
+> [debug] [2026-03-15T16:08:50.751Z] failed to find extension command with name "vercel---prod"
+> [debug] [2026-03-15T16:08:50.772Z] Setting target to production
+> [debug] [2026-03-15T16:08:50.828Z] Found git root via "git rev-parse --show-toplevel" - detected "D:/projects/coo-x-for-fun" as repo root
+> [debug] [2026-03-15T16:08:50.857Z] Spinner invoked (Retrieving projectΓÇª) with a 1000ms delay
+> [debug] [2026-03-15T16:08:50.858Z] Valid access token, skipping token refresh.
+> [debug] [2026-03-15T16:08:50.858Z] Valid access token, skipping token refresh.
+> [debug] [2026-03-15T16:08:50.871Z] #1 ΓåÆ GET https://api.vercel.com/teams/team_CUTAmeLhSeZual5Hdq6uttIb?teamId=team_CUTAmeLhSeZual5Hdq6uttIb
+> [debug] [2026-03-15T16:08:50.873Z] #2 ΓåÆ GET https://api.vercel.com/v9/projects/prj_JG9PbXGu59S9ymz51VWI1lvnBVvA?teamId=team_CUTAmeLhSeZual5Hdq6uttIb
+> [debug] [2026-03-15T16:08:51.604Z] #1 ΓåÉ 200 OK: sfo1::n5scp-1773590929037-1fe5c6dc7199 [732ms]
+> [debug] [2026-03-15T16:08:51.618Z] #2 ΓåÉ 200 OK: sfo1::qdcx7-1773590929029-0f7d41fc083d [745ms]
+> [debug] [2026-03-15T16:08:51.619Z] Error while parsing repo data: ENOENT: no such file or directory, open 'D:\projects\coo-x-for-fun\client\.git\config'
+> [debug] [2026-03-15T16:08:51.761Z] Spinner invoked (Deploying jayabudiputra-a11ys-projects/client) with a 0ms delay
+[client-debug] 2026-03-15T16:08:51.761Z Creating deployment...
+[client-debug] 2026-03-15T16:08:51.762Z Provided 'path' is a directory.
+[client-debug] 2026-03-15T16:08:51.763Z Found 26 rules in .vercelignore
+[client-debug] 2026-03-15T16:08:51.763Z Building file tree...
+[client-debug] 2026-03-15T16:08:51.767Z Found 62 files in the specified directory
+[client-debug] 2026-03-15T16:08:51.771Z Yielding a 'hashes-calculated' event with 60 hashes
+> [debug] [2026-03-15T16:08:51.771Z] Valid access token, skipping token refresh.
+> [debug] [2026-03-15T16:08:51.772Z] #3 ΓåÆ GET https://api.vercel.com/v9/projects/client?teamId=team_CUTAmeLhSeZual5Hdq6uttIb
+> [debug] [2026-03-15T16:08:52.078Z] #3 ΓåÉ 200 OK: sfo1::srhgw-1773590929470-b151779912b7 [306ms]
+[client-debug] 2026-03-15T16:08:52.079Z Using provided API URL: https://api.vercel.com
+[client-debug] 2026-03-15T16:08:52.079Z Using provided user agent: vercel 50.13.2 node-v24.11.1 win32 (x64)
+[client-debug] 2026-03-15T16:08:52.079Z Setting platform version to harcoded value 2
+[client-debug] 2026-03-15T16:08:52.079Z Creating the deployment and starting upload...
+[client-debug] 2026-03-15T16:08:52.079Z Determining necessary files for upload...
+[client-debug] 2026-03-15T16:08:52.079Z Creating deployment
+[client-debug] 2026-03-15T16:08:52.080Z Sending deployment creation API request
+[client-debug] 2026-03-15T16:08:52.389Z Deployment response: {"error":{"code":"missing_files","message":"Missing files","missing":["50363895dbe7bd4f42ca8605d7784c39085ab606"]}}
+[client-debug] 2026-03-15T16:08:52.389Z Error: Deployment request status is 400
+[client-debug] 2026-03-15T16:08:52.389Z 1 files are required to upload
+[client-debug] 2026-03-15T16:08:52.389Z Yielding a 'file-count' event
+> [debug] [2026-03-15T16:08:52.389Z] Total files 60, 1 changed
+> [debug] [2026-03-15T16:08:52.390Z] Spinner invoked (Uploading [--------------------] (0.0B/1.9KB)) with a 0ms delay
+[client-debug] 2026-03-15T16:08:52.390Z Building an upload list...
+[client-debug] 2026-03-15T16:08:52.390Z Starting upload
+[client-debug] 2026-03-15T16:08:52.391Z POST https://api.vercel.com/v2/files?teamId=team_CUTAmeLhSeZual5Hdq6uttIb
+> [debug] [2026-03-15T16:08:52.392Z] Spinner invoked (Uploading [====================] (1.9KB/1.9KB)) with a 0ms delay
+[client-debug] 2026-03-15T16:08:52.748Z DONE in 357ms: POST https://api.vercel.com/v2/files?teamId=team_CUTAmeLhSeZual5Hdq6uttIb
+[client-debug] 2026-03-15T16:08:52.748Z File 50363895dbe7bd4f42ca8605d7784c39085ab606 (D:\projects\coo-x-for-fun\client\build-log.txt) uploaded
+[client-debug] 2026-03-15T16:08:52.748Z Yielding a 'file-uploaded' event
+> [debug] [2026-03-15T16:08:52.748Z] Uploaded: D:\projects\coo-x-for-fun\client\build-log.txt (1.89KB)
+[client-debug] 2026-03-15T16:08:52.748Z All files uploaded
+[client-debug] 2026-03-15T16:08:52.748Z Yielding a 'all-files-uploaded' event
+[client-debug] 2026-03-15T16:08:52.748Z Starting deployment creation
+[client-debug] 2026-03-15T16:08:52.748Z Creating deployment
+[client-debug] 2026-03-15T16:08:52.748Z Sending deployment creation API request
+[client-debug] 2026-03-15T16:08:53.900Z Deployment response: {"alias":["client-jayabudiputra-a11ys-projects.vercel.app","client-jayabudiputra-a11y-jayabudiputra-a11ys-projects.vercel.app"],"aliasAssigned":false,"automaticAliases":["client-jayabudiputra-a11ys-projects.vercel.app","client-jayabudiputra-a11y-jayabudiputra-a11ys-projects.vercel.app"],"bootedAt":1773590930799,"buildingAt":1773590930799,"buildSkipped":false,"createdAt":1773590930799,"creator":{"uid":"M2L5v3DWv0GC9ALljDkZlXa6","username":"jayabudiputra-a11y"},"id":"dpl_5iNuuxrW8T7hrY8S46PKkgwXpKbU","name":"client","meta":{"gitCommitAuthorName":"Budi Putra Jaya","gitCommitAuthorEmail":"jayabudiputra@gmail.com","gitCommitMessage":"fix: correct jSquash imports for vite build","gitCommitRef":"main","gitCommitSha":"b00964cb843c6f02f281db337de6e59c90f4c86e","gitDirty":"1"},"originCacheRegion":"iad1","project":{"id":"prj_JG9PbXGu59S9ymz51VWI1lvnBVvA","name":"client","framework":"vite"},"public":true,"readyState":"INITIALIZING","regions":["iad1"],"source":"cli","status":"INITIALIZING","target":"production","team":{"id":"team_CUTAmeLhSeZual5Hdq6uttIb","name":"jayabudiputra-a11y's projects","slug":"jayabudiputra-a11ys-projects"},"type":"LAMBDAS","url":"client-5qngs0iux-jayabudiputra-a11ys-projects.vercel.app","version":2,"previewCommentsEnabled":true,"oidcTokenClaims":{"sub":"owner:jayabudiputra-a11ys-projects:project:client:environment:production","iss":"https://oidc.vercel.com/jayabudiputra-a11ys-projects","scope":"owner:jayabudiputra-a11ys-projects:project:client:environment:production","aud":"https://vercel.com/jayabudiputra-a11ys-projects","owner":"jayabudiputra-a11ys-projects","owner_id":"team_CUTAmeLhSeZual5Hdq6uttIb","project":"client","project_id":"prj_JG9PbXGu59S9ymz51VWI1lvnBVvA","environment":"production","plan":"hobby"},"lambdas":[{"id":"bld_e2gnh0mnq","createdAt":1773590931023,"entrypoint":".","readyState":"READY","readyStateAt":1773590931023,"output":[]}],"aliasAssignedAt":null,"build":{"env":[]},"builds":[],"createdIn":"sfo1","env":[],"functions":null,"inspectorUrl":"https://vercel.com/jayabudiputra-a11ys-projects/client/5iNuuxrW8T7hrY8S46PKkgwXpKbU","isInConcurrentBuildsQueue":false,"isInSystemBuildsQueue":true,"ownerId":"team_CUTAmeLhSeZual5Hdq6uttIb","plan":"hobby","projectId":"prj_JG9PbXGu59S9ymz51VWI1lvnBVvA","projectSettings":{"buildCommand":"npm run build","devCommand":null,"framework":"vite","commandForIgnoringBuildStep":null,"installCommand":null,"outputDirectory":"dist","speedInsights":{"id":"eeV1ZHxyfryQOYJeaanG69Psp60","hasData":false},"webAnalytics":{"id":"SGJWYITRL0RtMXJSGvEG1JO7Z"},"nodeVersion":"24.x"},"routes":[{"handle":"filesystem"},{"src":"^/sw\\.js$","dest":"/sw.js","check":true},{"src":"^/workbox-([^/]+?)\\.js$","dest":"/workbox-$1.js","check":true},{"src":"^/manifest\\.json$","dest":"/manifest.json","check":true},{"src":"^/robots\\.txt$","dest":"/robots.txt","check":true},{"src":"^/sitemap\\.xml$","dest":"/sitemap.xml","check":true},{"src":"^/favicon\\.ico$","dest":"/favicon.ico","check":true},{"src":"^/logo\\.svg$","dest":"/logo.svg","check":true},{"src":"^/Og-Icon-Coo-X-For-Fun\\.svg$","dest":"/Og-Icon-Coo-X-For-Fun.svg","check":true},{"src":"^/121x121-icon-coo-x-for-fun--\\.png$","dest":"/121x121-icon-coo-x-for-fun--.png","check":true},{"src":"^(?:/((?!api/).*))$","dest":"/index.html","check":true}],"config":{"version":1,"secureComputePrimaryRegion":null,"secureComputeFallbackRegion":null,"functionTimeout":300,"functionType":"fluid","functionMemoryType":"standard","isUsingActiveCPU":true,"resourceConfig":{"buildQueue":{"configuration":"SKIP_NAMESPACE_QUEUE"}}}}
+[client-debug] 2026-03-15T16:08:53.900Z Deployment created
+[client-debug] 2026-03-15T16:08:53.900Z Yielding a 'created' event
+Inspect: https://vercel.com/jayabudiputra-a11ys-projects/client/5iNuuxrW8T7hrY8S46PKkgwXpKbU [2s]
+Production: https://client-5qngs0iux-jayabudiputra-a11ys-projects.vercel.app [2s]
+> [debug] [2026-03-15T16:08:53.901Z] Valid access token, skipping token refresh.
+> [debug] [2026-03-15T16:08:53.901Z] Spinner invoked (Building...) with a 0ms delay
+> [debug] [2026-03-15T16:08:53.901Z] #4 ΓåÆ GET https://api.vercel.com/v2/user
+[client-debug] 2026-03-15T16:08:53.901Z Waiting for deployment to be ready...
+[client-debug] 2026-03-15T16:08:53.902Z Waiting for builds and the deployment to complete...
+> [debug] [2026-03-15T16:08:54.158Z] #4 ΓåÉ 200 OK: sfo1::bw5zv-1773590931600-f52f4e97d300 [257ms]
+> [debug] [2026-03-15T16:08:54.159Z] Valid access token, skipping token refresh.
+> [debug] [2026-03-15T16:08:54.160Z] #5 ΓåÆ GET https://api.vercel.com/v3/now/deployments/dpl_5iNuuxrW8T7hrY8S46PKkgwXpKbU/events?direction=forward&follow=1&format=lines&teamId=team_CUTAmeLhSeZual5Hdq6uttIb
+[client-debug] 2026-03-15T16:08:55.888Z Deployment state changed to BUILDING
+[client-debug] 2026-03-15T16:08:55.888Z Yielding a 'building' event
+> [debug] [2026-03-15T16:08:55.888Z] Spinner invoked (Building...) with a 0ms delay
+> [debug] [2026-03-15T16:08:57.546Z] #5 ΓåÉ 200 OK: sfo1::6x2hx-1773590931858-eebb92c972ee [3.39s]
+> [debug] [2026-03-15T16:08:57.547Z] Spinner invoked (Building: Running build in Washington, D.C., USA (East) ΓÇô iad1) with a 0ms delay
+> [debug] [2026-03-15T16:08:57.547Z] Spinner invoked (Building: Build machine configuration: 2 cores, 8 GB) with a 0ms delay
+> [debug] [2026-03-15T16:08:57.547Z] Spinner invoked (Building: Retrieving list of deployment files...) with a 0ms delay
+> [debug] [2026-03-15T16:08:57.547Z] Spinner invoked (Building: Skipping build cache, deployment was triggered without cache.) with a 0ms delay
+> [debug] [2026-03-15T16:08:57.548Z] Spinner invoked (Building: Downloading 62 deployment files...) with a 0ms delay
+> [debug] [2026-03-15T16:08:58.585Z] Spinner invoked (Building: Running "vercel build") with a 0ms delay
+> [debug] [2026-03-15T16:08:58.586Z] Spinner invoked (Building: Vercel CLI 50.32.4) with a 0ms delay
+> [debug] [2026-03-15T16:08:59.615Z] Spinner invoked (Building: Installing dependencies...) with a 0ms delay
+> [debug] [2026-03-15T16:09:03.756Z] Spinner invoked (Building: npm warn deprecated sourcemap-codec@1.4.8: Please use @jridgewell/sourcemap-codec instead) with a 0ms delay
+> [debug] [2026-03-15T16:09:04.793Z] Spinner invoked (Building: npm warn deprecated source-map@0.8.0-beta.0: The work that was done in this beta branch won't be included in future versions) with a 0ms delay
+> [debug] [2026-03-15T16:09:05.823Z] Spinner invoked (Building: npm warn deprecated glob@11.1.0: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me) with a 0ms delay
+[client-debug] 2026-03-15T16:09:07.824Z Yielding a 'error' event
+> [debug] [2026-03-15T16:09:07.826Z] Error: Error: Command "npm run build" exited with 1
+Error: Command "npm run build" exited with 1
+    at Now.handleDeploymentError (file:///C:/Users/User/AppData/Roaming/npm/node_modules/vercel/dist/index.js:158301:16)
+    at processDeployment (file:///C:/Users/User/AppData/Roaming/npm/node_modules/vercel/dist/index.js:158038:34)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async Now.create (file:///C:/Users/User/AppData/Roaming/npm/node_modules/vercel/dist/index.js:158195:28)
+    at async createDeploy (file:///C:/Users/User/AppData/Roaming/npm/node_modules/vercel/dist/index.js:158449:12)
+    at async deploy_default (file:///C:/Users/User/AppData/Roaming/npm/node_modules/vercel/dist/index.js:159364:22)
+    at async main19 (file:///C:/Users/User/AppData/Roaming/npm/node_modules/vercel/dist/index.js:199683:19)
+> [debug] [2026-03-15T16:09:07.826Z] handling error: Error: Command "npm run build" exited with 1
+    at Now.handleDeploymentError (file:///C:/Users/User/AppData/Roaming/npm/node_modules/vercel/dist/index.js:158301:16)
+    at processDeployment (file:///C:/Users/User/AppData/Roaming/npm/node_modules/vercel/dist/index.js:158038:34)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async Now.create (file:///C:/Users/User/AppData/Roaming/npm/node_modules/vercel/dist/index.js:158195:28)
+    at async createDeploy (file:///C:/Users/User/AppData/Roaming/npm/node_modules/vercel/dist/index.js:158449:12)
+    at async deploy_default (file:///C:/Users/User/AppData/Roaming/npm/node_modules/vercel/dist/index.js:159364:22)
+    at async main19 (file:///C:/Users/User/AppData/Roaming/npm/node_modules/vercel/dist/index.js:199683:19)
+Error: Command "npm run build" exited with 1
+> [debug] [2026-03-15T16:09:08.528Z] Vercel CLI 50.13.2
+
+> [debug] [2026-03-15T16:09:09.297Z] Telemetry event tracked
+> [debug] [2026-03-15T16:09:09.363Z] Telemetry subprocess exited with code 0
+> [debug] [2026-03-15T16:09:09.364Z] Spawning C:\Users\User\AppData\Roaming\npm\node_modules\vercel\dist\get-latest-worker.cjs
+> '[debug] [2026-03-15T16:09:09.411Z] Notifying parent we're ready
+> '[debug] [2026-03-15T16:09:09.414Z] Received message from parent: {
+  cacheFile: 'C:\\Users\\User\\AppData\\Local\\com.vercel.cli\\Cache\\package-updates\\vercel-latest.json',
+  distTag: 'latest',
+  name: 'vercel',
+  updateCheckInterval: 86400000
+}
+> '[debug] [2026-03-15T16:09:09.414Z] Disconnecting from parent
+> '[debug] [2026-03-15T16:09:09.416Z] Checking lock file: C:\Users\User\AppData\Local\com.vercel.cli\Cache\package-updates\vercel-latest.lock
+> '[debug] [2026-03-15T16:09:09.417Z] Found lock file with pid: 26348
+> '[debug] [2026-03-15T16:09:09.417Z] Resetting lock file: Error: kill ESRCH
+> '[debug] [2026-03-15T16:09:09.417Z] Initializing lock file with pid 2496
+> '[debug] [2026-03-15T16:09:09.419Z] Fetching https://registry.npmjs.org/-/package/vercel/dist-tags
+https://client-5qngs0iux-jayabudiputra-a11ys-projects.vercel.app
